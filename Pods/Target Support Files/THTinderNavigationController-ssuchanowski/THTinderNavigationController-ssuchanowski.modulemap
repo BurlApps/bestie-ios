@@ -1,0 +1,6 @@
+framework module THTinderNavigationController_ssuchanowski {
+  umbrella header "THTinderNavigationController-ssuchanowski-umbrella.h"
+
+  export *
+  module * { export * }
+}

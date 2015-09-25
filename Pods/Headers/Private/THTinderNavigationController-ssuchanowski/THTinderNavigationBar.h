@@ -1,0 +1,1 @@
+../../../THTinderNavigationController-ssuchanowski/THTinderNavigationController/THTinderNavigationBar.h

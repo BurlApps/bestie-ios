@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		037708035AE335CE444A4CBD0F596648 /* THTinderNavigationController-ssuchanowski-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F7BC813886453BD0448CFDA04DBF55E /* THTinderNavigationController-ssuchanowski-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		044580D7F57E24EE63976734AF233143 /* THTinderNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 429445B1F589620CB04BD30D075D1CE6 /* THTinderNavigationBar.m */; };
+		206E2F5134D47D0FF041EB1AF1A4E4BC /* THTinderNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A692CFB40B8E8D0A8719365A89ECD49 /* THTinderNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7984C738D2DE88A9A6F336943F89FEFF /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA98EDCD03BDEAACAA78A2563C16EF /* Pods-dummy.m */; };
+		7A44F9E051DD3C3349496E8777AD9A67 /* THTinderNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 981C8F5609ED4C8B4CD1E5F38A22A05B /* THTinderNavigationController.m */; };
+		8FBE878272E40308C2392C28A8958B18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689344827C43384DB37B5F70EC365EAA /* Foundation.framework */; };
+		C58E1E01BCCBDA7256B23A81813D8FD4 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72400425A8EE1389F060FC2A1214F3E6 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB24EE5809E5CC2A33AF3F612F415C45 /* THTinderNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 33BF56E37DDB4CD4F8138D99B4883F21 /* THTinderNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDB82F93B53FEF4A85CE52C57C439757 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689344827C43384DB37B5F70EC365EAA /* Foundation.framework */; };
+		FC8CEC0539ED067BD041A5808359D794 /* THTinderNavigationController-ssuchanowski-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3EE3756674B3B1F7B4E8AF1E88AB38 /* THTinderNavigationController-ssuchanowski-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		217C6ECC48B5EE4913547CE35569AE1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1AE91DFDF949C2226745F913F8E33778;
+			remoteInfo = "THTinderNavigationController-ssuchanowski";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		091F5B401021DE755D4D907292351532 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		2F7BC813886453BD0448CFDA04DBF55E /* THTinderNavigationController-ssuchanowski-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "THTinderNavigationController-ssuchanowski-umbrella.h"; sourceTree = "<group>"; };
+		33BF56E37DDB4CD4F8138D99B4883F21 /* THTinderNavigationBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = THTinderNavigationBar.h; path = THTinderNavigationController/THTinderNavigationBar.h; sourceTree = "<group>"; };
+		429445B1F589620CB04BD30D075D1CE6 /* THTinderNavigationBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = THTinderNavigationBar.m; path = THTinderNavigationController/THTinderNavigationBar.m; sourceTree = "<group>"; };
+		43BAA233F04B98D8D779DE83E0B30425 /* THTinderNavigationController_ssuchanowski.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THTinderNavigationController_ssuchanowski.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A692CFB40B8E8D0A8719365A89ECD49 /* THTinderNavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = THTinderNavigationController.h; path = THTinderNavigationController/THTinderNavigationController.h; sourceTree = "<group>"; };
+		6625EB86A8BFBA5908BA9BE74915014A /* THTinderNavigationController-ssuchanowski.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "THTinderNavigationController-ssuchanowski.modulemap"; sourceTree = "<group>"; };
+		689344827C43384DB37B5F70EC365EAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		716C33B965E577A91A9FD942D4845541 /* THTinderNavigationController-ssuchanowski.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "THTinderNavigationController-ssuchanowski.xcconfig"; sourceTree = "<group>"; };
+		72400425A8EE1389F060FC2A1214F3E6 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		7B2FB447324ECD57E15F2960BEEA9894 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		981C8F5609ED4C8B4CD1E5F38A22A05B /* THTinderNavigationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = THTinderNavigationController.m; path = THTinderNavigationController/THTinderNavigationController.m; sourceTree = "<group>"; };
+		AC3EE3756674B3B1F7B4E8AF1E88AB38 /* THTinderNavigationController-ssuchanowski-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "THTinderNavigationController-ssuchanowski-dummy.m"; sourceTree = "<group>"; };
+		B6CA98EDCD03BDEAACAA78A2563C16EF /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C32D7F39EE08AA1530FC25E4A27075CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		C8CC783A62510F39F2C3F77F3E10B605 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D38F46AC748F9FB228BFDAF8AD8E9295 /* THTinderNavigationController-ssuchanowski-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "THTinderNavigationController-ssuchanowski-Private.xcconfig"; sourceTree = "<group>"; };
+		E3E841F88DF3C733D8D726554F08583D /* THTinderNavigationController-ssuchanowski-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "THTinderNavigationController-ssuchanowski-prefix.pch"; sourceTree = "<group>"; };
+		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D87191E05A75CA4497DEC27EF6AE4A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FBE878272E40308C2392C28A8958B18 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC71B6EF7EBB5D7A839063467C6ECD5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB82F93B53FEF4A85CE52C57C439757 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FF7E2B1594B1E7D3691CD8673D3A814 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B2FB447324ECD57E15F2960BEEA9894 /* Info.plist */,
+				6625EB86A8BFBA5908BA9BE74915014A /* THTinderNavigationController-ssuchanowski.modulemap */,
+				716C33B965E577A91A9FD942D4845541 /* THTinderNavigationController-ssuchanowski.xcconfig */,
+				D38F46AC748F9FB228BFDAF8AD8E9295 /* THTinderNavigationController-ssuchanowski-Private.xcconfig */,
+				AC3EE3756674B3B1F7B4E8AF1E88AB38 /* THTinderNavigationController-ssuchanowski-dummy.m */,
+				E3E841F88DF3C733D8D726554F08583D /* THTinderNavigationController-ssuchanowski-prefix.pch */,
+				2F7BC813886453BD0448CFDA04DBF55E /* THTinderNavigationController-ssuchanowski-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/THTinderNavigationController-ssuchanowski";
+			sourceTree = "<group>";
+		};
+		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				689344827C43384DB37B5F70EC365EAA /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */,
+				79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */,
+				D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */,
+				87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */,
+				B6CA98EDCD03BDEAACAA78A2563C16EF /* Pods-dummy.m */,
+				E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */,
+				CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */,
+				72400425A8EE1389F060FC2A1214F3E6 /* Pods-umbrella.h */,
+				091F5B401021DE755D4D907292351532 /* Pods.debug.xcconfig */,
+				C32D7F39EE08AA1530FC25E4A27075CF /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				C470DA8B8AC9E5239650C25FC30ED09D /* Pods */,
+				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
+				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		B575F71C8A3C36D1F0E502FFB4E5D87E /* THTinderNavigationController-ssuchanowski */ = {
+			isa = PBXGroup;
+			children = (
+				33BF56E37DDB4CD4F8138D99B4883F21 /* THTinderNavigationBar.h */,
+				429445B1F589620CB04BD30D075D1CE6 /* THTinderNavigationBar.m */,
+				4A692CFB40B8E8D0A8719365A89ECD49 /* THTinderNavigationController.h */,
+				981C8F5609ED4C8B4CD1E5F38A22A05B /* THTinderNavigationController.m */,
+				2FF7E2B1594B1E7D3691CD8673D3A814 /* Support Files */,
+			);
+			path = "THTinderNavigationController-ssuchanowski";
+			sourceTree = "<group>";
+		};
+		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				75D98FF52E597A11900E131B6C4E1ADA /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53F661C0CA7190D2CF05023FB33D61E4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C470DA8B8AC9E5239650C25FC30ED09D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B575F71C8A3C36D1F0E502FFB4E5D87E /* THTinderNavigationController-ssuchanowski */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8CC783A62510F39F2C3F77F3E10B605 /* Pods.framework */,
+				43BAA233F04B98D8D779DE83E0B30425 /* THTinderNavigationController_ssuchanowski.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6D66809599C33D758804CD9560329D9E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB24EE5809E5CC2A33AF3F612F415C45 /* THTinderNavigationBar.h in Headers */,
+				037708035AE335CE444A4CBD0F596648 /* THTinderNavigationController-ssuchanowski-umbrella.h in Headers */,
+				206E2F5134D47D0FF041EB1AF1A4E4BC /* THTinderNavigationController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED89E5EE7F8C2F9344237722F71418A5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C58E1E01BCCBDA7256B23A81813D8FD4 /* Pods-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1AE91DFDF949C2226745F913F8E33778 /* THTinderNavigationController-ssuchanowski */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25C6230F6EBEA4542B04321F1CC55B49 /* Build configuration list for PBXNativeTarget "THTinderNavigationController-ssuchanowski" */;
+			buildPhases = (
+				EF4198AC363E3BAC4D4B05B35D67AC23 /* Sources */,
+				FC71B6EF7EBB5D7A839063467C6ECD5C /* Frameworks */,
+				6D66809599C33D758804CD9560329D9E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "THTinderNavigationController-ssuchanowski";
+			productName = "THTinderNavigationController-ssuchanowski";
+			productReference = 43BAA233F04B98D8D779DE83E0B30425 /* THTinderNavigationController_ssuchanowski.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EB9C52253D51A821AB2570A8DA23FFF4 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3865424F4F9674D768B00F8511CA26D7 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				C5A0C94413777252EACAE75A8688FBD5 /* Sources */,
+				3D87191E05A75CA4497DEC27EF6AE4A4 /* Frameworks */,
+				ED89E5EE7F8C2F9344237722F71418A5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7AD6DA37125E8446542732AFDEBD9D49 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = C8CC783A62510F39F2C3F77F3E10B605 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = CCA510CFBEA2D207524CDA0D73C3B561 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB9C52253D51A821AB2570A8DA23FFF4 /* Pods */,
+				1AE91DFDF949C2226745F913F8E33778 /* THTinderNavigationController-ssuchanowski */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C5A0C94413777252EACAE75A8688FBD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7984C738D2DE88A9A6F336943F89FEFF /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF4198AC363E3BAC4D4B05B35D67AC23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				044580D7F57E24EE63976734AF233143 /* THTinderNavigationBar.m in Sources */,
+				FC8CEC0539ED067BD041A5808359D794 /* THTinderNavigationController-ssuchanowski-dummy.m in Sources */,
+				7A44F9E051DD3C3349496E8777AD9A67 /* THTinderNavigationController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7AD6DA37125E8446542732AFDEBD9D49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "THTinderNavigationController-ssuchanowski";
+			target = 1AE91DFDF949C2226745F913F8E33778 /* THTinderNavigationController-ssuchanowski */;
+			targetProxy = 217C6ECC48B5EE4913547CE35569AE1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		34B97038165D7C94E99585A5B6406AF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C32D7F39EE08AA1530FC25E4A27075CF /* Pods.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		57FE0269A05D6E41164BE21FD455F9B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 091F5B401021DE755D4D907292351532 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		74857149DC1E0D599B8A01A78349A926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B2F8D917F8BA41AB774242A251F48B03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D38F46AC748F9FB228BFDAF8AD8E9295 /* THTinderNavigationController-ssuchanowski-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.1.1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/THTinderNavigationController-ssuchanowski/THTinderNavigationController-ssuchanowski-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/THTinderNavigationController-ssuchanowski/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/THTinderNavigationController-ssuchanowski/THTinderNavigationController-ssuchanowski.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = THTinderNavigationController_ssuchanowski;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EA12F1A765C890A3C08C5A10C983D13A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D38F46AC748F9FB228BFDAF8AD8E9295 /* THTinderNavigationController-ssuchanowski-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.1.1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/THTinderNavigationController-ssuchanowski/THTinderNavigationController-ssuchanowski-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/THTinderNavigationController-ssuchanowski/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/THTinderNavigationController-ssuchanowski/THTinderNavigationController-ssuchanowski.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = THTinderNavigationController_ssuchanowski;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		25C6230F6EBEA4542B04321F1CC55B49 /* Build configuration list for PBXNativeTarget "THTinderNavigationController-ssuchanowski" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA12F1A765C890A3C08C5A10C983D13A /* Debug */,
+				B2F8D917F8BA41AB774242A251F48B03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */,
+				74857149DC1E0D599B8A01A78349A926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3865424F4F9674D768B00F8511CA26D7 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57FE0269A05D6E41164BE21FD455F9B7 /* Debug */,
+				34B97038165D7C94E99585A5B6406AF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

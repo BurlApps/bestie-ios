@@ -1,0 +1,19 @@
+PODS:
+  - THTinderNavigationController-ssuchanowski (1.1.1)
+
+DEPENDENCIES:
+  - THTinderNavigationController-ssuchanowski (from `https://github.com/BurlApps/THTinderNavigationController.git`)
+
+EXTERNAL SOURCES:
+  THTinderNavigationController-ssuchanowski:
+    :git: https://github.com/BurlApps/THTinderNavigationController.git
+
+CHECKOUT OPTIONS:
+  THTinderNavigationController-ssuchanowski:
+    :commit: 03e3a3c0405db9f3fb42e15d93e11bfafb3896ce
+    :git: https://github.com/BurlApps/THTinderNavigationController.git
+
+SPEC CHECKSUMS:
+  THTinderNavigationController-ssuchanowski: d081bb8c8e2145a40bc6817c6b75267849e07ebc
+
+COCOAPODS: 0.38.2
