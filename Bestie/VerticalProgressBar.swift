@@ -16,11 +16,11 @@ class VerticalProgressBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = Colors.progressBar
+        self.backgroundColor = Colors.progressTrack
         self.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2 * 2))
         
         self.bar = UIView()
-        self.bar.backgroundColor = Colors.yellow
+        self.bar.backgroundColor = Colors.progressBar
         self.progress(0, animation: false)
         
         self.addSubview(self.bar)
