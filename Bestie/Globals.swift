@@ -27,6 +27,13 @@ class Globals {
     static let voterImageRadius: CGFloat = 8
     static let voterImagePop: CGFloat = 1.1
     static let voterImageInterval: NSTimeInterval = 0.1
+
+    static let batchCellRadius: CGFloat = 5
+    static let batchPlusCellBorder: CGFloat = 2
+    static let batchImageCellBorder: CGFloat = 1
+    
+    static let batchSubmitButtonRadius: CGFloat = 23
+    
     
     class func switchLogoFace() {
         self.logoImage.switchFace()

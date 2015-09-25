@@ -24,6 +24,8 @@
 		D347340A1BB5C244009C19DE /* NewBatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734091BB5C244009C19DE /* NewBatchController.swift */; };
 		D347340C1BB5C3D5009C19DE /* BatchProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */; };
 		D347340E1BB5C3E7009C19DE /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D347340D1BB5C3E7009C19DE /* ResultsController.swift */; };
+		D34734111BB6033A009C19DE /* PlusCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734101BB6033A009C19DE /* PlusCollectionCell.swift */; };
+		D34734131BB6034B009C19DE /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734121BB6034B009C19DE /* ImageCollectionCell.swift */; };
 		D3BC59121BB39E28006CF8DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BC59111BB39E28006CF8DF /* UIKit.framework */; };
 		EF0050A949AE374AB914AFA8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74E99D7F47E0788D0F4227B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -62,6 +64,8 @@
 		D34734091BB5C244009C19DE /* NewBatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBatchController.swift; sourceTree = "<group>"; };
 		D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchProgressController.swift; sourceTree = "<group>"; };
 		D347340D1BB5C3E7009C19DE /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
+		D34734101BB6033A009C19DE /* PlusCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusCollectionCell.swift; sourceTree = "<group>"; };
+		D34734121BB6034B009C19DE /* ImageCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
 		D37C42A31BB3981C00CA9364 /* Bestie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bestie-Bridging-Header.h"; sourceTree = "<group>"; };
 		D37C42A71BB3998D00CA9364 /* SLPagingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SLPagingView.framework; path = "Pods/../build/Debug-iphoneos/SLPagingView.framework"; sourceTree = "<group>"; };
 		D3BC59111BB39E28006CF8DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -190,8 +194,18 @@
 				D34734091BB5C244009C19DE /* NewBatchController.swift */,
 				D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */,
 				D347340D1BB5C3E7009C19DE /* ResultsController.swift */,
+				D347340F1BB60316009C19DE /* Views */,
 			);
 			name = "Results Controller";
+			sourceTree = "<group>";
+		};
+		D347340F1BB60316009C19DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D34734101BB6033A009C19DE /* PlusCollectionCell.swift */,
+				D34734121BB6034B009C19DE /* ImageCollectionCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		D37C429E1BB386EE00CA9364 /* Core */ = {
@@ -395,7 +409,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D32FFCF31BB39A9B00E3858F /* PageController.swift in Sources */,
+				D34734111BB6033A009C19DE /* PlusCollectionCell.swift in Sources */,
 				D32FFCF61BB39CD000E3858F /* Colors.swift in Sources */,
+				D34734131BB6034B009C19DE /* ImageCollectionCell.swift in Sources */,
 				D32FFD071BB48DE000E3858F /* VerticalProgressBar.swift in Sources */,
 				D347340C1BB5C3D5009C19DE /* BatchProgressController.swift in Sources */,
 				D32FFD091BB4B57500E3858F /* VoterImage.swift in Sources */,

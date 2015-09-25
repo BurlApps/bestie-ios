@@ -16,10 +16,26 @@ class Colors {
     
     static let progressTrack = UIColor.clearColor()
     static let progressBar = yellow
+    
     static let navBar = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1)
+    
     static let primaryIcon = UIColor(red:0.98, green:0.82, blue:0.12, alpha:1)
+    
     static let voterTextLabel = red
     static let voterImageBorder = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
+    static let voterImageBackground = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1)
+
+    static let batchImageCellBackground = UIColor.blackColor()
+    static let batchImageCellBorder = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
+    static let batchImageCellRemove = UIColor.whiteColor()
+    static let batchImageCellRemoveBorder = UIColor(red:1, green:0.26, blue:0.32, alpha:1)
+    
+    static let batchPlusCellBackground = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1)
+    static let batchPlusCellIcon = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1)
+    static let batchPlusCellBorder = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1)
+    
+    static let batchSubmitButton = UIColor(red:0.98, green:0.82, blue:0, alpha:1)
+    static let batchInfomation = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1)
     
     class func mix(percent: CGFloat, initC: UIColor, goal: UIColor) -> UIColor{
         let cgInit = CGColorGetComponents(initC.CGColor)

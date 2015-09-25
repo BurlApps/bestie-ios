@@ -68,6 +68,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
         self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         self.textLabel.text = "VS"
+        self.textLabel.font = UIFont.boldSystemFontOfSize(20)
         self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
         self.textLabel.layer.masksToBounds = true
         self.textLabel.clipsToBounds = true
@@ -97,7 +98,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if (arc4random_uniform(10) + 1) <= 3 {
             Globals.switchLogoFace()
-            self.sizeTextLabel(!self.textLabelBig)
         }
         
         self.progressBar1.increment(0.2, animation: true)

@@ -21,15 +21,11 @@ class VoterImage: UIImageView {
         
         self.image = UIImage(named: "Temp")
         
-        self.backgroundColor = Colors.progressBar
+        self.backgroundColor = Colors.voterImageBackground
         self.layer.cornerRadius = Globals.voterImageRadius
         self.layer.borderWidth = Globals.voterImageBorder
         self.layer.borderColor = Colors.voterImageBorder.CGColor
         self.layer.masksToBounds = true
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowRadius = 3
-        self.layer.shadowOffset = CGSizeMake(0, 2)
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = false
         

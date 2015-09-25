@@ -17,7 +17,7 @@ class BridgeController: UIViewController {
         super.viewDidLoad()
         
         self.resultsController.hidden = true
-        self.progressController.hidden = true
+        self.progressController.hidden = false
         self.newBatchController.hidden = true
     }
 }
