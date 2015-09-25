@@ -16,15 +16,17 @@ class Globals {
     static let progressBarWidth: CGFloat = 10
     
     static let voterTextLabel: CGFloat = 50
+    static let voterTextLabelBig: CGFloat = 150
+    static let voterTextLabelInterval: NSTimeInterval = 0.5
     
     static let voterSetVerticalPadding: CGFloat = 6
     static let voterSetMiddlePadding: CGFloat = 5
-    static let voterSetInterval = 0.4
+    static let voterSetInterval: NSTimeInterval = 0.4
     
     static let voterImageBorder: CGFloat = 1
     static let voterImageRadius: CGFloat = 8
     static let voterImagePop: CGFloat = 1.1
-    static let voterImageInterval = 0.1
+    static let voterImageInterval: NSTimeInterval = 0.1
     
     class func switchLogoFace() {
         self.logoImage.switchFace()

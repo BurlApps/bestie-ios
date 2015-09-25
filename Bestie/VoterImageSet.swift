@@ -20,8 +20,6 @@ class VoterImageSet: UIView, VoterImageDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.alpha = 0
-        
         self.createVoterImage(true)
         self.createVoterImage(false)
     }
@@ -47,7 +45,6 @@ class VoterImageSet: UIView, VoterImageDelegate {
     func imageSelected(image: VoterImage) {
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = -1 * self.frame.height
-            self.alpha = 0.5
         }) { (finished: Bool) -> Void in
             self.hidden = true
             self.frame.origin.y = self.frame.height
@@ -61,7 +58,6 @@ class VoterImageSet: UIView, VoterImageDelegate {
         
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
-            self.alpha = 1
         }, completion: nil)
     }
 }

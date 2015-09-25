@@ -23,7 +23,7 @@ class PageController: UIViewController {
         self.pageController.paggedViewControllers = [
             storyBoard.instantiateViewControllerWithIdentifier("SettingsController"),
             storyBoard.instantiateViewControllerWithIdentifier("VoteController"),
-            storyBoard.instantiateViewControllerWithIdentifier("ResultsController")
+            storyBoard.instantiateViewControllerWithIdentifier("BridgeController")
         ]
         self.pageController.navbarItemViews = [
             NavigationBarItem(namedImage: "Settings", special: false),

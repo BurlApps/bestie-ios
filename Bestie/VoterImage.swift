@@ -42,15 +42,17 @@ class VoterImage: UIImageView {
     }
     
     func tapped(gesture: UIGestureRecognizer) {
-        self.scaleUp(false)
-        self.delegate.imageSelected(self)
+        self.scaleUp(false, completion: {
+            self.delegate.imageSelected(self)
+        })
     }
     
-    func scaleUp(hold: Bool) {
+    func scaleUp(hold: Bool, completion: (() -> Void)!) {
         UIView.animateWithDuration(Globals.voterImageInterval, animations: {
             self.transform = CGAffineTransformMakeScale(Globals.voterImagePop, Globals.voterImagePop);
         }, completion: { (finished: Bool) -> Void in
             if finished && !hold {
+                completion()
                 self.scaleDown()
             }
         })
@@ -63,7 +65,7 @@ class VoterImage: UIImageView {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.scaleUp(true)
+        self.scaleUp(true, completion: nil)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

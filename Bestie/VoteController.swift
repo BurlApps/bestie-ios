@@ -11,13 +11,11 @@ import UIKit
 class VoteController: UIViewController, VoterImageSetDelegate {
 
     private var setup: Bool = false
+    private var textLabelBig = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
     private var voterSets: [VoterImageSet] = []
-    
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var textLabelWidth: NSLayoutConstraint!
-    @IBOutlet weak var textLabelHeight: NSLayoutConstraint!
+    private var textLabel: UILabel!
     
 
     override func viewDidAppear(animated: Bool) {
@@ -29,6 +27,19 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             self.setUpVoterSets()
             self.setup = true
         }
+    }
+    
+    func sizeTextLabel(big: Bool) {
+        if big == self.textLabelBig {
+            return
+        }
+        
+        self.textLabelBig = big
+        
+        //UIView.animateWithDuration(Globals.voterTextLabelInterval, animations: {
+            self.textLabel.frame.size.width = big ? Globals.voterTextLabelBig : Globals.voterTextLabel
+            self.textLabel.center.x = self.view.frame.width/2
+        //}, completion: nil)
     }
     
     func createVoterSet(first: Bool) {
@@ -53,16 +64,18 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func setUpLabel() {
+        self.textLabel = UILabel()
+        self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
+        self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         self.textLabel.text = "VS"
         self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
         self.textLabel.layer.masksToBounds = true
+        self.textLabel.clipsToBounds = true
         self.textLabel.backgroundColor = UIColor.whiteColor()
         self.textLabel.textColor = Colors.voterTextLabel
         self.textLabel.textAlignment = .Center
-        
-        self.textLabelWidth.constant = Globals.voterTextLabel
-        self.textLabelHeight.constant = Globals.voterTextLabel
-        self.textLabel.setNeedsUpdateConstraints()
+        self.textLabel.autoresizingMask = .FlexibleWidth
+        self.view.addSubview(self.textLabel)
     }
     
     func setupProgressBars() {
@@ -84,6 +97,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if (arc4random_uniform(10) + 1) <= 3 {
             Globals.switchLogoFace()
+            self.sizeTextLabel(!self.textLabelBig)
         }
         
         self.progressBar1.increment(0.2, animation: true)
