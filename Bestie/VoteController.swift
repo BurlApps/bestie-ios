@@ -81,5 +81,12 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.voterSets.removeFirst()
         self.voterSets.first?.animateInToView()
         self.voterSets.append(set)
+        
+        if (arc4random_uniform(10) + 1) <= 3 {
+            Globals.switchLogoFace()
+        }
+        
+        self.progressBar1.increment(0.2, animation: true)
+        self.progressBar2.increment(0.2, animation: true)
     }
 }

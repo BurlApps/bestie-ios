@@ -48,6 +48,9 @@ class PageController: UIViewController {
             }
         }
         
+        Globals.pageController = self
+        Globals.logoImage = self.pageController.navbarItemViews[1] as! NavigationBarItem
+        
         self.view.addSubview(self.pageController.view)
     }
 }

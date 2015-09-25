@@ -45,7 +45,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func imageSelected(image: VoterImage) {
-        UIView.animateWithDuration(Globals.voterSetInterval, delay: 0, options: .BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = -1 * self.frame.height
             self.alpha = 0.5
         }) { (finished: Bool) -> Void in
@@ -59,7 +59,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
     func animateInToView() {
         self.hidden = false
         
-        UIView.animateWithDuration(Globals.voterSetInterval, delay: 0, options: .BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
             self.alpha = 1
         }, completion: nil)

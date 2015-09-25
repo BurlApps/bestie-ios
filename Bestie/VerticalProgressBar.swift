@@ -30,12 +30,23 @@ class VerticalProgressBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func increment(increment: CGFloat, animation: Bool) {
+        self.progress += increment
+        self.progress(self.progress, animation: animation)
+    }
+    
     func progress(percent: CGFloat, animation: Bool) {
-        let frame = self.frame
-        let height = frame.height * percent
+        self.progress = min(percent, 1)
         
+        let frame = self.frame
+        let height = frame.height * self.progress
+            
         UIView.animateWithDuration(animation ? 0.2 : 0, animations: {
             self.bar.frame = CGRectMake(0,  0, frame.width, height)
-        }, completion: nil)
+        }, completion: { (finished: Bool) -> Void in
+            if finished && percent >= 1 {
+                self.progress(0, animation: true)
+            }
+        })
     }
 }
