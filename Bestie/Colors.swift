@@ -38,6 +38,8 @@ class Colors {
     static let batchInfomation = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1)
     static let batchInstructions = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1)
     static let batchProgressBar = UIColor(red:0.96, green:0.52, blue:0, alpha:1)
+    static let batchHeaderLabel = UIColor(red:1, green:0.59, blue:0.28, alpha:1)
+    static let batchHeaderSeparator = UIColor(red:0.89, green:0.89, blue:0.89, alpha:1)
     
     class func mix(percent: CGFloat, initC: UIColor, goal: UIColor) -> UIColor{
         let cgInit = CGColorGetComponents(initC.CGColor)

@@ -14,6 +14,8 @@ class ImageTableCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.imageView?.image = UIImage(named: "Temp")
+        self.imageView?.clipsToBounds = true
+        self.imageView?.contentMode = .ScaleAspectFill
         self.backgroundColor = Colors.batchImageCellBackground
     }
     
@@ -24,6 +26,6 @@ class ImageTableCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.imageView!.frame = CGRectMake(0, 0, self.imageView!.frame.size.width, self.imageView!.frame.size.height);
+        self.imageView?.frame = CGRectMake(0, 0, self.imageView!.frame.size.width, self.imageView!.frame.size.height);
     }
 }

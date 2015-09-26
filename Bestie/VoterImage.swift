@@ -20,6 +20,8 @@ class VoterImage: UIImageView {
         super.init(frame: frame)
         
         self.image = UIImage(named: "Temp")
+        self.clipsToBounds = true
+        self.contentMode = .ScaleAspectFill
         
         self.backgroundColor = Colors.voterImageBackground
         self.layer.cornerRadius = Globals.voterImageRadius

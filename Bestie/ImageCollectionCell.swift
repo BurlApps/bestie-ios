@@ -26,6 +26,8 @@ class ImageCollectionCell: UICollectionViewCell {
         self.imageView.layer.borderWidth = Globals.batchImageCellBorder
         self.imageView.layer.borderColor = Colors.batchImageCellBorder.CGColor
         self.imageView.layer.masksToBounds = true
+        self.imageView?.clipsToBounds = true
+        self.imageView?.contentMode = .ScaleAspectFill
         self.imageView.image = UIImage(named: "Temp")
         
         self.removeIcon.backgroundColor = Colors.batchImageCellRemove

@@ -34,7 +34,7 @@ class Globals {
     
     static let batchSubmitButtonRadius: CGFloat = 23
     
-    static let resultsFirstPhotoPercentHeight: CGFloat = 0.85
+    static let resultsFirstPhotoPercentHeight: CGFloat = 0.9
     
     
     class func switchLogoFace() {

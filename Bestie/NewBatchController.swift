@@ -14,7 +14,7 @@ UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionC
     private let reuseIdentifier = "cell"
     private let firstReuseIdentifier = "firstCell"
     private let uploadedImages: NSMutableArray = NSMutableArray(array: [1,2,3])
-    private let sectionInsets = UIEdgeInsets(top: 20.0, left: 25.0, bottom: 20.0, right: 25.0)
+    private let sectionInsets = UIEdgeInsets(top: 25.0, left: 25.0, bottom: 25.0, right: 25.0)
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
