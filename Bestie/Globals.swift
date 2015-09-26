@@ -13,7 +13,7 @@ class Globals {
     static var pageController: PageController!
     static var logoImage: NavigationBarItem!
     
-    static let progressBarWidth: CGFloat = 10
+    static let progressBarWidth: CGFloat = 7
     
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150
@@ -35,6 +35,10 @@ class Globals {
     static let batchSubmitButtonRadius: CGFloat = 23
     
     static let resultsFirstPhotoPercentHeight: CGFloat = 0.9
+    
+    static let shareCardSize: CGFloat = 600
+    static let shareCardContainerHeight: CGFloat = 560
+    static let shareCardBackgroundAlpha: CGFloat = 0.2
     
     
     class func switchLogoFace() {

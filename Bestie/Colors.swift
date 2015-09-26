@@ -15,7 +15,7 @@ class Colors {
     static let yellow = UIColor(red: 0.98, green: 0.82, blue: 0.114, alpha: 1)
     
     static let progressTrack = UIColor.clearColor()
-    static let progressBar = yellow
+    static let progressBar = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
     
     static let navBar = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1)
     

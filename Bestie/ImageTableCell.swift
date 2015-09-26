@@ -13,9 +13,8 @@ class ImageTableCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.imageView?.image = UIImage(named: "Temp")
         self.imageView?.clipsToBounds = true
-        self.imageView?.contentMode = .ScaleAspectFill
+        self.imageView?.contentMode = .ScaleAspectFit
         self.backgroundColor = Colors.batchImageCellBackground
         self.layoutMargins = UIEdgeInsetsZero
     }

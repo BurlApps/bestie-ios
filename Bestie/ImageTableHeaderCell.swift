@@ -20,8 +20,12 @@ class ImageTableHeaderCell: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backgroundView = UIView(frame: self.view.frame)
         let image = UIImage(named: "HeaderBackground")
-        self.view.backgroundColor = UIColor(patternImage: image!)
+        
+        backgroundView.backgroundColor = UIColor(patternImage: image!)
+        backgroundView.alpha = Globals.shareCardBackgroundAlpha
+        self.view.insertSubview(backgroundView, atIndex: 0)
         
         self.container.backgroundColor = UIColor.whiteColor()
         self.container.layer.masksToBounds = true

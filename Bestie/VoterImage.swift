@@ -27,7 +27,11 @@ class VoterImage: UIImageView {
         self.layer.cornerRadius = Globals.voterImageRadius
         self.layer.borderWidth = Globals.voterImageBorder
         self.layer.borderColor = Colors.voterImageBorder.CGColor
-        self.layer.masksToBounds = true
+        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowOffset = CGSizeZero
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 5
+        self.clipsToBounds = true
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = false
         
