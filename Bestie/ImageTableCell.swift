@@ -17,6 +17,7 @@ class ImageTableCell: UITableViewCell {
         self.imageView?.clipsToBounds = true
         self.imageView?.contentMode = .ScaleAspectFill
         self.backgroundColor = Colors.batchImageCellBackground
+        self.layoutMargins = UIEdgeInsetsZero
     }
     
     required init?(coder aDecoder: NSCoder) {
