@@ -10,9 +10,9 @@ import THTinderNavigationController_ssuchanowski
 
 class PageController: UIViewController {
     
+    var pageController: THTinderNavigationController!
     private var navItems: [UIView] = []
     private var navControllers: [UIViewController] = []
-    private var pageController: THTinderNavigationController!
     
     override func viewDidLoad() {
         super.viewDidLoad()

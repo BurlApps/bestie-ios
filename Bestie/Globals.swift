@@ -34,9 +34,15 @@ class Globals {
     
     static let batchSubmitButtonRadius: CGFloat = 23
     
+    static let resultsFirstPhotoPercentHeight: CGFloat = 0.85
+    
     
     class func switchLogoFace() {
         self.logoImage.switchFace()
+    }
+    
+    class func slideToVotingScreen() {
+        self.pageController.pageController.setCurrentPage(1, animated: true)
     }
     
 }

@@ -27,6 +27,8 @@
 		D34734111BB6033A009C19DE /* PlusCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734101BB6033A009C19DE /* PlusCollectionCell.swift */; };
 		D34734131BB6034B009C19DE /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734121BB6034B009C19DE /* ImageCollectionCell.swift */; };
 		D3BC59121BB39E28006CF8DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BC59111BB39E28006CF8DF /* UIKit.framework */; };
+		D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */; };
+		D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */; };
 		EF0050A949AE374AB914AFA8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74E99D7F47E0788D0F4227B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		D37C42A31BB3981C00CA9364 /* Bestie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bestie-Bridging-Header.h"; sourceTree = "<group>"; };
 		D37C42A71BB3998D00CA9364 /* SLPagingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SLPagingView.framework; path = "Pods/../build/Debug-iphoneos/SLPagingView.framework"; sourceTree = "<group>"; };
 		D3BC59111BB39E28006CF8DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
+		D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableHeaderCell.swift; sourceTree = "<group>"; };
 		E74E99D7F47E0788D0F4227B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -202,8 +206,10 @@
 		D347340F1BB60316009C19DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */,
 				D34734101BB6033A009C19DE /* PlusCollectionCell.swift */,
 				D34734121BB6034B009C19DE /* ImageCollectionCell.swift */,
+				D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -418,11 +424,13 @@
 				D32FFD051BB48B8E00E3858F /* VoteController.swift in Sources */,
 				D32FFD0B1BB4B5F000E3858F /* VoterImageSet.swift in Sources */,
 				D34734081BB5C234009C19DE /* BridgeController.swift in Sources */,
+				D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */,
 				D32FFCF91BB4774B00E3858F /* NavigationBarItem.swift in Sources */,
 				D33693F71BB3779D00F6A801 /* AppDelegate.swift in Sources */,
 				D32FFD0D1BB4B6BB00E3858F /* Globals.swift in Sources */,
 				D347340E1BB5C3E7009C19DE /* ResultsController.swift in Sources */,
 				D347340A1BB5C244009C19DE /* NewBatchController.swift in Sources */,
+				D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
