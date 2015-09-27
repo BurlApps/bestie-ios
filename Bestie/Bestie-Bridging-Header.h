@@ -3,3 +3,4 @@
 //
 
 #import <PNChart/PNChart.h>
+#import <MGInstagram/MGInstagram.h>

@@ -26,6 +26,8 @@
 		D347340E1BB5C3E7009C19DE /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D347340D1BB5C3E7009C19DE /* ResultsController.swift */; };
 		D34734111BB6033A009C19DE /* PlusCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734101BB6033A009C19DE /* PlusCollectionCell.swift */; };
 		D34734131BB6034B009C19DE /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734121BB6034B009C19DE /* ImageCollectionCell.swift */; };
+		D35BF4E71BB765ED008B2D4D /* ShareGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */; };
+		D35BF4E91BB76DBE008B2D4D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35BF4E81BB76DBE008B2D4D /* Social.framework */; };
 		D3BC59121BB39E28006CF8DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BC59111BB39E28006CF8DF /* UIKit.framework */; };
 		D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */; };
 		D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */; };
@@ -68,6 +70,8 @@
 		D347340D1BB5C3E7009C19DE /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
 		D34734101BB6033A009C19DE /* PlusCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusCollectionCell.swift; sourceTree = "<group>"; };
 		D34734121BB6034B009C19DE /* ImageCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
+		D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareGenerator.swift; sourceTree = "<group>"; };
+		D35BF4E81BB76DBE008B2D4D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D37C42A31BB3981C00CA9364 /* Bestie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bestie-Bridging-Header.h"; sourceTree = "<group>"; };
 		D37C42A71BB3998D00CA9364 /* SLPagingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SLPagingView.framework; path = "Pods/../build/Debug-iphoneos/SLPagingView.framework"; sourceTree = "<group>"; };
 		D3BC59111BB39E28006CF8DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35BF4E91BB76DBE008B2D4D /* Social.framework in Frameworks */,
 				D3BC59121BB39E28006CF8DF /* UIKit.framework in Frameworks */,
 				EF0050A949AE374AB914AFA8 /* Pods.framework in Frameworks */,
 			);
@@ -108,6 +113,7 @@
 		C92E7A0B86593B0390AC6C75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D35BF4E81BB76DBE008B2D4D /* Social.framework */,
 				D3BC59111BB39E28006CF8DF /* UIKit.framework */,
 				D37C42A71BB3998D00CA9364 /* SLPagingView.framework */,
 				E74E99D7F47E0788D0F4227B /* Pods.framework */,
@@ -199,6 +205,7 @@
 				D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */,
 				D347340D1BB5C3E7009C19DE /* ResultsController.swift */,
 				D347340F1BB60316009C19DE /* Views */,
+				D35BF4E51BB765CC008B2D4D /* Utility */,
 			);
 			name = "Results Controller";
 			sourceTree = "<group>";
@@ -212,6 +219,14 @@
 				D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		D35BF4E51BB765CC008B2D4D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		D37C429E1BB386EE00CA9364 /* Core */ = {
@@ -425,6 +440,7 @@
 				D32FFD0B1BB4B5F000E3858F /* VoterImageSet.swift in Sources */,
 				D34734081BB5C234009C19DE /* BridgeController.swift in Sources */,
 				D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */,
+				D35BF4E71BB765ED008B2D4D /* ShareGenerator.swift in Sources */,
 				D32FFCF91BB4774B00E3858F /* NavigationBarItem.swift in Sources */,
 				D33693F71BB3779D00F6A801 /* AppDelegate.swift in Sources */,
 				D32FFD0D1BB4B6BB00E3858F /* Globals.swift in Sources */,

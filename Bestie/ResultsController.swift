@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsController: UITableViewController {
+class ResultsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let reuseIdentifier = "cell"
     private var headerContainer: ImageTableHeaderCell!
@@ -17,6 +17,29 @@ class ResultsController: UITableViewController {
         UIImage(named: "Temp"),
         UIImage(named: "Temp")
     ]
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var startOverButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        self.shareButton.tintColor = UIColor.whiteColor()
+        self.shareButton.backgroundColor = Colors.batchSubmitButton
+        self.shareButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
+        self.shareButton.layer.masksToBounds = true
+        
+        self.startOverButton.tintColor = UIColor.whiteColor()
+        self.startOverButton.backgroundColor = Colors.batchSubmitAlternateButton
+        self.startOverButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
+        self.startOverButton.layer.masksToBounds = true
+        
+        self.view.layer.masksToBounds = true
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,19 +55,29 @@ class ResultsController: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    @IBAction func sharePressed(sender: AnyObject) {
+        let share = ShareGenerator(sender: sender as! UIView, controller: self.view.window!.rootViewController!)
+        
+        share.share(self.createShareCard())
+    }
+    
+    @IBAction func startOverPressed(sender: AnyObject) {
+        print("start over")
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.images.count
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return self.images[indexPath.row]!.size.height
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: ImageTableCell! = tableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier) as? ImageTableCell
         let image = self.images[indexPath.row]
         
@@ -60,7 +93,7 @@ class ResultsController: UITableViewController {
     func captureContainer() -> UIImage {
         let bounds = self.headerContainer.container.bounds
         
-        UIGraphicsBeginImageContext(bounds.size)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0)
         
         self.headerContainer.container.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
         let snapshot = UIGraphicsGetImageFromCurrentImageContext()
@@ -91,7 +124,7 @@ class ResultsController: UITableViewController {
         view.addSubview(backgroundView)
         view.addSubview(imageView)
         
-        UIGraphicsBeginImageContext(frame.size)
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
         
         view.drawViewHierarchyInRect(frame, afterScreenUpdates: true)
         let snapshot = UIGraphicsGetImageFromCurrentImageContext()

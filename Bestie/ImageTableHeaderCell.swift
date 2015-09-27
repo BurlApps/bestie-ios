@@ -27,6 +27,9 @@ class ImageTableHeaderCell: UIViewController {
         backgroundView.alpha = Globals.shareCardBackgroundAlpha
         self.view.insertSubview(backgroundView, atIndex: 0)
         
+        self.votedLabel.textColor = Colors.batchNumbers
+        self.percentLabel.textColor = Colors.batchNumbers
+        
         self.container.backgroundColor = UIColor.whiteColor()
         self.container.layer.masksToBounds = true
         self.container.layer.cornerRadius = Globals.voterImageRadius
