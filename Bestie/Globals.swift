@@ -11,6 +11,7 @@ import UIKit
 class Globals {
     
     static var pageController: PageController!
+    static var onboardController: OnboardController!
     static var logoImage: NavigationBarItem!
     
     static let progressBarWidth: CGFloat = 7
@@ -21,7 +22,7 @@ class Globals {
     
     static let voterSetVerticalPadding: CGFloat = 6
     static let voterSetMiddlePadding: CGFloat = 5
-    static let voterSetInterval: NSTimeInterval = 0.4
+    static let voterSetInterval: NSTimeInterval = 0.2
     
     static let voterImageBorder: CGFloat = 1
     static let voterImageRadius: CGFloat = 8
@@ -46,7 +47,29 @@ class Globals {
     }
     
     class func slideToVotingScreen() {
-        self.pageController.pageController.setCurrentPage(1, animated: true)
+        if self.pageController != nil {
+            self.pageController.pageController.setCurrentPage(1, animated: true)
+        }
+    }
+    
+    class func showOnboarding() {
+        if self.onboardController != nil {
+            self.onboardController.dismissViewControllerAnimated(false, completion: nil)
+        }
+    }
+    
+    class func appBuildVersion() -> String {
+        let infoDictionary = NSBundle.mainBundle().infoDictionary!
+        let version = infoDictionary["CFBundleShortVersionString"] as! NSString
+        let build = infoDictionary[String(kCFBundleVersionKey)] as! NSString
+        
+        return "\(version) - \(build)"
+    }
+    
+    class func appVersion() -> String {
+        let infoDictionary = NSBundle.mainBundle().infoDictionary!
+        
+        return infoDictionary["CFBundleShortVersionString"] as! String
     }
     
 }

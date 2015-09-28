@@ -14,14 +14,17 @@ protocol VoterImageDelegate {
 
 class VoterImage: UIImageView {
     
+    private var voterImage: Image!
     var delegate: VoterImageDelegate!
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, voterImage: Image) {
         super.init(frame: frame)
         
-        self.image = UIImage(named: "Temp")
-        self.clipsToBounds = true
-        self.contentMode = .ScaleAspectFill
+        self.voterImage = voterImage
+        
+        self.voterImage.getImage { (image) -> Void in
+            self.image = image
+        }
         
         self.backgroundColor = Colors.voterImageBackground
         self.layer.cornerRadius = Globals.voterImageRadius
@@ -34,6 +37,7 @@ class VoterImage: UIImageView {
         self.clipsToBounds = true
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = false
+        self.contentMode = .ScaleAspectFill
         
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.addGestureRecognizer(tapGesture)

@@ -20,6 +20,7 @@ class PageController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         self.pageController = THTinderNavigationController()
+        
         self.pageController.paggedViewControllers = [
             storyBoard.instantiateViewControllerWithIdentifier("SettingsController"),
             storyBoard.instantiateViewControllerWithIdentifier("VoteController"),
@@ -31,6 +32,11 @@ class PageController: UIViewController {
             NavigationBarItem(namedImage: "Trophy", special: false),
         ]
         self.pageController.setCurrentPage(1, animated: true)
+        self.view.addSubview(self.pageController.view)
+        
+        for controller in self.pageController.paggedViewControllers {
+            controller.viewDidAppear(true)
+        }
         
         for view in self.pageController.view.subviews {
             
@@ -50,7 +56,5 @@ class PageController: UIViewController {
         
         Globals.pageController = self
         Globals.logoImage = self.pageController.navbarItemViews[1] as! NavigationBarItem
-        
-        self.view.addSubview(self.pageController.view)
     }
 }

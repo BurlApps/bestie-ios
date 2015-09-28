@@ -56,7 +56,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func sharePressed(sender: AnyObject) {
-        let share = ShareGenerator(sender: sender as! UIView, controller: self.view.window!.rootViewController!)
+        let share = ShareGenerator(sender: sender as! UIView, controller: Globals.pageController)
         
         share.share(self.createShareCard())
     }

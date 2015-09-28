@@ -52,11 +52,13 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods/Onboard.framework'
   install_framework 'Pods/PNChart.framework'
   install_framework 'Pods/THTinderNavigationController_ssuchanowski.framework'
   install_framework 'Pods/UICountingLabel.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods/Onboard.framework'
   install_framework 'Pods/PNChart.framework'
   install_framework 'Pods/THTinderNavigationController_ssuchanowski.framework'
   install_framework 'Pods/UICountingLabel.framework'

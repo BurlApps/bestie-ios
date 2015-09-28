@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hem-dn-cLU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1iy-Ct-avH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Onboard Controller-->
+        <scene sceneID="rjv-4h-jbT">
+            <objects>
+                <viewController id="1iy-Ct-avH" customClass="OnboardController" customModule="Bestie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7PL-OX-b8T"/>
+                        <viewControllerLayoutGuide type="bottom" id="pLJ-mP-zOW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gfg-tY-6Ij">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vsj-bG-gDd"/>
+                    <connections>
+                        <segue destination="Hem-dn-cLU" kind="modal" identifier="onboardedSegue" animates="NO" id="QKG-br-Jfa"/>
+                        <segue destination="Hem-dn-cLU" kind="modal" identifier="onboardedAnimationSegue" modalTransitionStyle="crossDissolve" id="7xM-Ok-RQE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wZX-Yj-DMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-11" y="384"/>
+        </scene>
         <!--Page Controller-->
         <scene sceneID="CIJ-Jl-Q1V">
             <objects>
@@ -18,10 +41,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Td5-Vx-Q9i"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CW0-gL-vFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365" y="400"/>
+            <point key="canvasLocation" x="421" y="384"/>
         </scene>
         <!--Bridge Controller-->
         <scene sceneID="hJe-2N-Dh8">
@@ -364,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gg-xc-CYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="400"/>
+            <point key="canvasLocation" x="835" y="384"/>
         </scene>
         <!--Settings Controller-->
         <scene sceneID="jma-eF-KPS">
@@ -665,4 +689,7 @@
         <image name="Face-Right" width="65" height="65"/>
         <image name="Thumb" width="64" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QKG-br-Jfa"/>
+    </inferredMetricsTieBreakers>
 </document>

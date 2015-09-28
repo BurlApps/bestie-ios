@@ -21,6 +21,10 @@ class Colors {
     
     static let primaryIcon = UIColor(red:0.98, green:0.82, blue:0.12, alpha:1)
     
+    static let onboardText = red
+    static let onboardIndicator = red
+    static let onboardIndicatorBackground = UIColor.lightGrayColor()
+    
     static let voterTextLabel = red
     static let voterImageBorder = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
     static let voterImageBackground = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1)

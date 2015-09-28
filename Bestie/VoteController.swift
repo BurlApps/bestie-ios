@@ -10,23 +10,25 @@ import UIKit
 
 class VoteController: UIViewController, VoterImageSetDelegate {
 
+    private var downloading = false
     private var setup: Bool = false
     private var textLabelBig = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
     private var voterSets: [VoterImageSet] = []
     private var textLabel: UILabel!
+    private var user: User = User.current()
     
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         if !setup {
             self.setupProgressBars()
             self.setUpLabel()
-            self.setUpVoterSets()
             self.setup = true
         }
+        
+        self.updateSets()
     }
     
     func sizeTextLabel(big: Bool) {
@@ -35,18 +37,15 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         }
         
         self.textLabelBig = big
-        
-        //UIView.animateWithDuration(Globals.voterTextLabelInterval, animations: {
-            self.textLabel.frame.size.width = big ? Globals.voterTextLabelBig : Globals.voterTextLabel
-            self.textLabel.center.x = self.view.frame.width/2
-        //}, completion: nil)
+        self.textLabel.frame.size.width = big ? Globals.voterTextLabelBig : Globals.voterTextLabel
+        self.textLabel.center.x = self.view.frame.width/2
     }
     
-    func createVoterSet(first: Bool) {
+    func createVoterSet(first: Bool, set: [Image]) {
         let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
             self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
         
-        let set = VoterImageSet(frame: frame)
+        let set = VoterImageSet(frame: frame, set: set)
         set.delegate = self
         
         if first {
@@ -58,9 +57,16 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.view.insertSubview(set, belowSubview: self.textLabel)
     }
     
-    func setUpVoterSets() {
-        self.createVoterSet(true)
-        self.createVoterSet(false)
+    func updateSets() {
+        self.downloading = true
+        
+        self.user.pullSets { (sets) -> Void in
+            self.downloading = false
+            
+            for set in sets {
+                self.createVoterSet(self.voterSets.count == 0, set: set)
+            }
+        }
     }
     
     func setUpLabel() {
@@ -94,13 +100,16 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func setFinished(set: VoterImageSet) {
         self.voterSets.removeFirst()
         self.voterSets.first?.animateInToView()
-        self.voterSets.append(set)
         
         if (arc4random_uniform(10) + 1) <= 3 {
             Globals.switchLogoFace()
         }
         
-        self.progressBar1.increment(0.2, animation: true)
-        self.progressBar2.increment(0.2, animation: true)
+        if self.voterSets.count < 5 && !self.downloading {
+            self.updateSets()
+        }
+        
+        self.progressBar1.increment(0.02, animation: true)
+        self.progressBar2.increment(0.02, animation: true)
     }
 }

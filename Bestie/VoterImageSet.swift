@@ -16,30 +16,32 @@ class VoterImageSet: UIView, VoterImageDelegate {
     
     var delegate: VoterImageSetDelegate!
     var voterImages: [VoterImage] = []
+    var voterSet: [Image]!
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, set: [Image]) {
         super.init(frame: frame)
         
-        self.createVoterImage(true)
-        self.createVoterImage(false)
+        self.voterSet = set
+        self.createVoterImage(true, voterImage: set.first!)
+        self.createVoterImage(false, voterImage: set.last!)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func createVoterImage(top: Bool) {
+
+    func createVoterImage(top: Bool, voterImage: Image) {
         let veritcal = Globals.voterSetVerticalPadding
         let middle = Globals.voterSetMiddlePadding
         let box = self.frame.height/2 - veritcal - middle/2
         let frame = CGRectMake((self.frame.width - box)/2, veritcal, box, box)
-        let image = VoterImage(frame: frame)
+        let card = VoterImage(frame: frame, voterImage: voterImage)
         
-        image.delegate = self
-        image.frame.origin.y = top ? frame.origin.y : frame.height + veritcal + middle
+        card.delegate = self
+        card.frame.origin.y = top ? frame.origin.y : frame.height + veritcal + middle
         
-        self.voterImages.append(image)
-        self.addSubview(image)
+        self.voterImages.append(card)
+        self.addSubview(card)
     }
     
     func imageSelected(image: VoterImage) {
