@@ -11,34 +11,51 @@ import UIKit
 class BridgeController: UIViewController {
     
     private var user = User.current()
-    
-    @IBOutlet weak var newBatchController: UIView!
-    @IBOutlet weak var progressController: UIView!
-    @IBOutlet weak var resultsController: UIView!
+    private var newBatchController: NewBatchController!
+    private var progressController: BatchProgressController!
+    private var resultsController: ResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Globals.bridgeController = self
         
+        self.newBatchController.view.hidden = false
+        self.progressController.view.hidden = false
+        self.resultsController.view.hidden = false
+        
         self.reloadController()
     }
     
-    func reloadController() {
-        self.user.fetch { () -> Void in
-            var state = 0
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier: String = segue.identifier {
+            switch(identifier) {
+            case "new":
+                self.newBatchController = segue.destinationViewController as! NewBatchController
             
-            if self.user.batch == nil {
-                state = 0
-            } else if self.user.batch.active == true {
-                state = 1
-            } else {
-                state = 2
+            case "progress":
+                self.progressController = segue.destinationViewController as! BatchProgressController
+            
+            default:
+                self.resultsController = segue.destinationViewController as! ResultsController
             }
-            
-            self.newBatchController.hidden = state != 0
-            self.progressController.hidden = state != 1
-            self.resultsController.hidden = state != 2
         }
+    }
+    
+    func reloadController() {
+        var state = 0
+        
+        if self.user.batch == nil {
+            state = 0
+        } else if self.user.batch.active == true {
+            state = 1
+            self.progressController.updateBatch(self.user.batch)
+        } else {
+            state = 2
+        }
+        
+        self.newBatchController.view.hidden = state != 0
+        self.progressController.view.hidden = state != 1
+        self.resultsController.view.hidden = state != 2
     }
 }

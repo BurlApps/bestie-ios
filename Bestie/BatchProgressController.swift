@@ -32,20 +32,25 @@ class BatchProgressController: UIViewController {
         super.viewDidLayoutSubviews()
         
         if !self.setup {
-            let size: CGFloat = 225
+            let size: CGFloat = 250
             let frame = CGRectMake(self.view.frame.width/2 - size/2, self.view.frame.height/2 - size/2, size, size)
             
             self.cirlceChart = PNCircleChart(frame: frame, total: 100, current: 50, clockwise: true)
             self.cirlceChart.backgroundColor = UIColor.clearColor()
             self.cirlceChart.strokeColor = Colors.batchProgressBar
             self.cirlceChart.total = 100
-            self.cirlceChart.updateChartByCurrent(75)
             self.cirlceChart.lineWidth = 15
             self.cirlceChart.countingLabel.font = UIFont.boldSystemFontOfSize(30)
             self.cirlceChart.countingLabel.textColor = Colors.batchProgressBar
-            self.cirlceChart.strokeChart()
             
             self.view.addSubview(self.cirlceChart)
+            
+            let backgroundView = UIView(frame: self.view.frame)
+            let image = UIImage(named: "HeaderBackground")
+            
+            backgroundView.backgroundColor = UIColor(patternImage: image!)
+            backgroundView.alpha = 0.05
+            self.view.insertSubview(backgroundView, atIndex: 0)
             
             self.setup = true
         }
@@ -54,5 +59,10 @@ class BatchProgressController: UIViewController {
     
     @IBAction func votingButtonTapped(sender: AnyObject) {
         Globals.slideToVotingScreen()
+    }
+    
+    func updateBatch(batch: Batch) {
+        self.cirlceChart.updateChartByCurrent(batch.percent() * 100)
+        self.cirlceChart.strokeChart()
     }
 }

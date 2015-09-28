@@ -11,9 +11,6 @@ class Image {
     // MARK: Instance Variables
     var batch: Batch!
     var score: Int!
-    var good: Int!
-    var bad: Int!
-    var votes: Int!
     var active: Bool!
     var imageURL: NSURL!
     var image: UIImage!
@@ -24,10 +21,7 @@ class Image {
         self.init()
         
         self.active = object["active"] as? Bool
-        self.votes = object["votes"] as? Int
         self.score = object["score"] as? Int
-        self.good = object["good"] as? Int
-        self.bad = object["bad"] as? Int
         self.parse = object
         
         if let image = object["image"] as? PFFile {

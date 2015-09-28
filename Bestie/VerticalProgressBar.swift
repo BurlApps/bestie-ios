@@ -10,7 +10,7 @@ import UIKit
 
 class VerticalProgressBar: UIView {
     
-    private var progress: CGFloat = 0
+    private var progress: Float = 0
     private var bar: UIView!
     
     override init(frame: CGRect) {
@@ -30,16 +30,16 @@ class VerticalProgressBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func increment(increment: CGFloat, animation: Bool) {
+    func increment(increment: Float, animation: Bool) {
         self.progress += increment
         self.progress(self.progress, animation: animation)
     }
     
-    func progress(percent: CGFloat, animation: Bool) {
+    func progress(percent: Float, animation: Bool) {
         self.progress = min(percent, 1)
         
         let frame = self.frame
-        let height = frame.height * self.progress
+        let height = frame.height * CGFloat(self.progress)
             
         UIView.animateWithDuration(animation ? 0.2 : 0, animations: {
             self.bar.frame = CGRectMake(0,  0, frame.width, height)

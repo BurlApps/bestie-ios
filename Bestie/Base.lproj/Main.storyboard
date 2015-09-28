@@ -59,22 +59,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arl-HH-3Q6">
+                                <rect key="frame" x="8" y="-8" width="304" height="576"/>
+                                <connections>
+                                    <segue destination="075-H1-HuS" kind="embed" identifier="results" id="Q9i-Lh-nBS"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pke-1u-91m">
                                 <rect key="frame" x="8" y="-8" width="304" height="576"/>
                                 <connections>
-                                    <segue destination="eEe-8a-Lwa" kind="embed" id="T9o-2w-jvC"/>
+                                    <segue destination="eEe-8a-Lwa" kind="embed" identifier="new" id="T9o-2w-jvC"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OM9-ZA-Han">
                                 <rect key="frame" x="8" y="-8" width="304" height="576"/>
                                 <connections>
-                                    <segue destination="aky-dz-dFG" kind="embed" id="AbU-Zz-g4x"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arl-HH-3Q6">
-                                <rect key="frame" x="8" y="-8" width="304" height="576"/>
-                                <connections>
-                                    <segue destination="075-H1-HuS" kind="embed" id="Q9i-Lh-nBS"/>
+                                    <segue destination="aky-dz-dFG" kind="embed" identifier="progress" id="AbU-Zz-g4x"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -94,11 +94,6 @@
                             <constraint firstItem="arl-HH-3Q6" firstAttribute="leading" secondItem="VgP-bL-5yW" secondAttribute="leadingMargin" constant="-8" id="vFh-tM-Mzq"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="newBatchController" destination="Pke-1u-91m" id="fau-n3-A7L"/>
-                        <outlet property="progressController" destination="OM9-ZA-Han" id="hhN-yu-40r"/>
-                        <outlet property="resultsController" destination="arl-HH-3Q6" id="NDo-8e-0aJ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4y8-Wn-iA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -350,7 +345,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <state key="normal" title="Continue Voting"/>
                                 <connections>
-                                    <action selector="votingButtonTapped:" destination="aky-dz-dFG" eventType="touchUpInside" id="oGn-nG-VDZ"/>
+                                    <action selector="votingButtonTapped:" destination="aky-dz-dFG" eventType="touchUpInside" id="j3l-Ye-sTj"/>
                                 </connections>
                             </button>
                         </subviews>

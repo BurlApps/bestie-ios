@@ -25,6 +25,7 @@ class User {
         (user["batch"] as? PFObject)?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let batch = object {
                 self.batch = Batch(batch)
+                Globals.userUpdated()
             } else {
                 ErrorHandler.handleParseError(error!)
             }
@@ -88,6 +89,7 @@ class User {
                     tmpBatch?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
                         if let batch = object {
                             self.batch = Batch(batch)
+                            Globals.userUpdated()
                         } else {
                             ErrorHandler.handleParseError(error!)
                         }
@@ -106,7 +108,7 @@ class User {
         let query = PFQuery(className: "Image")
         
         query.whereKey("active", equalTo: true)
-        query.whereKey("voters", notEqualTo: self.parse)
+        //query.whereKey("voters", notEqualTo: self.parse)
         query.whereKey("creator", notEqualTo: self.parse)
         //query.whereKey("gender", equalTo: self.interested)
         query.cachePolicy = .NetworkOnly

@@ -19,6 +19,12 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     private var textLabel: UILabel!
     private var user: User = User.current()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Globals.voterController = self
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -104,6 +110,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         self.progressBar1 = VerticalProgressBar(frame: frame1)
         self.progressBar2 = VerticalProgressBar(frame: frame2)
+        self.progressBarUpdate()
         
         self.view.addSubview(self.progressBar1)
         self.view.addSubview(self.progressBar2)
@@ -113,6 +120,19 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         if let next = set.next {
             next.downloadImages()
         }
+    }
+    
+    func progressBarUpdate() {
+        var percent: Float = 0
+        
+        if self.user.batch != nil && self.user.batch.active == true {
+            percent = self.user.batch.userPercent()
+        }
+        
+        print(percent)
+        
+        self.progressBar1.progress(percent, animation: true)
+        self.progressBar2.progress(percent, animation: true)
     }
     
     func setFinished(set: VoterImageSet) {
@@ -127,7 +147,9 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             self.updateSets()
         }
         
-        self.progressBar1.increment(0.02, animation: true)
-        self.progressBar2.increment(0.02, animation: true)
+        if self.user.batch != nil {
+            self.user.batch.userVoted()
+            self.progressBarUpdate()
+        }
     }
 }

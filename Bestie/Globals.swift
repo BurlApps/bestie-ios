@@ -13,6 +13,7 @@ class Globals {
     static var pageController: PageController!
     static var onboardController: OnboardController!
     static var bridgeController: BridgeController!
+    static var voterController: VoteController!
     static var logoImage: NavigationBarItem!
     
     static let progressBarWidth: CGFloat = 7
@@ -63,6 +64,18 @@ class Globals {
         if self.onboardController != nil {
             self.onboardController.dismissViewControllerAnimated(false, completion: nil)
         }
+    }
+    
+    class func reloadUser() {
+        User.current()?.fetch(nil)
+    }
+    
+    class func userUpdated() {
+        if self.voterController != nil {
+            self.voterController.progressBarUpdate()
+        }
+        
+        self.reloadBridgeController()
     }
     
     class func appBuildVersion() -> String {
