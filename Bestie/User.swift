@@ -11,6 +11,7 @@ class User {
     // MARK: Instance Variables
     var gender: String!
     var interested: String!
+    var batch: Batch!
     var parse: PFUser!
     
     // MARK: Convenience Methods
@@ -20,6 +21,14 @@ class User {
         self.gender = user["gender"] as? String
         self.interested = user["interested"] as? String
         self.parse = user
+        
+        (user["batch"] as? PFObject)?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+            if let batch = object {
+                self.batch = Batch(batch)
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        })
     }
     
     // MARK: Class Methods
@@ -60,11 +69,44 @@ class User {
         PFUser.logOut()
     }
     
+    func fetch(callback: (() -> Void)!) {
+        if !self.parse.isDataAvailable() {
+            callback?()
+            return
+        }
+        
+        self.parse.fetchInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if let user: PFObject = object {
+                let tmpBatch = user["batch"] as? PFObject
+                
+                self.gender = user["gender"] as? String
+                self.interested = user["interested"] as? String
+                
+                if tmpBatch == nil {
+                    callback?()
+                } else {
+                    tmpBatch?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+                        if let batch = object {
+                            self.batch = Batch(batch)
+                        } else {
+                            ErrorHandler.handleParseError(error!)
+                        }
+                        
+                        callback?()
+                    })
+                }
+            } else {
+                callback?()
+                ErrorHandler.handleParseError(error!)
+            }
+        }
+    }
+    
     func pullSets(callback: (sets: [[Image]]) -> Void) {
         let query = PFQuery(className: "Image")
         
         query.whereKey("active", equalTo: true)
-        //query.whereKey("voters", notEqualTo: self.parse)
+        query.whereKey("voters", notEqualTo: self.parse)
         query.whereKey("creator", notEqualTo: self.parse)
         //query.whereKey("gender", equalTo: self.interested)
         query.cachePolicy = .NetworkOnly

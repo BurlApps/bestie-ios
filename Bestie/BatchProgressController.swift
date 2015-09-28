@@ -28,8 +28,8 @@ class BatchProgressController: UIViewController {
         self.informationLabel.textColor = Colors.batchInstructions
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         if !self.setup {
             let size: CGFloat = 225
@@ -49,6 +49,7 @@ class BatchProgressController: UIViewController {
             
             self.setup = true
         }
+        
     }
     
     @IBAction func votingButtonTapped(sender: AnyObject) {

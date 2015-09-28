@@ -12,6 +12,7 @@ class Globals {
     
     static var pageController: PageController!
     static var onboardController: OnboardController!
+    static var bridgeController: BridgeController!
     static var logoImage: NavigationBarItem!
     
     static let progressBarWidth: CGFloat = 7
@@ -44,6 +45,12 @@ class Globals {
     
     class func switchLogoFace() {
         self.logoImage.switchFace()
+    }
+    
+    class func reloadBridgeController() {
+        if self.bridgeController != nil {
+            self.bridgeController.reloadController()
+        }
     }
     
     class func slideToVotingScreen() {
