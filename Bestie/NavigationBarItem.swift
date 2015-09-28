@@ -32,7 +32,7 @@ class NavigationBarItem: UIView, THTinderNavigationBarItem {
             self.insertSubview(self.imageViewGray, aboveSubview: self.imageView)
         } else {
             image = image!.imageWithRenderingMode(.AlwaysTemplate)
-            self.imageView.tintColor = Colors.gray
+            self.imageView.tintColor = Colors.defaultIcon
         }
     }
     
@@ -49,7 +49,7 @@ class NavigationBarItem: UIView, THTinderNavigationBarItem {
         var tempRatio = ratio/2.0 + 0.5
         
         if !self.special {
-            self.imageView.tintColor = Colors.mix(ratio, initC: Colors.gray, goal: Colors.primaryIcon)
+            self.imageView.tintColor = Colors.mix(ratio, initC: Colors.defaultIcon, goal: Colors.primaryIcon)
             
         } else {
             max = 1

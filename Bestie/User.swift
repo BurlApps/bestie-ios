@@ -63,11 +63,12 @@ class User {
     func pullSets(callback: (sets: [[Image]]) -> Void) {
         let query = PFQuery(className: "Image")
         
-        //query.whereKey("active", equalTo: true)
+        query.whereKey("active", equalTo: true)
         //query.whereKey("voters", notEqualTo: self.parse)
-        //query.whereKey("creator", notEqualTo: self.parse)
+        query.whereKey("creator", notEqualTo: self.parse)
         //query.whereKey("gender", equalTo: self.interested)
-        query.limit = 30
+        query.cachePolicy = .NetworkOnly
+        query.limit = 50
         
         if arc4random_uniform(2) == 1 {
             query.addAscendingOrder("objectId")

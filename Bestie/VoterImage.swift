@@ -10,6 +10,7 @@ import UIKit
 
 protocol VoterImageDelegate {
     func imageSelected(image: VoterImage)
+    func imageDownloaded(image: VoterImage)
 }
 
 class VoterImage: UIImageView {
@@ -22,10 +23,6 @@ class VoterImage: UIImageView {
         
         self.voterImage = voterImage
         
-        self.voterImage.getImage { (image) -> Void in
-            self.image = image
-        }
-        
         self.backgroundColor = Colors.voterImageBackground
         self.layer.cornerRadius = Globals.voterImageRadius
         self.layer.borderWidth = Globals.voterImageBorder
@@ -35,6 +32,7 @@ class VoterImage: UIImageView {
         self.layer.shadowOpacity = 0.5
         self.layer.shadowRadius = 5
         self.clipsToBounds = true
+        self.hidden = true
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = false
         self.contentMode = .ScaleAspectFill
@@ -51,6 +49,14 @@ class VoterImage: UIImageView {
         self.scaleUp(false, completion: {
             self.delegate.imageSelected(self)
         })
+    }
+    
+    func downloadImage() {
+        self.voterImage.getImage { (image) -> Void in
+            self.image = image
+            self.hidden = false
+            self.delegate.imageDownloaded(self)
+        }
     }
     
     func scaleUp(hold: Bool, completion: (() -> Void)!) {

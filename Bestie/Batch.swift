@@ -25,6 +25,11 @@ class Batch {
         self.parse = object
     }
     
+    func imageVoted() {
+        self.parse.incrementKey("votes")
+        self.parse.saveInBackground()
+    }
+    
     func getImages(callback: ((images: [Image]) -> Void)!) {
         let relation = self.parse.relationForKey("images")
         

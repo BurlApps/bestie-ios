@@ -41,30 +41,42 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.textLabel.center.x = self.view.frame.width/2
     }
     
-    func createVoterSet(first: Bool, set: [Image]) {
+    func createVoterSet(set: [Image], first: Bool) {
         let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
             self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
         
-        let set = VoterImageSet(frame: frame, set: set)
-        set.delegate = self
+        let voterSet = VoterImageSet(frame: frame, set: set)
+        voterSet.delegate = self
         
-        if first {
-            set.frame.origin.y = 0
-            set.alpha = 1
+        if self.voterSets.count == 0 {
+            voterSet.frame.origin.y = 0
+            voterSet.alpha = 1
         }
         
-        self.voterSets.append(set)
-        self.view.insertSubview(set, belowSubview: self.textLabel)
+        if first {
+            voterSet.downloadImages()
+        }
+        
+        self.voterSets.last?.next = voterSet
+        self.voterSets.append(voterSet)
+        self.view.insertSubview(voterSet, belowSubview: self.textLabel)
     }
     
     func updateSets() {
-        self.downloading = true
-        
-        self.user.pullSets { (sets) -> Void in
-            self.downloading = false
+        if !self.downloading {
+            self.downloading = true
             
-            for set in sets {
-                self.createVoterSet(self.voterSets.count == 0, set: set)
+            self.user.pullSets { (sets) -> Void in
+                self.downloading = false
+                
+                if sets.isEmpty {
+                    NSTimer.scheduledTimerWithTimeInterval(5, target: self,
+                        selector: Selector("updateSets"), userInfo: nil, repeats: false)
+                } else {
+                    for (i, set) in sets.enumerate() {
+                        self.createVoterSet(set, first: i == 0)
+                    }
+                }
             }
         }
     }
@@ -97,6 +109,12 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.view.addSubview(self.progressBar2)
     }
     
+    func setDownloaded(set: VoterImageSet) {
+        if let next = set.next {
+            next.downloadImages()
+        }
+    }
+    
     func setFinished(set: VoterImageSet) {
         self.voterSets.removeFirst()
         self.voterSets.first?.animateInToView()
@@ -105,7 +123,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             Globals.switchLogoFace()
         }
         
-        if self.voterSets.count < 5 && !self.downloading {
+        if self.voterSets.count < 5 {
             self.updateSets()
         }
         

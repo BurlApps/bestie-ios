@@ -10,42 +10,47 @@ import UIKit
 
 class Colors {
     
-    static let red = UIColor(red:1, green:0.26, blue:0.32, alpha:1)
+    static let white = UIColor.whiteColor()
+    static let red = UIColor(red:0.99, green:0.45, blue:0.43, alpha:1)
     static let gray = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1)
-    static let yellow = UIColor(red: 0.98, green: 0.82, blue: 0.114, alpha: 1)
+    static let blue = UIColor(red:0.07, green:0.58, blue:0.96, alpha:1)
+    static let yellow = UIColor(red:1, green:0.85, blue:0.16, alpha:1)
+    static let lightGray = UIColor.lightGrayColor()
+    static let borderColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
+    static let imageBackground = UIColor.blackColor()
     
     static let progressTrack = UIColor.clearColor()
-    static let progressBar = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    static let progressBar = blue
     
     static let navBar = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1)
     
-    static let primaryIcon = UIColor(red:0.98, green:0.82, blue:0.12, alpha:1)
+    static let primaryIcon = yellow
+    static let defaultIcon = gray
     
     static let onboardText = red
     static let onboardIndicator = red
-    static let onboardIndicatorBackground = UIColor.lightGrayColor()
+    static let onboardIndicatorBackground = lightGray
     
-    static let voterTextLabel = red
-    static let voterImageBorder = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
-    static let voterImageBackground = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1)
+    static let voterTextLabel = blue
+    static let voterImageBorder = borderColor
+    static let voterImageBackground = imageBackground
 
-    static let batchImageCellBackground = UIColor.blackColor()
-    static let batchImageCellBorder = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
-    static let batchImageCellRemove = UIColor.whiteColor()
-    static let batchImageCellRemoveBorder = UIColor(red:1, green:0.26, blue:0.32, alpha:1)
+    static let batchImageCellBackground = imageBackground
+    static let batchImageCellBorder = borderColor
+    static let batchImageCellRemove = white
+    static let batchImageCellRemoveBorder = red
     
     static let batchPlusCellBackground = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1)
-    static let batchPlusCellIcon = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1)
-    static let batchPlusCellBorder = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1)
+    static let batchPlusCellIcon = gray
+    static let batchPlusCellBorder = gray
     
-    static let batchSubmitButton = UIColor(red:0.98, green:0.82, blue:0, alpha:1)
-    static let batchSubmitAlternateButton = UIColor(red:0.98, green:0.82, blue:0, alpha:1)
-    static let batchInfomation = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1)
-    static let batchInstructions = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1)
-    static let batchProgressBar = UIColor(red:0.96, green:0.52, blue:0, alpha:1)
-    static let batchHeaderLabel = UIColor(red:1, green:0.59, blue:0.28, alpha:1)
-    static let batchHeaderSeparator = UIColor(red:0.89, green:0.89, blue:0.89, alpha:1)
-    static let batchNumbers = UIColor.blackColor()
+    static let batchSubmitButton = blue
+    static let batchSubmitAlternateButton = red
+    static let batchInfomation = gray
+    static let batchInstructions = gray
+    static let batchProgressBar = yellow
+    static let batchBestie = blue
+    static let batchNumbers = red
     
     class func mix(percent: CGFloat, initC: UIColor, goal: UIColor) -> UIColor{
         let cgInit = CGColorGetComponents(initC.CGColor)

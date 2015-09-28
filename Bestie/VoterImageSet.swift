@@ -9,6 +9,7 @@
 import UIKit
 
 protocol VoterImageSetDelegate {
+    func setDownloaded(set: VoterImageSet)
     func setFinished(set: VoterImageSet)
 }
 
@@ -17,6 +18,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
     var delegate: VoterImageSetDelegate!
     var voterImages: [VoterImage] = []
     var voterSet: [Image]!
+    var next: VoterImageSet!
 
     init(frame: CGRect, set: [Image]) {
         super.init(frame: frame)
@@ -45,14 +47,23 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func imageSelected(image: VoterImage) {
-        UIView.animateWithDuration(Globals.voterSetInterval, animations: {
-            self.frame.origin.y = -1 * self.frame.height
-        }) { (finished: Bool) -> Void in
-            self.hidden = true
-            self.frame.origin.y = self.frame.height
+        let first = self.voterImages.first?.hidden == false
+        let second = self.voterImages.last?.hidden == false
+        let firstWinner = image == self.voterImages.first
+        
+        if first && second {
+            UIView.animateWithDuration(Globals.voterSetInterval, animations: {
+                self.frame.origin.y = -1 * self.frame.height
+            }) { (finished: Bool) -> Void in
+                self.hidden = true
+                self.frame.origin.y = self.frame.height
+            }
+            
+            self.delegate.setFinished(self)
         }
         
-        self.delegate.setFinished(self)
+        self.voterSet.first?.voted(firstWinner, opponent: self.voterSet.last!)
+        self.voterSet.last?.voted(!firstWinner, opponent: self.voterSet.first!)
     }
     
     func animateInToView() {
@@ -61,5 +72,20 @@ class VoterImageSet: UIView, VoterImageDelegate {
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
         }, completion: nil)
+    }
+    
+    func imageDownloaded(image: VoterImage) {
+        let first = self.voterImages.first?.image != nil
+        let second = self.voterImages.last?.image != nil
+        
+        if first && second {
+            self.delegate.setDownloaded(self)
+        }
+    }
+    
+    func downloadImages() {
+        for voterImage in self.voterImages {
+            voterImage.downloadImage()
+        }
     }
 }
