@@ -43,7 +43,7 @@ class Image {
         }
     }
     
-    class func create(image: UIImage, user: User) -> Image {        
+    class func create(image: UIImage, user: User, callback: ((image: Image) -> Void)!) {
         let voterImage = PFObject(className: "Image")
         let imageData = UIImageJPEGRepresentation(image, 0.7)
         let imageFile = PFFile(name: "image.jpeg", data: imageData!)
@@ -61,12 +61,11 @@ class Image {
                 voter.active = voterImage["active"] as? Bool
                 voter.score = voterImage["score"] as? Int
                 voter.maxVotes = voterImage["maxVotes"] as? Int
+                callback?(image: voter)
             } else {
                 ErrorHandler.handleParseError(error!)
             }
         }
-        
-        return voter
     }
     
     func remove() {

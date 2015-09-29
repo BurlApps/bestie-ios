@@ -111,8 +111,11 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        self.uploadedImages.addObject(Image.create(image, user: self.user))
-        self.collectionView.reloadData()
+        
+        Image.create(image, user: self.user) { (image) -> Void in
+            self.uploadedImages.addObject(image)
+            self.collectionView.reloadData()
+        }
     }
     
     @IBAction func submitBatch(sender: AnyObject) {

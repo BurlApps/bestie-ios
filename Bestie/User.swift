@@ -146,9 +146,9 @@ class User {
         let query = PFQuery(className: "Image")
         
         query.whereKey("active", equalTo: true)
-        //query.whereKey("voters", notEqualTo: self.parse)
+        query.whereKey("voters", notEqualTo: self.parse)
         query.whereKey("creator", notEqualTo: self.parse)
-        //query.whereKey("gender", equalTo: self.interested)
+        query.whereKey("gender", equalTo: self.interested)
         query.cachePolicy = .NetworkOnly
         query.limit = 50
         
