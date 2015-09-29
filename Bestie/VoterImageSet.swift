@@ -17,16 +17,16 @@ class VoterImageSet: UIView, VoterImageDelegate {
     
     var delegate: VoterImageSetDelegate!
     var voterImages: [VoterImage] = []
-    var voterSet: [Image]!
+    var voterSet: VoterSet!
     var next: VoterImageSet!
 
-    init(frame: CGRect, set: [Image]) {
+    init(frame: CGRect, set: VoterSet) {
         super.init(frame: frame)
         
         self.voterSet = set
         self.backgroundColor = UIColor.clearColor()
-        self.createVoterImage(true, voterImage: set.first!)
-        self.createVoterImage(false, voterImage: set.last!)
+        self.createVoterImage(true, voterImage: set.image1)
+        self.createVoterImage(false, voterImage: set.image2!)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +50,6 @@ class VoterImageSet: UIView, VoterImageDelegate {
     func imageSelected(image: VoterImage) {
         let first = self.voterImages.first?.hidden == false
         let second = self.voterImages.last?.hidden == false
-        let firstWinner = image == self.voterImages.first
         
         if first && second {
             UIView.animateWithDuration(Globals.voterSetInterval, animations: {
@@ -63,8 +62,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
             self.delegate.setFinished(self)
         }
         
-        self.voterSet.first?.voted(firstWinner, opponent: self.voterSet.last!)
-        self.voterSet.last?.voted(!firstWinner, opponent: self.voterSet.first!)
+        self.voterSet.voted(image.voterImage)
     }
     
     func animateInToView() {

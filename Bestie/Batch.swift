@@ -57,24 +57,11 @@ class Batch {
         }
     }
     
-    func imageVoted() {
-        let votes = self.votes + 1
-        
-        if votes <= self.maxVotes {
-            self.votes = votes
-            self.parse.incrementKey("votes")
-            self.parse.saveInBackground()
-            Globals.batchUpdated()
-        }
-    }
-    
     func userVoted() {
         let userVotes = self.userVotes + 1
         
         if userVotes <= self.maxVotes {
             self.userVotes = userVotes
-            self.parse.incrementKey("userVotes")
-            self.parse.saveInBackground()
             Globals.batchUpdated()
         }
     }

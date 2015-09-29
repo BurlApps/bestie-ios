@@ -142,36 +142,25 @@ class User {
         }
     }
     
-    func pullSets(callback: (sets: [[Image]]) -> Void) {
-        let query = PFQuery(className: "Image")
-        
-        query.whereKey("active", equalTo: true)
-        query.whereKey("voters", notEqualTo: self.parse)
-        query.whereKey("creator", notEqualTo: self.parse)
-        query.whereKey("gender", equalTo: self.interested)
-        query.cachePolicy = .NetworkOnly
-        query.limit = 50
-        
-        if arc4random_uniform(2) == 1 {
-            query.addAscendingOrder("objectId")
-        } else {
-            query.addDescendingOrder("objectId")
-        }
-        
-        query.findObjectsInBackgroundWithBlock { (data: [PFObject]?, error: NSError?) -> Void in
-            if let objects: [PFObject] = data?.shuffle() {
+    func pullSets(callback: (sets: [VoterSet]) -> Void) {
+        PFCloud.callFunctionInBackground("feed", withParameters: nil) { (data: AnyObject?, error: NSError?) -> Void in
+            if let objects: [PFObject] = data as? [PFObject] {
                 var temp: [Image] = []
+                var sets: [VoterSet] = []
                 
                 for object in objects {
                     temp.append(Image(object))
                 }
                 
-                callback(sets: temp.chunk(2))
+                for images in temp.chunk(2) {
+                    sets.append(VoterSet(images[0], images[1]))
+                }
+                
+                callback(sets: sets)
             } else {
                 callback(sets: [])
                 ErrorHandler.handleParseError(error!)
             }
         }
-        
     }
 }

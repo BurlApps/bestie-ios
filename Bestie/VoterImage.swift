@@ -15,7 +15,7 @@ protocol VoterImageDelegate {
 
 class VoterImage: UIImageView {
     
-    private var voterImage: Image!
+    var voterImage: Image!
     var delegate: VoterImageDelegate!
     
     init(frame: CGRect, voterImage: Image) {

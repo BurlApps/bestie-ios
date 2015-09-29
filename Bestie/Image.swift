@@ -77,17 +77,6 @@ class Image {
         self.parse["batch"] = batch.parse
         self.parse.saveInBackground()
     }
-
-    func voted(won: Bool, opponent: Image) {
-        let user = User.current()
-        
-        self.batch?.imageVoted()
-        self.parse.incrementKey("votes")
-        self.parse.incrementKey(won ? "wins" : "losses")
-        self.parse.incrementKey("opponents", byAmount: opponent.score)
-        self.parse.relationForKey("voters").addObject(user.parse)
-        self.parse.saveInBackground()
-    }
     
     func getImage(callback: (image: UIImage) -> Void) {
         if self.image == nil {

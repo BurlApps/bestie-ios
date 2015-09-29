@@ -54,7 +54,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.textLabel.center.x = self.view.frame.width/2
     }
     
-    func createVoterSet(set: [Image], first: Bool) {
+    func createVoterSet(set: VoterSet, first: Bool) {
         let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
             self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
         
