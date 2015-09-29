@@ -42,6 +42,7 @@ class Globals {
     static let shareCardSize: CGFloat = 600
     static let shareCardContainerHeight: CGFloat = 560
     static let shareCardBackgroundAlpha: CGFloat = 0.2
+    static let bridgeBackgroundAlpha: CGFloat = 0.08
     
     
     class func switchLogoFace() {
@@ -70,7 +71,7 @@ class Globals {
         User.current()?.fetch(nil)
     }
     
-    class func userUpdated() {
+    class func batchUpdated() {
         if self.voterController != nil {
             self.voterController.progressBarUpdate()
         }

@@ -76,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 action = action.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                 
                 switch(action) {
+                    case "user.reload": Globals.reloadUser()
                     default: print(action)
                 }
             }

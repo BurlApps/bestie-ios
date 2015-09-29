@@ -15,6 +15,7 @@ class BatchProgressController: UIViewController {
     @IBOutlet weak var votingButton: UIButton!
     
     private var setup: Bool = false
+    private var user: User = User.current()
     private var cirlceChart: PNCircleChart!
     
     override func viewDidLoad() {
@@ -26,6 +27,9 @@ class BatchProgressController: UIViewController {
         self.votingButton.layer.masksToBounds = true
         
         self.informationLabel.textColor = Colors.batchInstructions
+        
+        NSTimer.scheduledTimerWithTimeInterval(30, target: self,
+            selector: Selector("updateUser"), userInfo: nil, repeats: false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -45,13 +49,6 @@ class BatchProgressController: UIViewController {
             
             self.view.addSubview(self.cirlceChart)
             
-            let backgroundView = UIView(frame: self.view.frame)
-            let image = UIImage(named: "HeaderBackground")
-            
-            backgroundView.backgroundColor = UIColor(patternImage: image!)
-            backgroundView.alpha = 0.05
-            self.view.insertSubview(backgroundView, atIndex: 0)
-            
             self.setup = true
         }
         
@@ -59,6 +56,12 @@ class BatchProgressController: UIViewController {
     
     @IBAction func votingButtonTapped(sender: AnyObject) {
         Globals.slideToVotingScreen()
+    }
+    
+    func updateUser() {
+        if self.user.batch != nil {
+            self.user.batch.fetch(nil)
+        }
     }
     
     func updateBatch(batch: Batch) {

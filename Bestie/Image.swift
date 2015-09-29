@@ -11,6 +11,7 @@ class Image {
     // MARK: Instance Variables
     var batch: Batch!
     var score: Int!
+    var maxVotes: Int!
     var active: Bool!
     var imageURL: NSURL!
     var image: UIImage!
@@ -22,15 +23,60 @@ class Image {
         
         self.active = object["active"] as? Bool
         self.score = object["score"] as? Int
+        self.maxVotes = object["maxVotes"] as? Int
         self.parse = object
         
         if let image = object["image"] as? PFFile {
-            self.imageURL = NSURL(string: image.url!)
+            if let url: String = image.url {
+                self.imageURL = NSURL(string: url)
+            }
         }
         
         if let batch = object["batch"] as? PFObject {
-            self.batch = Batch(batch)
+            batch.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+                if object != nil {
+                    self.batch = Batch(batch)
+                } else {
+                    ErrorHandler.handleParseError(error!)
+                }
+            })
         }
+    }
+    
+    class func create(image: UIImage, user: User) -> Image {        
+        let voterImage = PFObject(className: "Image")
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
+        let imageFile = PFFile(name: "image.jpeg", data: imageData!)
+        
+        voterImage["gender"] = user.gender
+        voterImage["creator"] = user.parse
+        voterImage["image"] = imageFile
+        voterImage["active"] = false
+        
+        let voter = Image(voterImage)
+        voter.image = image
+        
+        voterImage.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                voter.active = voterImage["active"] as? Bool
+                voter.score = voterImage["score"] as? Int
+                voter.maxVotes = voterImage["maxVotes"] as? Int
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        }
+        
+        return voter
+    }
+    
+    func remove() {
+        self.parse.deleteInBackground()
+    }
+    
+    func activate(batch: Batch) {
+        self.parse["active"] = true
+        self.parse["batch"] = batch.parse
+        self.parse.saveInBackground()
     }
 
     func voted(won: Bool, opponent: Image) {

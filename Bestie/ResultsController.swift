@@ -12,11 +12,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     
     private let reuseIdentifier = "cell"
     private var headerContainer: ImageTableHeaderCell!
-    private var images: [UIImage?] = [
-        UIImage(named: "Temp"),
-        UIImage(named: "Temp"),
-        UIImage(named: "Temp")
-    ]
+    private var images: [Image] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startOverButton: UIButton!
@@ -27,6 +23,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.clearColor()
         
         self.shareButton.tintColor = UIColor.whiteColor()
         self.shareButton.backgroundColor = Colors.batchSubmitButton
@@ -62,7 +59,22 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func startOverPressed(sender: AnyObject) {
-        print("start over")
+        User.current().resetBatch()
+    }
+    
+    func updateBatch(batch: Batch) {
+        self.images = []
+        self.tableView.reloadData()
+        self.headerContainer.resetBatch()
+        
+        batch.getImages { (images) -> Void in
+            self.images = Array(images[1..<images.count])
+            self.tableView.reloadData()
+            
+            if !self.images.isEmpty {
+                self.headerContainer.updateBatch(images.first)
+            }
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,7 +86,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.images[indexPath.row]!.size.height
+        return self.view.frame.height/1.2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -85,7 +97,9 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
             cell = ImageTableCell()
         }
         
-        cell.imageView?.image = image
+        image.getImage { (image) -> Void in
+            cell.imageView?.image = image
+        }
         
         return cell
     }

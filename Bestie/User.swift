@@ -6,6 +6,9 @@
 //  Copyright © 2015 Brian Vallelunga. All rights reserved.
 //
 
+var currentUser: User!
+var currentBatch: Batch!
+
 class User {
     
     // MARK: Instance Variables
@@ -22,21 +25,18 @@ class User {
         self.interested = user["interested"] as? String
         self.parse = user
         
-        (user["batch"] as? PFObject)?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
-            if let batch = object {
-                self.batch = Batch(batch)
-                Globals.userUpdated()
-            } else {
-                ErrorHandler.handleParseError(error!)
-            }
-        })
+        self.loadBatch(nil)
     }
     
     // MARK: Class Methods
-    class func register(callback: ((user: User) -> Void)!) {
-        PFAnonymousUtils.logInWithBlock { (user: PFUser?, error: NSError?) -> Void in            
-            if user != nil && error == nil {
-                let current = User(user!)
+    class func register(gender: String, interested: String, callback: ((user: User) -> Void)!) {
+        PFAnonymousUtils.logInWithBlock { (object: PFUser?, error: NSError?) -> Void in
+            if let user: PFUser = object {
+                user["gender"] = gender
+                user["interested"] = interested
+                user.saveInBackground()
+                
+                let current = User(user)
                 
                 Installation.current().setUser(current)
                 
@@ -48,55 +48,93 @@ class User {
     }
     
     class func current() -> User! {
+        if currentUser != nil {
+            return currentUser
+        }
+        
         if let user = PFUser.currentUser() {
+            currentUser = User(user)
+            
             PFSession.getCurrentSessionInBackgroundWithBlock({ (session: PFSession?, error: NSError?) -> Void in
                 if session == nil || error != nil {
                     ErrorHandler.handleParseError(error!)
                 }
             })
             
-            return User(user)
+            return currentUser
         } else {
             return nil
         }
     }
     
     class func logout() {
+        currentBatch = nil
+        currentUser = nil
         PFUser.logOut()
     }
     
     // MARK: Instance Methods
     func logout() {
-        PFUser.logOut()
+        User.logout()
+    }
+    
+    func addBatch(batch: Batch) {
+        self.batch = batch
+        self.parse["batch"] = batch.parse
+        self.parse.saveInBackground()
+    }
+    
+    func resetBatch() {
+        currentBatch = nil
+        
+        self.batch = nil
+        self.parse.removeObjectForKey("batch")
+        self.parse.saveInBackground()
+        Globals.batchUpdated()
+    }
+    
+    func loadBatch(callback: (() -> Void)!) {
+        if self.batch != nil {
+            self.batch.fetch({ () -> Void in
+                Globals.batchUpdated()
+                callback?()
+            })
+            
+            return
+        }
+        
+        if currentBatch != nil {
+            self.batch = currentBatch
+            callback?()
+        } else {
+            let tmp = self.parse["batch"] as? PFObject
+                
+            tmp?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+                if let batch = object {
+                    self.batch = Batch(batch)
+                    currentBatch = self.batch
+                    Globals.batchUpdated()
+                    callback?()
+                } else {
+                    callback?()
+                    ErrorHandler.handleParseError(error!)
+                }
+            })
+        }
     }
     
     func fetch(callback: (() -> Void)!) {
         if !self.parse.isDataAvailable() {
-            callback?()
+            self.loadBatch(callback)
             return
         }
         
         self.parse.fetchInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if let user: PFObject = object {
-                let tmpBatch = user["batch"] as? PFObject
-                
                 self.gender = user["gender"] as? String
                 self.interested = user["interested"] as? String
                 
-                if tmpBatch == nil {
-                    callback?()
-                } else {
-                    tmpBatch?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
-                        if let batch = object {
-                            self.batch = Batch(batch)
-                            Globals.userUpdated()
-                        } else {
-                            ErrorHandler.handleParseError(error!)
-                        }
-                        
-                        callback?()
-                    })
-                }
+                self.loadBatch(callback)
             } else {
                 callback?()
                 ErrorHandler.handleParseError(error!)

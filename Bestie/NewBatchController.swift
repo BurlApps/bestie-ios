@@ -9,12 +9,14 @@
 import UIKit
 
 class NewBatchController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionCellDelegate {
+UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionCellDelegate,
+UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private let reuseIdentifier = "cell"
     private let firstReuseIdentifier = "firstCell"
-    private let uploadedImages: NSMutableArray = NSMutableArray(array: [1])
+    private let uploadedImages: NSMutableArray = NSMutableArray()
     private let sectionInsets = UIEdgeInsets(top: 25.0, left: 25.0, bottom: 25.0, right: 25.0)
+    private var user: User = User.current()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
@@ -33,6 +35,12 @@ UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionC
         self.submitButton.layer.masksToBounds = true
         
         self.informationLabel.textColor = Colors.batchInfomation
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.collectionView.reloadData()
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -60,9 +68,10 @@ UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionC
             temp.setup()
         } else {
             let temp = cell as! ImageCollectionCell
+            let image: Image = self.uploadedImages[indexPath.row - 1] as! Image
             
             temp.delegate = self
-            temp.setup()
+            temp.setup(image)
         }
         
         return cell
@@ -85,14 +94,40 @@ UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionC
     }
     
     func newImageTapped() {
-        print(123)
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.sourceType = .PhotoLibrary
+        picker.allowsEditing = true
+        
+        Globals.pageController.presentViewController(picker, animated: true, completion: nil)
     }
     
     func removeTapped(cell: ImageCollectionCell) {
-        print(cell)
+        cell.voterImage.remove()
+        self.uploadedImages.removeObject(cell.voterImage)
+        self.collectionView.reloadData()
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        self.uploadedImages.addObject(Image.create(image, user: self.user))
+        self.collectionView.reloadData()
     }
     
     @IBAction func submitBatch(sender: AnyObject) {
-        print("submit")
+        var images: [Image] = []
+        let text = self.submitButton.titleLabel?.text
+        
+        self.submitButton.setTitle("saving...", forState: .Normal)
+        
+        for image in self.uploadedImages {
+            images.append(image as! Image)
+        }
+        
+        Batch.create(images, user: self.user) { (batch) -> Void in
+            self.submitButton.setTitle(text, forState: .Normal)
+            self.user.fetch(nil)
+        }
     }
 }

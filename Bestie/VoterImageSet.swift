@@ -24,6 +24,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
         super.init(frame: frame)
         
         self.voterSet = set
+        self.backgroundColor = UIColor.clearColor()
         self.createVoterImage(true, voterImage: set.first!)
         self.createVoterImage(false, voterImage: set.last!)
     }

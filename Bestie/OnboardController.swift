@@ -36,7 +36,7 @@ class OnboardController: UIViewController {
             
             self.view.addSubview(self.contentController.view)
             
-            User.register(nil)
+            User.register("male", interested: "female", callback: nil)
         }
     }
     

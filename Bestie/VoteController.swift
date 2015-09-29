@@ -17,7 +17,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     private var progressBar2: VerticalProgressBar!
     private var voterSets: [VoterImageSet] = []
     private var textLabel: UILabel!
-    private var user: User = User.current()
+    private var user: User! = User.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,13 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             self.setupProgressBars()
             self.setUpLabel()
             self.setup = true
+            
+            let backgroundView = UIView(frame: self.view.frame)
+            let image = UIImage(named: "HeaderBackground")
+            
+            backgroundView.backgroundColor = UIColor(patternImage: image!)
+            backgroundView.alpha = Globals.bridgeBackgroundAlpha
+            self.view.addSubview(backgroundView)
         }
         
         self.updateSets()
@@ -125,11 +132,10 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func progressBarUpdate() {
         var percent: Float = 0
         
-        if self.user.batch != nil && self.user.batch.active == true {
-            percent = self.user.batch.userPercent()
+        if self.user.batch != nil && self.user.batch!.active == true {
+            percent = self.user.batch!.userPercent()
+            percent = percent >= 1 ? 0 : percent
         }
-        
-        print(percent)
         
         self.progressBar1.progress(percent, animation: true)
         self.progressBar2.progress(percent, animation: true)
@@ -148,7 +154,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         }
         
         if self.user.batch != nil {
-            self.user.batch.userVoted()
+            self.user.batch!.userVoted()
             self.progressBarUpdate()
         }
     }

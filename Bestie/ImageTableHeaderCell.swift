@@ -21,12 +21,7 @@ class ImageTableHeaderCell: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backgroundView = UIView(frame: self.view.frame)
-        let image = UIImage(named: "HeaderBackground")
-        
-        backgroundView.backgroundColor = UIColor(patternImage: image!)
-        backgroundView.alpha = Globals.shareCardBackgroundAlpha
-        self.view.insertSubview(backgroundView, atIndex: 0)
+        self.view.backgroundColor = UIColor.clearColor()
         
         self.votedLabel.textColor = Colors.batchNumbers
         self.bestieLabel.textColor = Colors.batchBestie
@@ -43,7 +38,6 @@ class ImageTableHeaderCell: UIViewController {
         self.innerContainer.layer.borderWidth = Globals.voterImageBorder
         self.innerContainer.layer.borderColor = Colors.voterImageBorder.CGColor
         
-        self.headerImage.image = UIImage(named: "Temp")
         self.headerImage.backgroundColor = Colors.batchImageCellBackground
         self.headerImage.contentMode = .ScaleAspectFill
         self.headerImage.clipsToBounds = true
@@ -51,5 +45,18 @@ class ImageTableHeaderCell: UIViewController {
     
     func degreesToRadians (value:Double) -> CGFloat {
         return CGFloat(value * M_PI / 180.0)
+    }
+    
+    func resetBatch() {
+        self.votedLabel.text = "---"
+        self.headerImage.image = nil
+    }
+    
+    func updateBatch(image: Image!) {
+        self.votedLabel.text = "\(image.score)"
+        
+        image.getImage { (image) -> Void in
+            self.headerImage.image = image
+        }
     }
 }

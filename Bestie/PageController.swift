@@ -11,8 +11,6 @@ import THTinderNavigationController_ssuchanowski
 class PageController: UIViewController {
     
     var pageController: THTinderNavigationController!
-    private var navItems: [UIView] = []
-    private var navControllers: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +29,9 @@ class PageController: UIViewController {
             NavigationBarItem(namedImage: "Face-Left", special: true),
             NavigationBarItem(namedImage: "Trophy", special: false),
         ]
+        
         self.pageController.setCurrentPage(1, animated: true)
         self.view.addSubview(self.pageController.view)
-        
-        for controller in self.pageController.paggedViewControllers {
-            controller.viewDidAppear(true)
-        }
         
         for view in self.pageController.view.subviews {
             

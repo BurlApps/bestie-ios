@@ -13,7 +13,7 @@ class Batch {
     var votes: Float!
     var maxVotes: Float!
     var userVotes: Float!
-    var images: [Image]!
+    var images: [Image] = []
     var parse: PFObject!
     
     // MARK: Convenience Methods
@@ -27,16 +27,56 @@ class Batch {
         self.parse = object
     }
     
+    class func create(images: [Image], user: User, callback: ((batch: Batch) -> Void)!) {
+        let batch = PFObject(className: "Batch")
+        let relation = batch.relationForKey("images")
+        var maxVotes = 0
+        
+        for image in images {
+            maxVotes += image.maxVotes
+            relation.addObject(image.parse)
+        }
+        
+        batch["active"] = true
+        batch["maxVotes"] = maxVotes
+        
+        batch.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                let newBatch = Batch(batch)
+                
+                user.addBatch(newBatch)
+                
+                for image in images {
+                    image.activate(newBatch)
+                }
+                
+                callback?(batch: newBatch)
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        }
+    }
+    
     func imageVoted() {
-        self.votes = self.votes + 1
-        self.parse.incrementKey("votes")
-        self.parse.saveInBackground()
+        let votes = self.votes + 1
+        
+        if votes <= self.maxVotes {
+            self.votes = votes
+            self.parse.incrementKey("votes")
+            self.parse.saveInBackground()
+            Globals.batchUpdated()
+        }
     }
     
     func userVoted() {
-        self.userVotes = self.userVotes + 1
-        self.parse.incrementKey("userVotes")
-        self.parse.saveInBackground()
+        let userVotes = self.userVotes + 1
+        
+        if userVotes <= self.maxVotes {
+            self.userVotes = userVotes
+            self.parse.incrementKey("userVotes")
+            self.parse.saveInBackground()
+            Globals.batchUpdated()
+        }
     }
     
     func userPercent() -> Float {
@@ -51,11 +91,36 @@ class Batch {
         return self.votesPercent() * self.userPercent()
     }
     
+    func fetch(callback: (() -> Void)!) {
+        if !self.parse.isDataAvailable() {
+            callback?()
+            return
+        }
+        
+        self.parse.fetchInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if let data: PFObject = object {
+                self.active = data["active"] as? Bool
+                self.votes = data["votes"] as? Float
+                self.userVotes = data["userVotes"] as? Float
+                self.maxVotes = data["maxVotes"] as? Float
+                callback?()
+            } else {
+                callback?()
+                ErrorHandler.handleParseError(error!)
+            }
+        }
+    }
+    
     func getImages(callback: ((images: [Image]) -> Void)!) {
         let relation = self.parse.relationForKey("images")
+        let query = relation.query()
         
-        relation.query()?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-            if error != nil && objects != nil {
+        query!.addDescendingOrder("score")
+        
+        query!.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil && objects != nil {
+                self.images.removeAll()
+                
                 for object in objects! {
                     self.images.append(Image(object))
                 }

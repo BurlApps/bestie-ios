@@ -18,6 +18,7 @@ class Colors {
     static let lightGray = UIColor.lightGrayColor()
     static let borderColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1)
     static let imageBackground = UIColor.blackColor()
+    static let textGray = UIColor(red:0.57, green:0.57, blue:0.57, alpha:1)
     
     static let progressTrack = UIColor.clearColor()
     static let progressBar = blue
@@ -46,8 +47,8 @@ class Colors {
     
     static let batchSubmitButton = blue
     static let batchSubmitAlternateButton = red
-    static let batchInfomation = gray
-    static let batchInstructions = gray
+    static let batchInfomation = textGray
+    static let batchInstructions = textGray
     static let batchProgressBar = yellow
     static let batchBestie = blue
     static let batchNumbers = red

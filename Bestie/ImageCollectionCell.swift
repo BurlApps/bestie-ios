@@ -15,10 +15,14 @@ protocol ImageCollectionCellDelegate {
 class ImageCollectionCell: UICollectionViewCell {
     
     var delegate: ImageCollectionCellDelegate!
+    var voterImage: Image!
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var removeIcon: UILabel!
     
-    func setup() {
+    func setup(voterImage: Image) {
+        self.voterImage = voterImage
+        
         self.layer.masksToBounds = false
         
         self.imageView.layer.cornerRadius = Globals.batchCellRadius
@@ -28,7 +32,7 @@ class ImageCollectionCell: UICollectionViewCell {
         self.imageView.layer.masksToBounds = true
         self.imageView?.clipsToBounds = true
         self.imageView?.contentMode = .ScaleAspectFill
-        self.imageView.image = UIImage(named: "Temp")
+        self.imageView?.image = voterImage.image
         
         self.removeIcon.backgroundColor = Colors.batchImageCellRemove
         self.removeIcon.layer.cornerRadius = 15
