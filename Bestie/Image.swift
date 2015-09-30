@@ -12,6 +12,8 @@ class Image {
     var batch: Batch!
     var score: Int!
     var maxVotes: Int!
+    var wins: Float!
+    var losses: Float!
     var active: Bool!
     var imageURL: NSURL!
     var image: UIImage!
@@ -23,6 +25,8 @@ class Image {
         
         self.active = object["active"] as? Bool
         self.score = object["score"] as? Int
+        self.wins = object["wins"] as? Float
+        self.losses = object["losses"] as? Float
         self.maxVotes = object["maxVotes"] as? Int
         self.parse = object
         
@@ -75,6 +79,10 @@ class Image {
         }
         
         return voter
+    }
+    
+    func percent() -> Float {
+        return self.wins/Float(self.maxVotes)
     }
     
     func remove() {

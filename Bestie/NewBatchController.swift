@@ -148,7 +148,9 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
         Batch.create(images, user: self.user) { (batch) -> Void in
             self.submitButton.setTitle(text, forState: .Normal)
-            self.user.fetch(nil)
+            self.user.fetch({ () -> Void in
+                Globals.reloadBridgeController()
+            })
         }
     }
 }

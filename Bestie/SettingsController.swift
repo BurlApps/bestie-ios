@@ -20,7 +20,7 @@ class SettingsController: UITableViewController {
         self.view.backgroundColor = Colors.settingsBackground
         self.tableView.backgroundColor = Colors.settingsBackground
         
-        self.interestedLabel.text = self.user.interested.capitalizedString
+        self.interestedLabel.text = self.user.interested == "male" ? "Men" : "Women"
         
         Config.sharedInstance { (config) -> Void in
             self.config = config
@@ -41,15 +41,15 @@ class SettingsController: UITableViewController {
             share.share("Bestie is pretty cool, it finds your best profile pictures for you! \(self.config.downloadUrl)", image: nil)
         
         case "1:0":
-            let controller = UIAlertController(title: "Show Me", message: nil, preferredStyle: .ActionSheet)
-            let male = UIAlertAction(title: "Males", style: .Default, handler: { (action: UIAlertAction) -> Void in
+            let controller = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let male = UIAlertAction(title: "Men", style: .Default, handler: { (action: UIAlertAction) -> Void in
                 self.user.changeInterest("male")
-                self.interestedLabel.text = "Male"
+                self.interestedLabel.text = "Men"
                 Globals.voterController.flushSets()
             })
-            let female = UIAlertAction(title: "Females", style: .Default, handler: { (action: UIAlertAction) -> Void in
+            let female = UIAlertAction(title: "Women", style: .Default, handler: { (action: UIAlertAction) -> Void in
                 self.user.changeInterest("female")
-                self.interestedLabel.text = "Female"
+                self.interestedLabel.text = "Women"
                 Globals.voterController.flushSets()
             })
             let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)

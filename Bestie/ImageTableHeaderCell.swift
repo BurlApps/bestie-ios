@@ -17,8 +17,10 @@ class ImageTableHeaderCell: UIViewController {
     @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var innerContainer: UIView!
     @IBOutlet weak var sticker: UIImageView!
-    @IBOutlet weak var dataContainer: UIView!
     @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dataContainer: UIView!
+    @IBOutlet weak var infoImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,27 @@ class ImageTableHeaderCell: UIViewController {
         self.headerImage.backgroundColor = Colors.batchImageCellBackground
         self.headerImage.contentMode = .ScaleAspectFill
         self.headerImage.clipsToBounds = true
+        
+        self.infoImage.tintColor = Colors.gray
+        
+        self.bottomConstraint.constant = self.dataContainer.frame.height * -1
+        self.view.layoutIfNeeded()
+        
+        let gesture = UITapGestureRecognizer(target: self, action: "tapped:")
+        self.bestieLabel.addGestureRecognizer(gesture)
+        self.bestieLabel.userInteractionEnabled = true
+    }
+    
+    func tapped(gesture: UIGestureRecognizer) {
+        if self.bottomConstraint.constant < 0 {
+            self.bottomConstraint.constant = 0
+        } else {
+            self.bottomConstraint.constant = self.dataContainer.frame.height * -1
+        }
+        
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        })
     }
     
     func degreesToRadians (value:Double) -> CGFloat {
@@ -57,7 +80,7 @@ class ImageTableHeaderCell: UIViewController {
     }
     
     func updateBatch(image: Image!) {
-        self.votedLabel.text = "\(image.score)"
+        self.votedLabel.text = "\(Int(image.percent() * 100))%"
         
         image.getImage { (image) -> Void in
             self.headerImage.image = image
