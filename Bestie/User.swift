@@ -95,15 +95,8 @@ class User {
     
     func loadBatch(callback: (() -> Void)!) {
         if self.batch != nil {
-            self.batch.fetch({ () -> Void in
-                Globals.batchUpdated()
-                callback?()
-            })
-            
-            return
-        }
-        
-        if currentBatch != nil {
+            callback?()
+        } else if currentBatch != nil {
             self.batch = currentBatch
             callback?()
         } else {
@@ -121,6 +114,12 @@ class User {
                 }
             })
         }
+    }
+    
+    func changeInterest(gender: String) {
+        self.interested = gender
+        self.parse["interested"] = gender
+        self.parse.saveInBackground()
     }
     
     func fetch(callback: (() -> Void)!) {

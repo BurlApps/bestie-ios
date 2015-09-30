@@ -18,6 +18,8 @@ class Globals {
     
     static let progressBarWidth: CGFloat = 7
     
+    static let spinner: CGFloat = 100
+    
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150
     static let voterTextLabelInterval: NSTimeInterval = 0.5
@@ -63,12 +65,21 @@ class Globals {
     
     class func showOnboarding() {
         if self.onboardController != nil {
+            self.onboardController.resetController()
             self.onboardController.dismissViewControllerAnimated(false, completion: nil)
         }
     }
     
-    class func reloadUser() {
-        User.current()?.fetch(nil)
+    class func reloadUser() {        
+        if let user = User.current() {
+            user.fetch({ () -> Void in
+                if user.batch != nil {
+                    user.batch.fetch({ () -> Void in
+                        self.reloadBridgeController()
+                    })
+                }
+            })
+        }
     }
     
     class func batchUpdated() {

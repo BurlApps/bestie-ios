@@ -8,10 +8,14 @@
 
 var updating = false
 
-class Config: NSObject {
+class Config {
     
     // MARK: Instance Variables
     var host: String!
+    var itunesId: String!
+    var uploadLimit: Int!
+    var imageMaxVotes: Int!
+    var downloadUrl: String!
     var parse: PFConfig!
     
     // MARK: Convenience Methods
@@ -19,6 +23,10 @@ class Config: NSObject {
         self.init()
         
         self.host = object["host"] as? String
+        self.downloadUrl = object["downloadUrl"] as? String
+        self.itunesId = object["itunesId"] as? String
+        self.uploadLimit = object["uploadLimit"] as? Int
+        self.imageMaxVotes = object["imageMaxVotes"] as? Int
         self.parse = object
     }
     

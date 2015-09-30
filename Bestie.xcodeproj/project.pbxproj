@@ -20,6 +20,7 @@
 		D33693FE1BB3779D00F6A801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33693FD1BB3779D00F6A801 /* Assets.xcassets */; };
 		D33694011BB3779D00F6A801 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33693FF1BB3779D00F6A801 /* LaunchScreen.storyboard */; };
 		D336940C1BB3779D00F6A801 /* BestieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D336940B1BB3779D00F6A801 /* BestieTests.swift */; };
+		D34663061BBB613500DED4C1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34663051BBB613500DED4C1 /* SettingsController.swift */; };
 		D34734081BB5C234009C19DE /* BridgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734071BB5C234009C19DE /* BridgeController.swift */; };
 		D347340A1BB5C244009C19DE /* NewBatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34734091BB5C244009C19DE /* NewBatchController.swift */; };
 		D347340C1BB5C3D5009C19DE /* BatchProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */; };
@@ -86,6 +87,7 @@
 		D33694071BB3779D00F6A801 /* BestieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D336940B1BB3779D00F6A801 /* BestieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestieTests.swift; sourceTree = "<group>"; };
 		D336940D1BB3779D00F6A801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D34663051BBB613500DED4C1 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D34734071BB5C234009C19DE /* BridgeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeController.swift; sourceTree = "<group>"; };
 		D34734091BB5C244009C19DE /* NewBatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBatchController.swift; sourceTree = "<group>"; };
 		D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchProgressController.swift; sourceTree = "<group>"; };
@@ -197,8 +199,8 @@
 			children = (
 				D32FFCF51BB39CD000E3858F /* Colors.swift */,
 				D32FFD0C1BB4B6BB00E3858F /* Globals.swift */,
-				D396FE801BB8792000EA6301 /* Installation.swift */,
 				D396FE821BB8798D00EA6301 /* Config.swift */,
+				D396FE801BB8792000EA6301 /* Installation.swift */,
 				D396FE841BB87C9000EA6301 /* User.swift */,
 				D396FE861BB87F8E00EA6301 /* Batch.swift */,
 				D3A941DA1BBB39210003119A /* Set.swift */,
@@ -264,6 +266,21 @@
 				D336940D1BB3779D00F6A801 /* Info.plist */,
 			);
 			path = BestieTests;
+			sourceTree = "<group>";
+		};
+		D34663041BBB611A00DED4C1 /* SettingsController */ = {
+			isa = PBXGroup;
+			children = (
+				D34663051BBB613500DED4C1 /* SettingsController.swift */,
+			);
+			name = SettingsController;
+			sourceTree = "<group>";
+		};
+		D34663091BBB7BFA00DED4C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		D34734051BB5C180009C19DE /* Views */ = {
@@ -334,8 +351,9 @@
 			children = (
 				D396FE8A1BB885FE00EA6301 /* OnboardController */,
 				D37C42A11BB397CE00CA9364 /* PageController */,
-				D32FFD001BB48A6D00E3858F /* VoteController */,
 				D34734061BB5C1BC009C19DE /* Results Controller */,
+				D32FFD001BB48A6D00E3858F /* VoteController */,
+				D34663041BBB611A00DED4C1 /* SettingsController */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -353,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				D396FE8B1BB8860E00EA6301 /* OnboardController.swift */,
+				D34663091BBB7BFA00DED4C1 /* Views */,
 			);
 			name = OnboardController;
 			sourceTree = "<group>";
@@ -550,6 +569,7 @@
 				D396FE871BB87F8E00EA6301 /* Batch.swift in Sources */,
 				D347340E1BB5C3E7009C19DE /* ResultsController.swift in Sources */,
 				D396FE831BB8798D00EA6301 /* Config.swift in Sources */,
+				D34663061BBB613500DED4C1 /* SettingsController.swift in Sources */,
 				D347340A1BB5C244009C19DE /* NewBatchController.swift in Sources */,
 				D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */,
 				D396FE851BB87C9000EA6301 /* User.swift in Sources */,

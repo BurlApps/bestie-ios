@@ -10,6 +10,8 @@ import UIKit
 
 class ImageTableCell: UITableViewCell {
     
+    @IBOutlet weak var imageViewer: UIImageView!
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -22,17 +24,18 @@ class ImageTableCell: UITableViewCell {
         self.setup()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.imageView?.frame = CGRectMake(0, 0, self.imageView!.frame.size.width, self.imageView!.frame.size.height);
-    }
-    
     func setup() {
         self.layer.masksToBounds = true
-        self.imageView?.clipsToBounds = true
-        self.imageView?.contentMode = .ScaleAspectFit
-        self.backgroundColor = Colors.batchImageCellBackground
         self.layoutMargins = UIEdgeInsetsZero
+    }
+    
+    func loadImage(voterImage: Image) {
+        self.imageViewer.clipsToBounds = true
+        self.imageViewer.contentMode = .ScaleAspectFill
+        self.imageViewer.backgroundColor = Colors.batchImageCellBackground
+        
+        voterImage.getImage { (image) -> Void in
+            self.imageViewer.image = image
+        }
     }
 }

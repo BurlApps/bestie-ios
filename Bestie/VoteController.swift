@@ -18,6 +18,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     private var voterSets: [VoterImageSet] = []
     private var textLabel: UILabel!
     private var user: User! = User.current()
+    private var timer: NSTimer!
+    private var spinner: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         if !setup {
             self.setupProgressBars()
             self.setUpLabel()
+            self.setupSpinner()
             self.setup = true
             
             let backgroundView = UIView(frame: self.view.frame)
@@ -42,6 +45,23 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         }
         
         self.updateSets()
+    }
+    
+    func setupSpinner() {
+        self.spinner = UIImageView(image: UIImage(named: "Sticker"))
+        self.spinner.frame = CGRectMake(0, 0, Globals.spinner, Globals.spinner)
+        self.spinner.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        self.spinner.contentMode = .ScaleAspectFit
+        self.spinner.hidden = false
+        self.view.insertSubview(self.spinner, aboveSubview: self.textLabel)
+        
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.toValue = NSNumber(double: M_PI)
+        animation.duration = 0.8
+        animation.cumulative = true
+        animation.repeatCount = Float.infinity
+        
+        self.spinner.layer.addAnimation(animation, forKey: "rotation")
     }
     
     func sizeTextLabel(big: Bool) {
@@ -75,17 +95,30 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.view.insertSubview(voterSet, belowSubview: self.textLabel)
     }
     
+    func flushSets() {
+        self.downloading = false
+        self.voterSets.removeAll()
+        self.updateSets()
+    }
+    
     func updateSets() {
         if !self.downloading {
             self.downloading = true
+            
+            if self.timer != nil {
+                self.timer.invalidate()
+                self.timer = nil
+            }
             
             self.user.pullSets { (sets) -> Void in
                 self.downloading = false
                 
                 if sets.isEmpty {
+                    self.spinner.hidden = false
                     NSTimer.scheduledTimerWithTimeInterval(5, target: self,
                         selector: Selector("updateSets"), userInfo: nil, repeats: false)
                 } else {
+                    self.spinner.hidden = true
                     for (i, set) in sets.enumerate() {
                         self.createVoterSet(set, first: i == 0)
                     }
@@ -141,7 +174,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.progressBar2.progress(percent, animation: true)
     }
     
-    func setFinished(set: VoterImageSet) {
+    func setFinished(set: VoterImageSet, image: Image) {
         self.voterSets.removeFirst()
         self.voterSets.first?.animateInToView()
         

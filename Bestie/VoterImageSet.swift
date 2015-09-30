@@ -10,7 +10,7 @@ import UIKit
 
 protocol VoterImageSetDelegate {
     func setDownloaded(set: VoterImageSet)
-    func setFinished(set: VoterImageSet)
+    func setFinished(set: VoterImageSet, image: Image)
 }
 
 class VoterImageSet: UIView, VoterImageDelegate {
@@ -59,7 +59,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
                 self.frame.origin.y = self.frame.height
             }
             
-            self.delegate.setFinished(self)
+            self.delegate.setFinished(self, image: image.voterImage)
         }
         
         self.voterSet.voted(image.voterImage)

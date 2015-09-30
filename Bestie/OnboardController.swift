@@ -7,67 +7,95 @@
 //
 
 import UIKit
-import Onboard
 
-class OnboardController: UIViewController {
+class OnboardController: UIViewController, VoterImageSetDelegate {
+    
+    enum State {
+        case Gender, Interest
+    }
     
     private var user: User!
-    private var screens: [OnboardingContentViewController] = []
-    private var contentController: OnboardingViewController!
+    private var state: State = .Gender
+    private var voterSets: [VoterImageSet] = []
+    private var textLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Globals.onboardController = self
-        
-        self.user = User.current()
-        
-        if self.user == nil {
-            self.contentController = OnboardingViewController(backgroundImage: UIImage(),
-                contents: self.createScreens())
-            
-            self.contentController.shouldBlurBackground = false
-            self.contentController.shouldMaskBackground = false
-            self.contentController.shouldFadeTransitions = false
-            self.contentController.bodyTextColor = Colors.onboardText
-            self.contentController.pageControl.currentPageIndicatorTintColor = Colors.onboardIndicator
-            self.contentController.pageControl.pageIndicatorTintColor = Colors.onboardIndicatorBackground
-            self.contentController.view.frame = self.view.frame
-            
-            self.view.addSubview(self.contentController.view)
-            
-            User.register("male", interested: "female", callback: nil)
-        }
+        self.setUpLabel()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+         self.user = User.current()
+        
         if self.user != nil {
             self.performSegueWithIdentifier("onboardedSegue", sender: self)
         } else {
-            self.contentController.setCurrentPage(self.screens.first)
+            //self.resetController()
+            
+            User.register("male", interested: "female", callback: { (user) -> Void in
+                self.performSegueWithIdentifier("onboardedSegue", sender: self)
+            })
         }
     }
     
-    func createScreens() -> [OnboardingContentViewController] {
-        self.screens.append(self.screen1())
-        self.screens.append(self.screen2())
-        
-        return self.screens
-    }
-
-    func screen1() -> OnboardingContentViewController {
-        return OnboardingContentViewController(title: "1", body: "Hello World", image: nil, buttonText: nil, action: nil)
+    func setUpLabel() {
+        self.textLabel = UILabel()
+        self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
+        self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        self.textLabel.text = "VS"
+        self.textLabel.font = UIFont.boldSystemFontOfSize(20)
+        self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
+        self.textLabel.layer.masksToBounds = true
+        self.textLabel.clipsToBounds = true
+        self.textLabel.backgroundColor = UIColor.whiteColor()
+        self.textLabel.textColor = Colors.voterTextLabel
+        self.textLabel.textAlignment = .Center
+        self.textLabel.autoresizingMask = .FlexibleWidth
+        self.view.addSubview(self.textLabel)
     }
     
-    func screen2() -> OnboardingContentViewController {
-        let screen = OnboardingContentViewController()
+    func resetController() {
+        self.state = .Gender
+    }
+    
+    func createGender(gender: String) -> Image {
+        let image = Image()
         
-        screen.viewDidAppearBlock = {
-            self.performSegueWithIdentifier("onboardedAnimationSegue", sender: self)
+        image.image = UIImage(named: gender)
+        
+        return image
+    }
+    
+    func createVoterSet(set: VoterSet, first: Bool) {
+        let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
+            self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
+        
+        let voterSet = VoterImageSet(frame: frame, set: set)
+        voterSet.delegate = self
+        
+        if self.voterSets.count == 0 {
+            voterSet.frame.origin.y = 0
+            voterSet.alpha = 1
         }
         
-        return screen
+        if first {
+            voterSet.downloadImages()
+        }
+        
+        self.voterSets.last?.next = voterSet
+        self.voterSets.append(voterSet)
+        self.view.insertSubview(voterSet, belowSubview: self.textLabel)
+    }
+    
+    func setDownloaded(set: VoterImageSet) {
+        
+    }
+    
+    func setFinished(set: VoterImageSet, image: Image) {
+        
     }
 }

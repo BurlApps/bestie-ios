@@ -22,7 +22,7 @@ class ShareGenerator: NSObject, UIDocumentInteractionControllerDelegate {
         self.controller = controller
     }
     
-    func getSharables(image: UIImage) -> [UIAlertAction] {
+    func getSharables(text: String, image: UIImage!) -> [UIAlertAction] {
         var actions: [UIAlertAction] = []
         
         let instagramURL = NSURL(string: "instagram://app")
@@ -66,7 +66,7 @@ class ShareGenerator: NSObject, UIDocumentInteractionControllerDelegate {
         }
         
         let everyone = UIAlertAction(title: "Everyone Else", style: .Default) { action -> Void in
-            self.shareSheet(image)
+            self.shareSheet(text, image: image)
         }
         
         actions.append(everyone)
@@ -74,9 +74,9 @@ class ShareGenerator: NSObject, UIDocumentInteractionControllerDelegate {
         return actions
     }
     
-    func customSheet(var actions: [UIAlertAction]) {
+    func customSheet(text: String, var actions: [UIAlertAction]) {
         let actionSheet: UIAlertController = UIAlertController(title: "Share Your Bestie",
-            message: "Share with the world your best face!", preferredStyle: .ActionSheet)
+            message: "Show the world your best profile picture!", preferredStyle: .ActionSheet)
         
         let cancel = UIAlertAction(title: "Canel", style: .Cancel, handler: nil)
         
@@ -91,17 +91,21 @@ class ShareGenerator: NSObject, UIDocumentInteractionControllerDelegate {
         self.controller.presentViewController(actionSheet, animated: true, completion: nil)
     }
     
-    func shareSheet(image: UIImage) {
+    func shareSheet(text: String, image: UIImage!) {
         var sharingItems = [AnyObject]()
         
-        sharingItems.append(image)
+        sharingItems.append(text)
+        
+        if image != nil {
+            sharingItems.append(image)
+        }
         
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         self.controller.presentViewController(activityViewController, animated: true, completion: nil)
     }
     
-    func share(image: UIImage) {
-        self.shareSheet(image)
+    func share(text: String, image: UIImage!) {
+        self.shareSheet(text, image: image)
 //        let actions = self.getSharables(image)
 //
 //        if actions.count > 1 {

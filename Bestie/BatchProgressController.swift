@@ -15,7 +15,7 @@ class BatchProgressController: UIViewController {
     @IBOutlet weak var votingButton: UIButton!
     
     private var setup: Bool = false
-    private var user: User = User.current()
+    private var user: User! = User.current()
     private var cirlceChart: PNCircleChart!
     
     override func viewDidLoad() {
@@ -65,7 +65,9 @@ class BatchProgressController: UIViewController {
     }
     
     func updateBatch(batch: Batch) {
-        self.cirlceChart.updateChartByCurrent(batch.percent() * 100)
-        self.cirlceChart.strokeChart()
+        if self.cirlceChart != nil {
+            self.cirlceChart.updateChartByCurrent(batch.percent() * 100)
+            self.cirlceChart.strokeChart()
+        }
     }
 }

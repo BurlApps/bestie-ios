@@ -13,6 +13,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     private let reuseIdentifier = "cell"
     private var headerContainer: ImageTableHeaderCell!
     private var images: [Image] = []
+    private var config: Config!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startOverButton: UIButton!
@@ -36,6 +37,10 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         self.startOverButton.layer.masksToBounds = true
         
         self.view.layer.masksToBounds = true
+        
+        Config.sharedInstance { (config) -> Void in
+            self.config = config
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,7 +60,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBAction func sharePressed(sender: AnyObject) {
         let share = ShareGenerator(sender: sender as! UIView, controller: Globals.pageController)
         
-        share.share(self.createShareCard())
+        share.share("Bestie is pretty cool, it just found my best profile pic! \(self.config.downloadUrl)", image: self.createShareCard())
     }
     
     @IBAction func startOverPressed(sender: AnyObject) {
@@ -97,9 +102,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
             cell = ImageTableCell()
         }
         
-        image.getImage { (image) -> Void in
-            cell.imageView?.image = image
-        }
+        cell.loadImage(image)
         
         return cell
     }

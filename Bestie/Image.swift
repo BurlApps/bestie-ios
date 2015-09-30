@@ -26,6 +26,12 @@ class Image {
         self.maxVotes = object["maxVotes"] as? Int
         self.parse = object
         
+        if self.maxVotes == nil {
+            Config.sharedInstance({ (config) -> Void in
+                self.maxVotes = config.imageMaxVotes
+            })
+        }
+        
         if let image = object["image"] as? PFFile {
             if let url: String = image.url {
                 self.imageURL = NSURL(string: url)
@@ -43,14 +49,13 @@ class Image {
         }
     }
     
-    class func create(image: UIImage, user: User, callback: ((image: Image) -> Void)!) {
+    class func create(image: UIImage, user: User) -> Image {
         let voterImage = PFObject(className: "Image")
         let imageData = UIImageJPEGRepresentation(image, 0.7)
         let imageFile = PFFile(name: "image.jpeg", data: imageData!)
         
         voterImage["gender"] = user.gender
         voterImage["creator"] = user.parse
-        voterImage["image"] = imageFile
         voterImage["active"] = false
         
         let voter = Image(voterImage)
@@ -61,11 +66,15 @@ class Image {
                 voter.active = voterImage["active"] as? Bool
                 voter.score = voterImage["score"] as? Int
                 voter.maxVotes = voterImage["maxVotes"] as? Int
-                callback?(image: voter)
+                
+                voterImage["image"] = imageFile
+                voterImage.saveInBackground()
             } else {
                 ErrorHandler.handleParseError(error!)
             }
         }
+        
+        return voter
     }
     
     func remove() {

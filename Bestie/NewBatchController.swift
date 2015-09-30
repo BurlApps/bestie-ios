@@ -16,7 +16,9 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private let firstReuseIdentifier = "firstCell"
     private let uploadedImages: NSMutableArray = NSMutableArray()
     private let sectionInsets = UIEdgeInsets(top: 25.0, left: 25.0, bottom: 25.0, right: 25.0)
-    private var user: User = User.current()
+    private var user: User! = User.current()
+    private var config: Config!
+    private var hitLimit: Bool = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
@@ -24,6 +26,10 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Config.sharedInstance { (config) -> Void in
+            self.config = config
+        }
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -48,8 +54,13 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let ready = self.uploadedImages.count >= 2
+        let count = self.uploadedImages.count
+        let ready = count >= 2
         
+        if self.config != nil {
+            self.hitLimit = count >= self.config.uploadLimit
+        }
+            
         self.submitButton.hidden = !ready
         self.informationLabel.hidden = ready
         
@@ -57,15 +68,16 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let identifier = indexPath.row == 0 ? self.firstReuseIdentifier : self.reuseIdentifier
+        let isFirst = indexPath.row == 0
+        let identifier = isFirst ? self.firstReuseIdentifier : self.reuseIdentifier
         let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
-        if indexPath.row == 0 {
+        if isFirst {
             let temp = cell as! PlusCollectionCell
             
             temp.delegate = self
             temp.setup()
+            
         } else {
             let temp = cell as! ImageCollectionCell
             let image: Image = self.uploadedImages[indexPath.row - 1] as! Image
@@ -94,13 +106,22 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     }
     
     func newImageTapped() {
-        let picker = UIImagePickerController()
-        
-        picker.delegate = self
-        picker.sourceType = .PhotoLibrary
-        picker.allowsEditing = true
-        
-        Globals.pageController.presentViewController(picker, animated: true, completion: nil)
+        if !self.hitLimit {
+            let picker = UIImagePickerController()
+            
+            picker.delegate = self
+            picker.sourceType = .PhotoLibrary
+            picker.allowsEditing = true
+            
+            Globals.pageController.presentViewController(picker, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Upload Limit Reached",
+                message: "Dang! You have alot of images.", preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Okay", style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            Globals.pageController.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func removeTapped(cell: ImageCollectionCell) {
@@ -111,11 +132,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        Image.create(image, user: self.user) { (image) -> Void in
-            self.uploadedImages.addObject(image)
-            self.collectionView.reloadData()
-        }
+        self.uploadedImages.addObject(Image.create(image, user: self.user))
+        self.collectionView.reloadData()
     }
     
     @IBAction func submitBatch(sender: AnyObject) {

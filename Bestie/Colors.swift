@@ -20,6 +20,8 @@ class Colors {
     static let imageBackground = UIColor.blackColor()
     static let textGray = UIColor(red:0.57, green:0.57, blue:0.57, alpha:1)
     
+    static let settingsBackground = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1)
+    
     static let progressTrack = UIColor.clearColor()
     static let progressBar = blue
     

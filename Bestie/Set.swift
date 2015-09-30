@@ -10,6 +10,7 @@ class VoterSet {
     
     var image1: Image!
     var image2: Image!
+    var fake = false
     
     convenience init(_ image1: Image, _ image2: Image) {
         self.init()
@@ -19,6 +20,10 @@ class VoterSet {
     }
     
     func voted(winner: Image) {
+        if(fake) {
+            return
+        }
+        
         if let batch = User.current().batch {
             batch.userVoted()
         }
@@ -31,7 +36,7 @@ class VoterSet {
         
         PFCloud.callFunctionInBackground("setVoted", withParameters: [
             "winner": winner.parse.objectId!,
-            "looser": looser.parse.objectId!
+            "loser": looser.parse.objectId!
         ])
     }
 }

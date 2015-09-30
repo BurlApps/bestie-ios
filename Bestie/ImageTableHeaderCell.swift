@@ -17,11 +17,15 @@ class ImageTableHeaderCell: UIViewController {
     @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var innerContainer: UIView!
     @IBOutlet weak var sticker: UIImageView!
+    @IBOutlet weak var dataContainer: UIView!
+    @IBOutlet weak var separator: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.clearColor()
+        
+        self.separator.backgroundColor = Colors.voterImageBorder
         
         self.votedLabel.textColor = Colors.batchNumbers
         self.bestieLabel.textColor = Colors.batchBestie
