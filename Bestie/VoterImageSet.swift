@@ -73,6 +73,18 @@ class VoterImageSet: UIView, VoterImageDelegate {
         }, completion: nil)
     }
     
+    func imageFlagged(image: VoterImage) {
+        UIView.animateWithDuration(Globals.voterSetInterval, animations: {
+            self.frame.origin.y = -1 * self.frame.height
+            }) { (finished: Bool) -> Void in
+                self.hidden = true
+                self.frame.origin.y = self.frame.height
+        }
+        
+        self.delegate.setFinished(self, image: image.voterImage)
+        image.voterImage.flag()
+    }
+    
     func imageDownloaded(image: VoterImage) {
         let first = self.voterImages.first?.image != nil
         let second = self.voterImages.last?.image != nil

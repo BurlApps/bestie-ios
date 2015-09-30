@@ -20,11 +20,17 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     private var user: User! = User.current()
     private var timer: NSTimer!
     private var spinner: UIImageView!
+    @IBOutlet weak var backgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Globals.voterController = self
+        
+        let image = UIImage(named: "HeaderBackground")
+        
+        self.backgroundView.backgroundColor = UIColor(patternImage: image!)
+        self.backgroundView.alpha = Globals.bridgeBackgroundAlpha
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -35,13 +41,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             self.setUpLabel()
             self.setupSpinner()
             self.setup = true
-            
-            let backgroundView = UIView(frame: self.view.frame)
-            let image = UIImage(named: "HeaderBackground")
-            
-            backgroundView.backgroundColor = UIColor(patternImage: image!)
-            backgroundView.alpha = Globals.bridgeBackgroundAlpha
-            self.view.addSubview(backgroundView)
         }
         
         self.updateSets()
@@ -131,7 +130,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.textLabel = UILabel()
         self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
         self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-        self.textLabel.text = "VS"
+        self.textLabel.text = "OR"
         self.textLabel.font = UIFont.boldSystemFontOfSize(20)
         self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
         self.textLabel.layer.masksToBounds = true

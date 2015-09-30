@@ -2,22 +2,25 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "car_selfie_2_by_lookherup-d60d977-2.jpg",
+      "filename" : "flag.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "car_selfie_2_by_lookherup-d60d977-1.jpg",
+      "filename" : "flag-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "car_selfie_2_by_lookherup-d60d977.jpg",
+      "filename" : "flag-2.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

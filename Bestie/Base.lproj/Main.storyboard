@@ -42,6 +42,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Td5-Vx-Q9i"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="xjr-ey-Eru" id="aJu-jZ-SbC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CW0-gL-vFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,8 +400,23 @@
                     <view key="view" contentMode="scaleToFill" id="H7g-LL-PX0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjr-ey-Eru">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="xjr-ey-Eru" secondAttribute="trailing" constant="-16" id="Jcz-zQ-gLN"/>
+                            <constraint firstItem="xjr-ey-Eru" firstAttribute="top" secondItem="H7g-LL-PX0" secondAttribute="topMargin" id="eQP-8r-DGf"/>
+                            <constraint firstItem="xjr-ey-Eru" firstAttribute="leading" secondItem="H7g-LL-PX0" secondAttribute="leadingMargin" constant="-16" id="vwG-c8-brt"/>
+                            <constraint firstItem="Igs-fc-nv4" firstAttribute="top" secondItem="xjr-ey-Eru" secondAttribute="bottom" id="zvQ-fy-iCK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="xjr-ey-Eru" id="jUW-wI-Aka"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gg-xc-CYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

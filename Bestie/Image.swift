@@ -89,6 +89,12 @@ class Image {
         self.parse.deleteInBackground()
     }
     
+    func flag() {
+        self.parse["active"] = false
+        self.parse["flag"] = true
+        self.parse.saveInBackground()
+    }
+    
     func activate(batch: Batch) {
         self.parse["active"] = true
         self.parse["batch"] = batch.parse

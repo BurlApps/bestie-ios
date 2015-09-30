@@ -30,6 +30,7 @@ class PageController: UIViewController {
             NavigationBarItem(namedImage: "Trophy", special: false),
         ]
         
+        self.pageController.view.backgroundColor = UIColor.clearColor()
         self.pageController.setCurrentPage(1, animated: true)
         self.view.addSubview(self.pageController.view)
         

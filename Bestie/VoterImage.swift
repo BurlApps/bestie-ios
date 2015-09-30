@@ -11,6 +11,7 @@ import UIKit
 protocol VoterImageDelegate {
     func imageSelected(image: VoterImage)
     func imageDownloaded(image: VoterImage)
+    func imageFlagged(image: VoterImage)
 }
 
 class VoterImage: UIImageView {
@@ -37,6 +38,20 @@ class VoterImage: UIImageView {
         self.multipleTouchEnabled = false
         self.contentMode = .ScaleAspectFill
         
+        let flag = UIImage(named: "Flag")
+        let flagView = UIImageView(image: flag)
+        let width: CGFloat = 25
+        let height: CGFloat = 25
+        
+        flagView.contentMode = .ScaleAspectFit
+        flagView.tintColor = UIColor(white: 1, alpha: 0.5)
+        flagView.frame = CGRectMake(6, frame.height - width - 10, width, height)
+        flagView.userInteractionEnabled = true
+        self.addSubview(flagView)
+        
+        let flagTapGesture = UITapGestureRecognizer(target: self, action: "flag:")
+        flagView.addGestureRecognizer(flagTapGesture)
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.addGestureRecognizer(tapGesture)
     }
@@ -49,6 +64,20 @@ class VoterImage: UIImageView {
         self.scaleUp(false, completion: {
             self.delegate.imageSelected(self)
         })
+    }
+    
+    func flag(gesture: UIGestureRecognizer) {
+        let controller = UIAlertController(title: "Flag Photo",
+            message: "Please confirm this photo is spam or inappropriate.", preferredStyle: .Alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let confirm = UIAlertAction(title: "Confirm", style: .Destructive) { (action: UIAlertAction) -> Void in
+            self.delegate.imageFlagged(self)
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(confirm)
+        Globals.pageController.presentViewController(controller, animated: true, completion: nil)
     }
     
     func downloadImage() {
