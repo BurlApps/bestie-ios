@@ -19,7 +19,7 @@ class Globals {
     
     static let spinner: CGFloat = 100
 
-    static let onboardAlpha: CGFloat = 0.04
+    static let onboardAlpha: CGFloat = 0.05
     
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150

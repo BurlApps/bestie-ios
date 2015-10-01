@@ -12,7 +12,7 @@ import UIKit
 class OnboardController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var user: User!
-    var nextPage: Int!
+    var nextPage = 2
     private var currentPage = 0
     private var controllers: [OnboardPageController] = []
     private var storyBoard = UIStoryboard(name: "Main", bundle: nil)

@@ -34,7 +34,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         let image = UIImage(named: "HeaderBackground")
         
         self.backgroundView.backgroundColor = UIColor(patternImage: image!)
-        self.backgroundView.alpha = Globals.bridgeBackgroundAlpha
+        self.backgroundView.alpha = Globals.onboardAlpha
     }
     
     override func viewWillLayoutSubviews() {

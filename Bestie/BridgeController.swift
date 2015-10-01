@@ -32,7 +32,7 @@ class BridgeController: UIViewController {
         let image = UIImage(named: "HeaderBackground")
         
         backgroundView.backgroundColor = UIColor(patternImage: image!)
-        backgroundView.alpha = Globals.bridgeBackgroundAlpha
+        backgroundView.alpha = Globals.onboardAlpha
         self.view.insertSubview(backgroundView, atIndex: 0)
         
         self.reloadController()
