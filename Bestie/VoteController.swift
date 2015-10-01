@@ -173,6 +173,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func setFinished(set: VoterImageSet, image: Image) {
         self.voterSets.removeFirst()
         self.voterSets.first?.animateInToView()
+        self.user.mixpanel.track("Mobile.Voted")
         
         if (arc4random_uniform(10) + 1) <= 3 {
             Globals.switchLogoFace()

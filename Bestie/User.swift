@@ -9,11 +9,14 @@
 var currentUser: User!
 var currentBatch: Batch!
 
+import Mixpanel
+
 class User {
     
     // MARK: Instance Variables
     var gender: String!
     var interested: String!
+    var mixpanel: Mixpanel!
     var batch: Batch!
     var parse: PFUser!
     
@@ -24,12 +27,15 @@ class User {
         self.gender = user["gender"] as? String
         self.interested = user["interested"] as? String
         self.parse = user
+        self.mixpanel = Mixpanel.sharedInstance()
         
         self.loadBatch(nil)
     }
     
     // MARK: Class Methods
     class func register(callback: ((user: User) -> Void)!) {
+       let mixpanel = Mixpanel.sharedInstance()
+        
         PFAnonymousUtils.logInWithBlock { (object: PFUser?, error: NSError?) -> Void in
             if let user: PFUser = object {
                 user.saveInBackground()
@@ -37,10 +43,12 @@ class User {
                 currentUser = User(user)
                 
                 Installation.current().setUser(currentUser)
+                currentUser.aliasMixpanel()
                 
                 callback?(user: currentUser)
             } else {
                 ErrorHandler.handleParseError(error!)
+                mixpanel.track("Mobile.User.Failed Authentication")
             }
         }
     }
@@ -68,12 +76,17 @@ class User {
     class func logout() {
         currentBatch = nil
         currentUser = nil
+        Mixpanel.sharedInstance().track("Mobile.User.Logout")
         PFUser.logOut()
     }
     
     // MARK: Instance Methods
     func logout() {
         User.logout()
+    }
+    
+    func aliasMixpanel() {
+        self.mixpanel.createAlias(self.parse.objectId, forDistinctID: self.mixpanel.distinctId)
     }
     
     func addBatch(batch: Batch) {

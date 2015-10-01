@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", clientKey: "aA6IKoTDyboREj5gNfWQ2PasrmaaRYtMTUlugje0")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        let mixpanel = Mixpanel.sharedInstanceWithToken("ae9f71c91262dc1c018c2b75aa5af8c3")
+        mixpanel.miniNotificationPresentationTime = 10
+        mixpanel.identify(mixpanel.distinctId)
+        
         // Track an app open here if we launch with a push, unless
         // "content_available" was used to trigger a background push (introduced
         // in iOS 7). In that case, we skip tracking here to avoid double
@@ -33,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if preBackgroundPush || oldPushHandlerOnly || noPushPayload {
                 PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+                mixpanel.track("Mobile.App.Open")
             }
         }
         
@@ -60,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayloadInBackground(userInfo, block: nil)
+            Mixpanel.sharedInstance().trackPushNotification(userInfo)
             wasActive = false
         }
         

@@ -1,4 +1,7 @@
 PODS:
+  - Mixpanel (2.8.3):
+    - Mixpanel/Mixpanel (= 2.8.3)
+  - Mixpanel/Mixpanel (2.8.3)
   - Onboard (2.1.7)
   - PNChart (0.8.7):
     - UICountingLabel (~> 1.2.0)
@@ -6,6 +9,7 @@ PODS:
   - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
+  - Mixpanel (~> 2.8)
   - Onboard (~> 2.1)
   - PNChart (~> 0.8)
   - THTinderNavigationController-ssuchanowski (from `https://github.com/BurlApps/THTinderNavigationController.git`)
@@ -20,6 +24,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/BurlApps/THTinderNavigationController.git
 
 SPEC CHECKSUMS:
+  Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   Onboard: 87648089e1b76d13b4f5bf8f7a1cdb144092f0af
   PNChart: c1755716bbd45386d2035b2bf2ce73e6d3f8cb22
   THTinderNavigationController-ssuchanowski: d081bb8c8e2145a40bc6817c6b75267849e07ebc

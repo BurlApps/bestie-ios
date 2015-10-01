@@ -7,3 +7,4 @@
 #import <ParseCrashReporting/ParseCrashReporting.h>
 #import <Onboard/OnboardingViewController.h>
 #import <Onboard/OnboardingContentViewController.h>
+#import <Mixpanel/Mixpanel.h>

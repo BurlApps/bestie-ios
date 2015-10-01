@@ -87,6 +87,17 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         if self.currentPage >= self.controllers.count {
             self.currentPage = 0
             self.performSegueWithIdentifier("finishedSegue", sender: self)
+            
+            let properties = [
+                "gender": self.user.gender,
+                "interested": self.user.interested
+            ]
+            
+            self.user.mixpanel.people.set(properties)
+            self.user.mixpanel.track("Mobile.User.Registered", properties: properties)
+            self.user.mixpanel.track("Mobile.Onboard.Next", properties: [
+                "next": self.nextPage == 1 ? "voter" : "upload"
+            ])
         } else {
             self.showController()
         }

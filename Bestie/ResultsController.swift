@@ -14,6 +14,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     private var headerContainer: ImageTableHeaderCell!
     private var images: [Image] = []
     private var config: Config!
+    private var user: User!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startOverButton: UIButton!
@@ -21,6 +22,8 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.user = User.current()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -58,6 +61,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func sharePressed(sender: AnyObject) {
+        self.user.mixpanel.track("Mobile.User.Shared")
         let share = ShareGenerator(sender: sender as! UIView, controller: Globals.pageController)
         
         share.share("Bestie is pretty cool, it just found my best profile pic! \(self.config.downloadUrl)", image: self.createShareCard())
