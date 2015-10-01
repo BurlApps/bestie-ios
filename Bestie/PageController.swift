@@ -10,12 +10,15 @@ import THTinderNavigationController_ssuchanowski
 
 class PageController: UIViewController {
     
+    var startingPage: Int = 1
     var pageController: THTinderNavigationController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        self.navigationController?.navigationBarHidden = true
         
         self.pageController = THTinderNavigationController()
         
@@ -31,7 +34,7 @@ class PageController: UIViewController {
         ]
         
         self.pageController.view.backgroundColor = UIColor.clearColor()
-        self.pageController.setCurrentPage(1, animated: true)
+        self.pageController.setCurrentPage(self.startingPage, animated: true)
         self.view.addSubview(self.pageController.view)
         
         for view in self.pageController.view.subviews {

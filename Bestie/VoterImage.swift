@@ -18,19 +18,24 @@ class VoterImage: UIImageView {
     
     var voterImage: Image!
     var delegate: VoterImageDelegate!
+    var transparent: Bool = false
     
-    init(frame: CGRect, voterImage: Image) {
+    init(frame: CGRect, voterImage: Image, transparent: Bool) {
         super.init(frame: frame)
         
         self.voterImage = voterImage
+        self.transparent = transparent
         
-        self.backgroundColor = Colors.voterImageBackground
-        self.layer.cornerRadius = Globals.voterImageRadius
-        self.layer.borderWidth = Globals.voterImageBorder
-        self.layer.borderColor = Colors.voterImageBorder.CGColor
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOffset = CGSizeZero
-        self.layer.shadowOpacity = 0.5
+        if !self.transparent {
+            self.backgroundColor = Colors.voterImageBackground
+            self.layer.cornerRadius = Globals.voterImageRadius
+            self.layer.borderWidth = Globals.voterImageBorder
+            self.layer.borderColor = Colors.voterImageBorder.CGColor
+            self.layer.shadowColor = UIColor.blackColor().CGColor
+            self.layer.shadowOffset = CGSizeZero
+            self.layer.shadowOpacity = 0.5
+        }
+
         self.layer.shadowRadius = 5
         self.clipsToBounds = true
         self.hidden = true
@@ -47,6 +52,7 @@ class VoterImage: UIImageView {
         flagView.tintColor = UIColor(white: 1, alpha: 0.5)
         flagView.frame = CGRectMake(6, frame.height - width - 10, width, height)
         flagView.userInteractionEnabled = true
+        flagView.hidden = transparent
         self.addSubview(flagView)
         
         let flagTapGesture = UITapGestureRecognizer(target: self, action: "flag:")

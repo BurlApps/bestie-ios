@@ -19,6 +19,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
     var voterImages: [VoterImage] = []
     var voterSet: VoterSet!
     var next: VoterImageSet!
+    var flyOff: Bool = true
 
     init(frame: CGRect, set: VoterSet) {
         super.init(frame: frame)
@@ -38,7 +39,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
         let middle = Globals.voterSetMiddlePadding
         let box = self.frame.height/2 - veritcal - middle/2
         let frame = CGRectMake((self.frame.width - box)/2, veritcal, box, box)
-        let card = VoterImage(frame: frame, voterImage: voterImage)
+        let card = VoterImage(frame: frame, voterImage: voterImage, transparent: self.voterSet.fake)
         
         card.delegate = self
         card.frame.origin.y = top ? frame.origin.y : frame.height + veritcal + middle
@@ -52,11 +53,13 @@ class VoterImageSet: UIView, VoterImageDelegate {
         let second = self.voterImages.last?.hidden == false
         
         if first && second {
-            UIView.animateWithDuration(Globals.voterSetInterval, animations: {
-                self.frame.origin.y = -1 * self.frame.height
-            }) { (finished: Bool) -> Void in
-                self.hidden = true
-                self.frame.origin.y = self.frame.height
+            if self.flyOff {
+                UIView.animateWithDuration(Globals.voterSetInterval, animations: {
+                    self.frame.origin.y = -1 * self.frame.height
+                }) { (finished: Bool) -> Void in
+                    self.hidden = true
+                    self.frame.origin.y = self.frame.height
+                }
             }
             
             self.delegate.setFinished(self, image: image.voterImage)

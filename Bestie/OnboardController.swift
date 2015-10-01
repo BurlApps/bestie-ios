@@ -1,101 +1,120 @@
+
 //
-//  OnboardController.swift
+//  OnboardControllerViewController.swift
 //  Bestie
 //
-//  Created by Brian Vallelunga on 9/27/15.
+//  Created by Brian Vallelunga on 9/30/15.
 //  Copyright © 2015 Brian Vallelunga. All rights reserved.
 //
 
 import UIKit
 
-class OnboardController: UIViewController, VoterImageSetDelegate {
+class OnboardController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    enum State {
-        case Gender, Interest
-    }
-    
-    private var user: User!
-    private var state: State = .Gender
-    private var voterSets: [VoterImageSet] = []
-    private var textLabel: UILabel!
-    
+    var user: User!
+    var nextPage: Int!
+    private var currentPage = 0
+    private var controllers: [OnboardPageController] = []
+    private var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let backgroundView = UIView(frame: self.view.frame)
+        let image = UIImage(named: "HeaderBackground")
         
-        Globals.onboardController = self
-        self.setUpLabel()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        backgroundView.backgroundColor = UIColor(patternImage: image!)
+        backgroundView.alpha = Globals.onboardAlpha
+        self.view.insertSubview(backgroundView, atIndex: 0)
+        self.view.backgroundColor = UIColor.whiteColor()
         
-         self.user = User.current()
+        self.dataSource = self
+        self.delegate = self
         
-        if self.user != nil {
-            self.performSegueWithIdentifier("onboardedSegue", sender: self)
-        } else {
-            //self.resetController()
+        for controller in self.view.subviews {
+            if let scrollView = controller as? UIScrollView {
+                scrollView.scrollEnabled = false
+            }
+        }
+        
+        self.createPage("WelcomeController")
+        self.createPage("GenderController")
+        self.createPage("InterestController")
+        
+        Config.sharedInstance { (config) -> Void in
+            self.nextPage = config.onboardNext
             
-            User.register("male", interested: "female", callback: { (user) -> Void in
-                self.performSegueWithIdentifier("onboardedSegue", sender: self)
+            if self.nextPage == -1 {
+                self.createPage("DecisionController")
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.user = User.current()
+        
+        if self.user != nil && self.user.gender != nil && self.user.interested != nil {
+            self.performSegueWithIdentifier("finishedSegue", sender: self)
+        } else {
+            User.register({ (user) -> Void in
+                self.user = user
             })
+            
+            self.showController()
         }
     }
     
-    func setUpLabel() {
-        self.textLabel = UILabel()
-        self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
-        self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-        self.textLabel.text = "VS"
-        self.textLabel.font = UIFont.boldSystemFontOfSize(20)
-        self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
-        self.textLabel.layer.masksToBounds = true
-        self.textLabel.clipsToBounds = true
-        self.textLabel.backgroundColor = UIColor.whiteColor()
-        self.textLabel.textColor = Colors.voterTextLabel
-        self.textLabel.textAlignment = .Center
-        self.textLabel.autoresizingMask = .FlexibleWidth
-        self.view.addSubview(self.textLabel)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        
+        (segue.destinationViewController as! PageController).startingPage = self.nextPage
     }
     
-    func resetController() {
-        self.state = .Gender
+    func createPage(name: String) {
+        let page = self.storyBoard.instantiateViewControllerWithIdentifier(name) as? OnboardPageController
+        
+        page?.pageIndex = self.controllers.count
+        page?.onboardController = self
+        
+        self.controllers.append(page!)
     }
     
-    func createGender(gender: String) -> Image {
-        let image = Image()
+    func nextController() {
+        self.currentPage += 1
         
-        image.image = UIImage(named: gender)
-        
-        return image
+        if self.currentPage >= self.controllers.count {
+            self.currentPage = 0
+            self.performSegueWithIdentifier("finishedSegue", sender: self)
+        } else {
+            self.showController()
+        }
     }
     
-    func createVoterSet(set: VoterSet, first: Bool) {
-        let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
-            self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
-        
-        let voterSet = VoterImageSet(frame: frame, set: set)
-        voterSet.delegate = self
-        
-        if self.voterSets.count == 0 {
-            voterSet.frame.origin.y = 0
-            voterSet.alpha = 1
+    func showController() {
+        if let controller = self.viewControllerAtIndex(self.currentPage) {
+            self.setViewControllers([controller], direction: .Forward, animated: self.currentPage > 0, completion: nil)
+        }
+    }
+    
+    func viewControllerAtIndex(index: Int) -> OnboardPageController! {
+        if index == NSNotFound && index > self.controllers.count {
+            return nil
         }
         
-        if first {
-            voterSet.downloadImages()
-        }
-        
-        self.voterSets.last?.next = voterSet
-        self.voterSets.append(voterSet)
-        self.view.insertSubview(voterSet, belowSubview: self.textLabel)
+        return self.controllers[index]
     }
     
-    func setDownloaded(set: VoterImageSet) {
-        
+
+    // MARK: Page View Controller Data Source
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        let index = (viewController as! OnboardPageController).pageIndex
+        return self.viewControllerAtIndex(index - 1)
     }
     
-    func setFinished(set: VoterImageSet, image: Image) {
-        
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        let index = (viewController as! OnboardPageController).pageIndex
+        return self.viewControllerAtIndex(index + 1)
     }
 }

@@ -47,13 +47,21 @@
 		D396FE851BB87C9000EA6301 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396FE841BB87C9000EA6301 /* User.swift */; };
 		D396FE871BB87F8E00EA6301 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396FE861BB87F8E00EA6301 /* Batch.swift */; };
 		D396FE891BB8802300EA6301 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396FE881BB8802300EA6301 /* Image.swift */; };
-		D396FE8C1BB8860E00EA6301 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396FE8B1BB8860E00EA6301 /* OnboardController.swift */; };
 		D396FE901BB89CCA00EA6301 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396FE8F1BB89CCA00EA6301 /* ErrorHandler.swift */; };
 		D396FE921BB8AD3E00EA6301 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396FE911BB8AD3E00EA6301 /* Array.swift */; };
 		D3A941DB1BBB39210003119A /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A941DA1BBB39210003119A /* Set.swift */; };
 		D3BC59121BB39E28006CF8DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BC59111BB39E28006CF8DF /* UIKit.framework */; };
 		D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */; };
 		D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */; };
+		D3CABE591BBCAC9B000A6936 /* OnboardPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE581BBCAC9B000A6936 /* OnboardPageController.swift */; };
+		D3CABE5B1BBCB199000A6936 /* WelcomeOnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE5A1BBCB199000A6936 /* WelcomeOnboardController.swift */; };
+		D3CABE5D1BBCB1F1000A6936 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE5C1BBCB1F1000A6936 /* OnboardController.swift */; };
+		D3CABE5F1BBCB34B000A6936 /* GenderOnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE5E1BBCB34B000A6936 /* GenderOnboardController.swift */; };
+		D3CABE611BBCB361000A6936 /* InterestOnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE601BBCB361000A6936 /* InterestOnboardController.swift */; };
+		D3CABE631BBCB373000A6936 /* DecisionOnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE621BBCB373000A6936 /* DecisionOnboardController.swift */; };
+		D3CABE6A1BBCBC42000A6936 /* Bariol_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3CABE681BBCBC42000A6936 /* Bariol_Bold.ttf */; };
+		D3CABE6B1BBCBC42000A6936 /* Bariol_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3CABE691BBCBC42000A6936 /* Bariol_Regular.ttf */; };
+		D3CABE6D1BBCF0BA000A6936 /* OnboardImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE6C1BBCF0B9000A6936 /* OnboardImageController.swift */; };
 		EF0050A949AE374AB914AFA8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74E99D7F47E0788D0F4227B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -116,7 +124,6 @@
 		D396FE841BB87C9000EA6301 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D396FE861BB87F8E00EA6301 /* Batch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		D396FE881BB8802300EA6301 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		D396FE8B1BB8860E00EA6301 /* OnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardController.swift; sourceTree = "<group>"; };
 		D396FE8F1BB89CCA00EA6301 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		D396FE911BB8AD3E00EA6301 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		D396FE931BB8B50D00EA6301 /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
@@ -124,6 +131,15 @@
 		D3BC59111BB39E28006CF8DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
 		D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableHeaderCell.swift; sourceTree = "<group>"; };
+		D3CABE581BBCAC9B000A6936 /* OnboardPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardPageController.swift; sourceTree = "<group>"; };
+		D3CABE5A1BBCB199000A6936 /* WelcomeOnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardController.swift; sourceTree = "<group>"; };
+		D3CABE5C1BBCB1F1000A6936 /* OnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardController.swift; sourceTree = "<group>"; };
+		D3CABE5E1BBCB34B000A6936 /* GenderOnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderOnboardController.swift; sourceTree = "<group>"; };
+		D3CABE601BBCB361000A6936 /* InterestOnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestOnboardController.swift; sourceTree = "<group>"; };
+		D3CABE621BBCB373000A6936 /* DecisionOnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionOnboardController.swift; sourceTree = "<group>"; };
+		D3CABE681BBCBC42000A6936 /* Bariol_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Bold.ttf; path = Fonts/Bariol_Bold.ttf; sourceTree = SOURCE_ROOT; };
+		D3CABE691BBCBC42000A6936 /* Bariol_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.ttf; path = Fonts/Bariol_Regular.ttf; sourceTree = SOURCE_ROOT; };
+		D3CABE6C1BBCF0B9000A6936 /* OnboardImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardImageController.swift; sourceTree = "<group>"; };
 		E74E99D7F47E0788D0F4227B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -276,13 +292,6 @@
 			name = SettingsController;
 			sourceTree = "<group>";
 		};
-		D34663091BBB7BFA00DED4C1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		D34734051BB5C180009C19DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +347,8 @@
 		D37C429F1BB3870800CA9364 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3CABE681BBCBC42000A6936 /* Bariol_Bold.ttf */,
+				D3CABE691BBCBC42000A6936 /* Bariol_Regular.ttf */,
 				D33693FD1BB3779D00F6A801 /* Assets.xcassets */,
 				D33693FF1BB3779D00F6A801 /* LaunchScreen.storyboard */,
 				D33694021BB3779D00F6A801 /* Info.plist */,
@@ -351,8 +362,8 @@
 			children = (
 				D396FE8A1BB885FE00EA6301 /* OnboardController */,
 				D37C42A11BB397CE00CA9364 /* PageController */,
-				D34734061BB5C1BC009C19DE /* Results Controller */,
 				D32FFD001BB48A6D00E3858F /* VoteController */,
+				D34734061BB5C1BC009C19DE /* Results Controller */,
 				D34663041BBB611A00DED4C1 /* SettingsController */,
 			);
 			name = Controllers;
@@ -370,8 +381,13 @@
 		D396FE8A1BB885FE00EA6301 /* OnboardController */ = {
 			isa = PBXGroup;
 			children = (
-				D396FE8B1BB8860E00EA6301 /* OnboardController.swift */,
-				D34663091BBB7BFA00DED4C1 /* Views */,
+				D3CABE5C1BBCB1F1000A6936 /* OnboardController.swift */,
+				D3CABE581BBCAC9B000A6936 /* OnboardPageController.swift */,
+				D3CABE6C1BBCF0B9000A6936 /* OnboardImageController.swift */,
+				D3CABE5A1BBCB199000A6936 /* WelcomeOnboardController.swift */,
+				D3CABE5E1BBCB34B000A6936 /* GenderOnboardController.swift */,
+				D3CABE601BBCB361000A6936 /* InterestOnboardController.swift */,
+				D3CABE621BBCB373000A6936 /* DecisionOnboardController.swift */,
 			);
 			name = OnboardController;
 			sourceTree = "<group>";
@@ -477,9 +493,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3CABE6A1BBCBC42000A6936 /* Bariol_Bold.ttf in Resources */,
 				D33694011BB3779D00F6A801 /* LaunchScreen.storyboard in Resources */,
 				D33693FE1BB3779D00F6A801 /* Assets.xcassets in Resources */,
 				D33693FC1BB3779D00F6A801 /* Main.storyboard in Resources */,
+				D3CABE6B1BBCBC42000A6936 /* Bariol_Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3CABE5D1BBCB1F1000A6936 /* OnboardController.swift in Sources */,
 				D32FFCF31BB39A9B00E3858F /* PageController.swift in Sources */,
 				D34734111BB6033A009C19DE /* PlusCollectionCell.swift in Sources */,
 				D396FE891BB8802300EA6301 /* Image.swift in Sources */,
@@ -552,6 +571,7 @@
 				D396FE921BB8AD3E00EA6301 /* Array.swift in Sources */,
 				D34734131BB6034B009C19DE /* ImageCollectionCell.swift in Sources */,
 				D396FE901BB89CCA00EA6301 /* ErrorHandler.swift in Sources */,
+				D3CABE5B1BBCB199000A6936 /* WelcomeOnboardController.swift in Sources */,
 				D32FFD071BB48DE000E3858F /* VerticalProgressBar.swift in Sources */,
 				D3A941DB1BBB39210003119A /* Set.swift in Sources */,
 				D396FE811BB8792000EA6301 /* Installation.swift in Sources */,
@@ -559,18 +579,22 @@
 				D32FFD091BB4B57500E3858F /* VoterImage.swift in Sources */,
 				D32FFD051BB48B8E00E3858F /* VoteController.swift in Sources */,
 				D32FFD0B1BB4B5F000E3858F /* VoterImageSet.swift in Sources */,
-				D396FE8C1BB8860E00EA6301 /* OnboardController.swift in Sources */,
 				D34734081BB5C234009C19DE /* BridgeController.swift in Sources */,
+				D3CABE611BBCB361000A6936 /* InterestOnboardController.swift in Sources */,
 				D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */,
 				D35BF4E71BB765ED008B2D4D /* ShareGenerator.swift in Sources */,
 				D32FFCF91BB4774B00E3858F /* NavigationBarItem.swift in Sources */,
+				D3CABE591BBCAC9B000A6936 /* OnboardPageController.swift in Sources */,
 				D33693F71BB3779D00F6A801 /* AppDelegate.swift in Sources */,
 				D32FFD0D1BB4B6BB00E3858F /* Globals.swift in Sources */,
 				D396FE871BB87F8E00EA6301 /* Batch.swift in Sources */,
 				D347340E1BB5C3E7009C19DE /* ResultsController.swift in Sources */,
+				D3CABE631BBCB373000A6936 /* DecisionOnboardController.swift in Sources */,
 				D396FE831BB8798D00EA6301 /* Config.swift in Sources */,
 				D34663061BBB613500DED4C1 /* SettingsController.swift in Sources */,
 				D347340A1BB5C244009C19DE /* NewBatchController.swift in Sources */,
+				D3CABE5F1BBCB34B000A6936 /* GenderOnboardController.swift in Sources */,
+				D3CABE6D1BBCF0BA000A6936 /* OnboardImageController.swift in Sources */,
 				D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */,
 				D396FE851BB87C9000EA6301 /* User.swift in Sources */,
 			);

@@ -11,7 +11,6 @@ import UIKit
 class VoteController: UIViewController, VoterImageSetDelegate {
 
     private var downloading = false
-    private var setup: Bool = false
     private var textLabelBig = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
@@ -27,29 +26,27 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         Globals.voterController = self
         
+        self.setupProgressBars()
+        self.setUpLabel()
+        self.setupSpinner()
+        self.updateSets()
+        
         let image = UIImage(named: "HeaderBackground")
         
         self.backgroundView.backgroundColor = UIColor(patternImage: image!)
         self.backgroundView.alpha = Globals.bridgeBackgroundAlpha
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
-        if !setup {
-            self.setupProgressBars()
-            self.setUpLabel()
-            self.setupSpinner()
-            self.setup = true
-        }
-        
-        self.updateSets()
+        self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        self.spinner.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
     }
     
     func setupSpinner() {
         self.spinner = UIImageView(image: UIImage(named: "Sticker"))
         self.spinner.frame = CGRectMake(0, 0, Globals.spinner, Globals.spinner)
-        self.spinner.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         self.spinner.contentMode = .ScaleAspectFit
         self.spinner.hidden = false
         self.view.insertSubview(self.spinner, aboveSubview: self.textLabel)
@@ -82,7 +79,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if self.voterSets.count == 0 {
             voterSet.frame.origin.y = 0
-            voterSet.alpha = 1
         }
         
         if first {
@@ -129,7 +125,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func setUpLabel() {
         self.textLabel = UILabel()
         self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
-        self.textLabel.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         self.textLabel.text = "OR"
         self.textLabel.font = UIFont.boldSystemFontOfSize(20)
         self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
@@ -169,8 +164,10 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             percent = percent >= 1 ? 0 : percent
         }
         
-        self.progressBar1.progress(percent, animation: true)
-        self.progressBar2.progress(percent, animation: true)
+        if self.progressBar1 != nil {
+            self.progressBar1.progress(percent, animation: true)
+            self.progressBar2.progress(percent, animation: true)
+        }
     }
     
     func setFinished(set: VoterImageSet, image: Image) {

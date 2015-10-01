@@ -14,6 +14,7 @@ class Config {
     var host: String!
     var itunesId: String!
     var uploadLimit: Int!
+    var onboardNext: Int!
     var imageMaxVotes: Int!
     var downloadUrl: String!
     var parse: PFConfig!
@@ -26,6 +27,7 @@ class Config {
         self.downloadUrl = object["downloadUrl"] as? String
         self.itunesId = object["itunesId"] as? String
         self.uploadLimit = object["uploadLimit"] as? Int
+        self.onboardNext = object["onboardNext"] as? Int
         self.imageMaxVotes = object["imageMaxVotes"] as? Int
         self.parse = object
     }

@@ -46,16 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let versionBuild = Globals.appBuildVersion()
         userDefaults.setValue(versionBuild, forKey: "VersionNumber")
         userDefaults.synchronize()
-        
-        // Push Notifications
-        if application.respondsToSelector(Selector("registerUserNotificationSettings:")) {
-            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            application.registerForRemoteNotificationTypes([.Alert, .Badge, .Sound])
-        }
-        
+    
         return true
     }
     
@@ -111,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         Globals.reloadUser()
+        Config.update(nil)
     }
     
     func applicationWillTerminate(application: UIApplication) {

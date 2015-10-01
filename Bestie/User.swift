@@ -29,18 +29,16 @@ class User {
     }
     
     // MARK: Class Methods
-    class func register(gender: String, interested: String, callback: ((user: User) -> Void)!) {
+    class func register(callback: ((user: User) -> Void)!) {
         PFAnonymousUtils.logInWithBlock { (object: PFUser?, error: NSError?) -> Void in
             if let user: PFUser = object {
-                user["gender"] = gender
-                user["interested"] = interested
                 user.saveInBackground()
                 
-                let current = User(user)
+                currentUser = User(user)
                 
-                Installation.current().setUser(current)
+                Installation.current().setUser(currentUser)
                 
-                callback?(user: current)
+                callback?(user: currentUser)
             } else {
                 ErrorHandler.handleParseError(error!)
             }
@@ -79,8 +77,13 @@ class User {
     }
     
     func addBatch(batch: Batch) {
+        let relation = self.parse.relationForKey("batches")
+        
         self.batch = batch
         self.parse["batch"] = batch.parse
+        
+        relation.addObject(batch.parse)
+        
         self.parse.saveInBackground()
     }
     
@@ -114,6 +117,12 @@ class User {
                 }
             })
         }
+    }
+    
+    func changeGender(gender: String) {
+        self.gender = gender
+        self.parse["gender"] = gender
+        self.parse.saveInBackground()
     }
     
     func changeInterest(gender: String) {

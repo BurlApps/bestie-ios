@@ -28,30 +28,22 @@ class BatchProgressController: UIViewController {
         
         self.informationLabel.textColor = Colors.batchInstructions
         
+        let size: CGFloat = 250
+        let frame = CGRectMake(self.view.frame.width/2 - size/2, self.view.frame.height/2 - size/2, size, size)
+        
+        self.cirlceChart = PNCircleChart(frame: frame, total: 100, current: 50, clockwise: true)
+        self.cirlceChart.backgroundColor = UIColor.clearColor()
+        self.cirlceChart.strokeColor = Colors.batchProgressBar
+        self.cirlceChart.total = 100
+        self.cirlceChart.lineWidth = 15
+        self.cirlceChart.countingLabel.font = UIFont.boldSystemFontOfSize(30)
+        self.cirlceChart.countingLabel.textColor = Colors.batchProgressBar
+        
+        self.view.addSubview(self.cirlceChart)
+        
+        
         NSTimer.scheduledTimerWithTimeInterval(30, target: self,
             selector: Selector("updateUser"), userInfo: nil, repeats: false)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if !self.setup {
-            let size: CGFloat = 250
-            let frame = CGRectMake(self.view.frame.width/2 - size/2, self.view.frame.height/2 - size/2, size, size)
-            
-            self.cirlceChart = PNCircleChart(frame: frame, total: 100, current: 50, clockwise: true)
-            self.cirlceChart.backgroundColor = UIColor.clearColor()
-            self.cirlceChart.strokeColor = Colors.batchProgressBar
-            self.cirlceChart.total = 100
-            self.cirlceChart.lineWidth = 15
-            self.cirlceChart.countingLabel.font = UIFont.boldSystemFontOfSize(30)
-            self.cirlceChart.countingLabel.textColor = Colors.batchProgressBar
-            
-            self.view.addSubview(self.cirlceChart)
-            
-            self.setup = true
-        }
-        
     }
     
     @IBAction func votingButtonTapped(sender: AnyObject) {

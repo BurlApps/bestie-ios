@@ -19,7 +19,6 @@ class BridgeController: UIViewController {
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var newView: UIView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

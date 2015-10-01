@@ -15,6 +15,7 @@ class Image {
     var wins: Float!
     var losses: Float!
     var active: Bool!
+    var gender: String!
     var imageURL: NSURL!
     var image: UIImage!
     var parse: PFObject!
@@ -102,33 +103,34 @@ class Image {
     }
     
     func getImage(callback: (image: UIImage) -> Void) {
-        if self.image == nil {
-            let request = NSURLRequest(URL: self.imageURL)
-            let session = NSURLSession.sharedSession()
-            
-            session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-                if error == nil {
-                    self.image = UIImage(data: data!)
-                    
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                        // Makes a 1x1 graphics context and draws the image into it
-                        UIGraphicsBeginImageContext(CGSizeMake(1,1))
-                        let context = UIGraphicsGetCurrentContext()
-                        CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), self.image.CGImage)
-                        UIGraphicsEndImageContext()
-                        
-                        // Now the image will have been loaded and decoded
-                        // and is ready to rock for the main thread
-                        dispatch_async(dispatch_get_main_queue(), {
-                            callback(image: self.image)
-                        })
-                    })
-                } else {
-                    ErrorHandler.handleParseError(error!)
-                }
-            }).resume()
-        } else {
+        if self.image != nil {
             callback(image: self.image)
+            return
         }
+            
+        let request = NSURLRequest(URL: self.imageURL)
+        let session = NSURLSession.sharedSession()
+        
+        session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            if error == nil {
+                self.image = UIImage(data: data!)
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                    // Makes a 1x1 graphics context and draws the image into it
+                    UIGraphicsBeginImageContext(CGSizeMake(1,1))
+                    let context = UIGraphicsGetCurrentContext()
+                    CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), self.image.CGImage)
+                    UIGraphicsEndImageContext()
+                    
+                    // Now the image will have been loaded and decoded
+                    // and is ready to rock for the main thread
+                    dispatch_async(dispatch_get_main_queue(), {
+                        callback(image: self.image)
+                    })
+                })
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        }).resume()
     }
 }

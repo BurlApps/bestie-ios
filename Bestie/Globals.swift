@@ -11,7 +11,6 @@ import UIKit
 class Globals {
     
     static var pageController: PageController!
-    static var onboardController: OnboardController!
     static var bridgeController: BridgeController!
     static var voterController: VoteController!
     static var logoImage: NavigationBarItem!
@@ -19,6 +18,8 @@ class Globals {
     static let progressBarWidth: CGFloat = 7
     
     static let spinner: CGFloat = 100
+
+    static let onboardAlpha: CGFloat = 0.04
     
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150
@@ -64,9 +65,8 @@ class Globals {
     }
     
     class func showOnboarding() {
-        if self.onboardController != nil {
-            self.onboardController.resetController()
-            self.onboardController.dismissViewControllerAnimated(false, completion: nil)
+        if self.pageController != nil {
+            self.pageController.navigationController?.popToRootViewControllerAnimated(false)
         }
     }
     

@@ -43,8 +43,8 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
         let percent = Globals.resultsFirstPhotoPercentHeight
         self.tableView.tableHeaderView!.frame.size.height = self.view.frame.height * percent
