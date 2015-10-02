@@ -6,6 +6,11 @@
 //  Copyright © 2015 Brian Vallelunga. All rights reserved.
 //
 
+import AlamofireImage
+
+let imageCache = AutoPurgingImageCache()
+let downloader = ImageDownloader()
+
 class Image {
     
     // MARK: Instance Variables
@@ -92,7 +97,7 @@ class Image {
     
     func flag() {
         self.parse["active"] = false
-        self.parse["flag"] = true
+        self.parse["flagged"] = true
         self.parse.saveInBackground()
     }
     
@@ -107,30 +112,18 @@ class Image {
             callback(image: self.image)
             return
         }
-            
-        let request = NSURLRequest(URL: self.imageURL)
-        let session = NSURLSession.sharedSession()
         
-        session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if error == nil {
-                self.image = UIImage(data: data!)
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                    // Makes a 1x1 graphics context and draws the image into it
-                    UIGraphicsBeginImageContext(CGSizeMake(1,1))
-                    let context = UIGraphicsGetCurrentContext()
-                    CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), self.image.CGImage)
-                    UIGraphicsEndImageContext()
-                    
-                    // Now the image will have been loaded and decoded
-                    // and is ready to rock for the main thread
-                    dispatch_async(dispatch_get_main_queue(), {
-                        callback(image: self.image)
-                    })
-                })
-            } else {
-                ErrorHandler.handleParseError(error!)
+        let request = NSURLRequest(URL: self.imageURL)
+        
+        if let image = imageCache.imageForRequest(request) {
+            callback(image: image)
+        } else {
+            downloader.downloadImage(URLRequest: request) { response in                
+                if let image: UIImage = response.result.value {
+                    callback(image: image)
+                    imageCache.addImage(image, forRequest: request)
+                }
             }
-        }).resume()
+        }
     }
 }

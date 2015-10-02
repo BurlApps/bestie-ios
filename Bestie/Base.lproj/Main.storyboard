@@ -364,7 +364,7 @@
                                     <action selector="submitBatch:" destination="eEe-8a-Lwa" eventType="touchUpInside" id="kMJ-md-AXb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add at least 2 photos of  you to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="my8-NT-SMi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add at least 2 photos to get started" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="my8-NT-SMi">
                                 <rect key="frame" x="0.0" y="238" width="320" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="PhE-Zu-CWs"/>

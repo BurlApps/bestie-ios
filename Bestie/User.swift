@@ -179,15 +179,10 @@ class User {
     func pullSets(callback: (sets: [VoterSet]) -> Void) {
         PFCloud.callFunctionInBackground("feed", withParameters: nil) { (data: AnyObject?, error: NSError?) -> Void in
             if let objects: [PFObject] = data as? [PFObject] {
-                var temp: [Image] = []
                 var sets: [VoterSet] = []
                 
-                for object in objects {
-                    temp.append(Image(object))
-                }
-                
-                for images in temp.chunk(2) {
-                    sets.append(VoterSet(images[0], images[1]))
+                for images in objects.chunk(2) {
+                    sets.append(VoterSet(Image(images[0]), Image(images[1])))
                 }
                 
                 callback(sets: sets)

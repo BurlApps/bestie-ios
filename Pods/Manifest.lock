@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (3.0.0-beta.3)
+  - AlamofireImage (2.0.0-beta.1):
+    - Alamofire (~> 3.0.0-beta.3)
   - KDCircularProgress (1.2)
   - Mixpanel (2.8.3):
     - Mixpanel/Mixpanel (= 2.8.3)
@@ -7,6 +10,7 @@ PODS:
   - THTinderNavigationController-ssuchanowski (1.1.1)
 
 DEPENDENCIES:
+  - AlamofireImage (= 2.0.0-beta.1)
   - KDCircularProgress (~> 1.2)
   - Mixpanel (~> 2.8)
   - Onboard (~> 2.1)
@@ -22,6 +26,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/BurlApps/THTinderNavigationController.git
 
 SPEC CHECKSUMS:
+  Alamofire: c89149e58431f6f94527e8c01f920456afe39bd0
+  AlamofireImage: 6e16d1b33df25459b40be7c8a2ae6e3d6fefc080
   KDCircularProgress: 2a9abeeec6c94436a7a875c3ec10050e93fa2e38
   Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   Onboard: 87648089e1b76d13b4f5bf8f7a1cdb144092f0af

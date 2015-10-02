@@ -49,28 +49,22 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func imageSelected(image: VoterImage) {
-        let first = self.voterImages.first?.loaded == true
-        let second = self.voterImages.last?.loaded == true
+        let first: Bool = (self.voterImages.first?.loaded)!
+        let second: Bool = (self.voterImages.last?.loaded)!
         
         if first && second {
             if self.flyOff {
                 UIView.animateWithDuration(Globals.voterSetInterval, animations: {
                     self.frame.origin.y = -1 * self.frame.height
-                }) { (finished: Bool) -> Void in
-                    self.hidden = true
-                    self.frame.origin.y = self.frame.height
-                }
+                })
             }
             
             self.delegate.setFinished(self, image: image.voterImage)
+            self.voterSet.voted(image.voterImage)
         }
-        
-        self.voterSet.voted(image.voterImage)
     }
     
     func animateInToView() {
-        self.hidden = false
-        
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
         }, completion: nil)
@@ -79,18 +73,15 @@ class VoterImageSet: UIView, VoterImageDelegate {
     func imageFlagged(image: VoterImage) {
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = -1 * self.frame.height
-        }) { (finished: Bool) -> Void in
-            self.hidden = true
-            self.frame.origin.y = self.frame.height
-        }
+        })
         
         self.delegate.setFinished(self, image: image.voterImage)
         image.voterImage.flag()
     }
     
     func imageDownloaded(image: VoterImage) {
-        let first = self.voterImages.first?.image != nil
-        let second = self.voterImages.last?.image != nil
+        let first: Bool = (self.voterImages.first?.loaded)!
+        let second: Bool = (self.voterImages.last?.loaded)!
         
         if first && second {
             self.delegate.setDownloaded(self)

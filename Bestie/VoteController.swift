@@ -143,9 +143,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func setDownloaded(set: VoterImageSet) {
-        if let next = set.next {
-            next.downloadImages()
-        }
+        set.next?.downloadImages()
     }
     
     func progressBarUpdate() {

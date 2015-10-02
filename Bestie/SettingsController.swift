@@ -20,7 +20,11 @@ class SettingsController: UITableViewController {
         self.view.backgroundColor = Colors.settingsBackground
         self.tableView.backgroundColor = Colors.settingsBackground
         
-        self.interestedLabel.text = self.user.interested == "male" ? "Men" : "Women"
+        switch(self.user.interested) {
+            case "male": self.interestedLabel.text = "Men"
+            case "female": self.interestedLabel.text = "Women"
+            default: self.interestedLabel.text = "Men & Women"
+        }
         
         Config.sharedInstance { (config) -> Void in
             self.config = config
@@ -52,10 +56,16 @@ class SettingsController: UITableViewController {
                 self.interestedLabel.text = "Women"
                 Globals.voterController.flushSets()
             })
+            let both = UIAlertAction(title: "Men & Women", style: .Default, handler: { (action: UIAlertAction) -> Void in
+                self.user.changeInterest("both")
+                self.interestedLabel.text = "Men & Women"
+                Globals.voterController.flushSets()
+            })
             let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             
             controller.addAction(male)
             controller.addAction(female)
+            controller.addAction(both)
             controller.addAction(cancel)
             
             Globals.pageController.presentViewController(controller, animated: true, completion: nil)
