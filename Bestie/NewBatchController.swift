@@ -152,6 +152,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
                 Globals.reloadBridgeController()
             })
             
+            self.user.mixpanel.timeEvent("Mobile.Batch.Results")
             self.user.mixpanel.track("Mobile.Batch.Create", properties: [
                 "images": images.count
             ])

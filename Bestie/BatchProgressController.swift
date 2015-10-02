@@ -7,16 +7,19 @@
 //
 
 import UIKit
-import PNChart
+import KDCircularProgress
 
 class BatchProgressController: UIViewController {
 
     @IBOutlet weak var informationLabel: UILabel!
     @IBOutlet weak var votingButton: UIButton!
+    @IBOutlet weak var circleChart: KDCircularProgress!
+    @IBOutlet weak var progressLabel: UILabel!
     
     private var setup: Bool = false
     private var user: User! = User.current()
-    private var cirlceChart: PNCircleChart!
+    //private var cirlceChart: PNCircleChart!
+    private var timer: NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,27 +30,31 @@ class BatchProgressController: UIViewController {
         self.votingButton.layer.masksToBounds = true
         
         self.informationLabel.textColor = Colors.batchInstructions
+        self.progressLabel.textColor = Colors.batchProgressBar
         
-        let size: CGFloat = 250
-        let frame = CGRectMake(self.view.frame.width/2 - size/2, self.view.frame.height/2 - size/2, size, size)
+        self.circleChart.startAngle = -90
+        self.circleChart.glowMode = .NoGlow
+        self.circleChart.trackColor = UIColor.clearColor()
+        self.circleChart.setColors(Colors.batchProgressBar)
         
-        self.cirlceChart = PNCircleChart(frame: frame, total: 100, current: 50, clockwise: true)
-        self.cirlceChart.backgroundColor = UIColor.clearColor()
-        self.cirlceChart.strokeColor = Colors.batchProgressBar
-        self.cirlceChart.total = 100
-        self.cirlceChart.lineWidth = 15
-        self.cirlceChart.countingLabel.font = UIFont.boldSystemFontOfSize(30)
-        self.cirlceChart.countingLabel.textColor = Colors.batchProgressBar
-        
-        self.view.addSubview(self.cirlceChart)
-        
-        
-        NSTimer.scheduledTimerWithTimeInterval(30, target: self,
-            selector: Selector("updateUser"), userInfo: nil, repeats: false)
+        self.view.addSubview(self.circleChart)
     }
     
     @IBAction func votingButtonTapped(sender: AnyObject) {
         Globals.slideToVotingScreen()
+    }
+    
+    func startTimer() {
+        self.stopTimer()
+        
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self,
+            selector: Selector("updateUser"), userInfo: nil, repeats: false)
+    }
+    
+    func stopTimer() {
+        if self.timer != nil {
+            self.timer.invalidate()
+        }
     }
     
     func updateUser() {
@@ -57,9 +64,9 @@ class BatchProgressController: UIViewController {
     }
     
     func updateBatch(batch: Batch) {
-        if self.cirlceChart != nil {
-            self.cirlceChart.updateChartByCurrent(batch.percent() * 100)
-            self.cirlceChart.strokeChart()
+        if self.circleChart != nil {
+            self.progressLabel.text = "\(Int(batch.percent() * 100))%"
+            self.circleChart.animateToAngle(Int(batch.percent() * 360), duration: 0.5, completion: nil)
         }
     }
 }

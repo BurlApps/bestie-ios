@@ -115,10 +115,8 @@ class User {
         } else if currentBatch != nil {
             self.batch = currentBatch
             callback?()
-        } else {
-            let tmp = self.parse["batch"] as? PFObject
-                
-            tmp?.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+        } else if let tmp = self.parse["batch"] as? PFObject {
+            tmp.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
                 if let batch = object {
                     self.batch = Batch(batch)
                     currentBatch = self.batch

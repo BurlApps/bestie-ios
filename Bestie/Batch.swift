@@ -60,6 +60,10 @@ class Batch {
     func userVoted() {
         let userVotes = self.userVotes + 1
         
+        if userVotes == self.maxVotes {
+            Globals.showVoterAlert()
+        }
+        
         if userVotes <= self.maxVotes {
             self.userVotes = userVotes
             Globals.batchUpdated()

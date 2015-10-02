@@ -13,12 +13,13 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     private let reuseIdentifier = "cell"
     private var headerContainer: ImageTableHeaderCell!
     private var images: [Image] = []
+    private var firstImage: Image!
     private var config: Config!
     private var user: User!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startOverButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,10 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         self.tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.clearColor()
         
-        self.shareButton.tintColor = UIColor.whiteColor()
-        self.shareButton.backgroundColor = Colors.batchSubmitButton
-        self.shareButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
-        self.shareButton.layer.masksToBounds = true
+        self.saveButton.tintColor = UIColor.whiteColor()
+        self.saveButton.backgroundColor = Colors.batchSubmitButton
+        self.saveButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
+        self.saveButton.layer.masksToBounds = true
         
         self.startOverButton.tintColor = UIColor.whiteColor()
         self.startOverButton.backgroundColor = Colors.batchSubmitAlternateButton
@@ -60,11 +61,21 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
-    @IBAction func sharePressed(sender: AnyObject) {
-        self.user.mixpanel.track("Mobile.User.Shared")
-        let share = ShareGenerator(sender: sender as! UIView, controller: Globals.pageController)
+    @IBAction func savePressed(sender: AnyObject) {
+        let text = self.saveButton.titleLabel?.text
         
-        share.share("Bestie is pretty cool, it just found my best profile pic! \(self.config.downloadUrl)", image: self.createShareCard())
+        self.saveButton.setTitle("saving...", forState: .Normal)
+        
+        self.firstImage.getImage { (image) -> Void in
+            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+            
+            self.saveButton.setTitle(text, forState: .Normal)
+            self.user.mixpanel.track("Mobile.User.Save")
+            
+            let controller = UIAlertController(title: "Bestie Saved!", message: "Your image has been saved and is ready to be uploaded to Instagram.", preferredStyle: .Alert)
+            controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
+            Globals.pageController.presentViewController(controller, animated: true, completion: nil)
+        }
     }
     
     @IBAction func startOverPressed(sender: AnyObject) {
@@ -76,7 +87,10 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         self.tableView.reloadData()
         self.headerContainer.resetBatch()
         
+        self.user.mixpanel.track("Mobile.Batch.Results")
+        
         batch.getImages { (images) -> Void in
+            self.firstImage = images.first
             self.images = Array(images[1..<images.count])
             self.tableView.reloadData()
             
@@ -111,6 +125,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         return cell
     }
     
+    // NOT IN USE
     func captureContainer() -> UIImage {
         let bounds = self.headerContainer.container.bounds
         

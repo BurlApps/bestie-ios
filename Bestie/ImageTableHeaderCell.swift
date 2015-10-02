@@ -16,7 +16,6 @@ class ImageTableHeaderCell: UIViewController {
     @IBOutlet weak var bestieLabel: UILabel!
     @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var innerContainer: UIView!
-    @IBOutlet weak var sticker: UIImageView!
     @IBOutlet weak var separator: UIView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var dataContainer: UIView!
@@ -32,7 +31,6 @@ class ImageTableHeaderCell: UIViewController {
         self.votedLabel.textColor = Colors.batchNumbers
         self.bestieLabel.textColor = Colors.batchBestie
         self.infoText.textColor = Colors.batchInfomation
-        self.sticker.transform = CGAffineTransformMakeRotation(self.degreesToRadians(-15))
         
         self.container.clipsToBounds = false
         self.container.layer.masksToBounds = false
@@ -49,9 +47,6 @@ class ImageTableHeaderCell: UIViewController {
         self.headerImage.clipsToBounds = true
         
         self.infoImage.tintColor = Colors.gray
-        
-        self.bottomConstraint.constant = self.dataContainer.frame.height * -1
-        self.view.layoutIfNeeded()
         
         let gesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.bestieLabel.addGestureRecognizer(gesture)

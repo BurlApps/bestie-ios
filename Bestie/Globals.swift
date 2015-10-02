@@ -58,6 +58,12 @@ class Globals {
         }
     }
     
+    class func showVoterAlert() {
+        if self.voterController != nil {
+            self.voterController.showVoteAlert()
+        }
+    }
+    
     class func slideToVotingScreen() {
         if self.pageController != nil {
             self.pageController.pageController.setCurrentPage(1, animated: true)

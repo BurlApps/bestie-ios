@@ -14,6 +14,7 @@ class BridgeController: UIViewController {
     private var newBatchController: NewBatchController!
     private var progressController: BatchProgressController!
     private var resultsController: ResultsController!
+    private var lastState: Int!
     
     @IBOutlet weak var resultsView: UIView!
     @IBOutlet weak var progressView: UIView!
@@ -36,6 +37,18 @@ class BridgeController: UIViewController {
         self.view.insertSubview(backgroundView, atIndex: 0)
         
         self.reloadController()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.newView.frame = self.view.bounds
+        self.progressView.frame = self.view.bounds
+        self.resultsView.frame = self.view.bounds
+        
+        self.newBatchController.view.frame = self.view.bounds
+        self.progressController.view.frame = self.view.bounds
+        self.resultsController.view.frame = self.view.bounds
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -65,14 +78,24 @@ class BridgeController: UIViewController {
         } else if self.user.batch.active == true {
             state = 1
             self.progressController.updateBatch(self.user.batch)
-        
+            
+            if self.lastState != state {
+                self.progressController.startTimer()
+            }
         } else {
             state = 2
-            self.resultsController.updateBatch(self.user.batch)
+            
+            if self.lastState != state {
+                self.progressController.stopTimer()
+                self.resultsController.updateBatch(self.user.batch)
+            }
         }
         
-        self.newView.hidden = state != 0
-        self.progressView.hidden = state != 1
-        self.resultsView.hidden = state != 2
+        if self.lastState == nil || self.lastState != state {            
+            self.newView.hidden = state != 0
+            self.progressView.hidden = state != 1
+            self.resultsView.hidden = state != 2
+            self.lastState = state
+        }
     }
 }

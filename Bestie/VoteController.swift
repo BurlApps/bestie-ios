@@ -109,11 +109,11 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                 self.downloading = false
                 
                 if sets.isEmpty {
-                    self.spinner.hidden = false
                     NSTimer.scheduledTimerWithTimeInterval(5, target: self,
                         selector: Selector("updateSets"), userInfo: nil, repeats: false)
                 } else {
                     self.spinner.hidden = true
+                    
                     for (i, set) in sets.enumerate() {
                         self.createVoterSet(set, first: i == 0)
                     }
@@ -160,8 +160,12 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         var percent: Float = 0
         
         if self.user.batch != nil && self.user.batch!.active == true {
-            percent = self.user.batch!.userPercent()
-            percent = percent >= 1 ? 0 : percent
+            let tmp = self.user.batch!.userPercent()
+            percent = tmp
+            
+            if tmp >= 1 {
+                percent = 0
+            }
         }
         
         if self.progressBar1 != nil {
@@ -170,10 +174,16 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         }
     }
     
+    func showVoteAlert() {
+        let controller = UIAlertController(title: "You Are Awesome!", message: "We are almost done finding your Bestie, we will ping ou", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
+        Globals.pageController.presentViewController(controller, animated: true, completion: nil)
+    }
+    
     func setFinished(set: VoterImageSet, image: Image) {
         self.voterSets.removeFirst()
         self.voterSets.first?.animateInToView()
-        self.user.mixpanel.track("Mobile.Voted")
+        self.user.mixpanel.track("Mobile.Set.Voted")
         
         if (arc4random_uniform(10) + 1) <= 3 {
             Globals.switchLogoFace()
@@ -181,6 +191,10 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if self.voterSets.count < 5 {
             self.updateSets()
+        }
+        
+        if self.voterSets.isEmpty {
+            self.spinner.hidden = false
         }
         
         if self.user.batch != nil {
