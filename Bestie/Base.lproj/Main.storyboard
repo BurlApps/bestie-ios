@@ -10,8 +10,22 @@
             <string>Bariol-Bold</string>
             <string>Bariol-Bold</string>
             <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
         </mutableArray>
         <mutableArray key="Bariol_Regular.ttf">
+            <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
@@ -49,7 +63,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dbZ-I6-lvK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -95,7 +109,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9Dh-Vx-ne2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -141,7 +155,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Rv2-aG-4wT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -175,6 +189,7 @@
         <!--Page Controller-->
         <scene sceneID="CIJ-Jl-Q1V">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CW0-gL-vFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Hem-dn-cLU" customClass="PageController" customModule="Bestie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5E3-Dq-xyC"/>
@@ -190,7 +205,6 @@
                         <outlet property="backgroundView" destination="xjr-ey-Eru" id="aJu-jZ-SbC"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CW0-gL-vFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="405" y="384"/>
         </scene>
@@ -344,7 +358,7 @@
                                     <constraint firstAttribute="width" constant="220" id="7vX-p2-CB3"/>
                                     <constraint firstAttribute="height" constant="45" id="VPP-Qz-eAg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
                                 <state key="normal" title="Find My Bestie"/>
                                 <connections>
                                     <action selector="submitBatch:" destination="eEe-8a-Lwa" eventType="touchUpInside" id="kMJ-md-AXb"/>
@@ -355,7 +369,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="PhE-Zu-CWs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="27"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -447,7 +461,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Og2-9P-YWe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="savePressed:" destination="075-H1-HuS" eventType="touchUpInside" id="uUM-eB-ATg"/>
@@ -458,7 +472,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="YtB-ov-rdZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
                                 <state key="normal" title="Start Over"/>
                                 <connections>
                                     <action selector="startOverPressed:" destination="075-H1-HuS" eventType="touchUpInside" id="pnR-Wj-zlx"/>
@@ -508,7 +522,7 @@
                                     <constraint firstAttribute="height" constant="100" id="0Hp-9w-4f0"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="RcF-Hj-BhQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -518,7 +532,7 @@
                                     <constraint firstAttribute="width" constant="220" id="53l-ea-l5j"/>
                                     <constraint firstAttribute="height" constant="45" id="JBJ-eR-3tF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
                                 <state key="normal" title="Back To Voting"/>
                                 <connections>
                                     <action selector="votingButtonTapped:" destination="aky-dz-dFG" eventType="touchUpInside" id="j3l-Ye-sTj"/>
@@ -649,8 +663,8 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rate The App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Amg-tB-Nox">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="54.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
+                                                    <color key="textColor" red="0.24806314336790822" green="0.24682899837602809" blue="0.24929728835978837" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -666,8 +680,8 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Share Bestie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9iM-pq-mPn">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="54.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
+                                                    <color key="textColor" red="0.24806314336790822" green="0.24682899837602809" blue="0.24929728835978837" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -685,17 +699,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Show Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nAg-1W-Zou">
-                                                    <rect key="frame" x="15" y="18" width="67" height="19.5"/>
+                                                    <rect key="frame" x="15" y="20" width="58.5" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="16"/>
+                                                    <color key="textColor" red="0.24806314336790822" green="0.24682899837602809" blue="0.24929728835978837" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Men" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GX1-Jy-y73">
-                                                    <rect key="frame" x="273" y="18" width="32" height="19.5"/>
+                                                    <rect key="frame" x="277" y="20" width="28" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="16"/>
+                                                    <color key="textColor" red="0.24806314336790822" green="0.24682899837602809" blue="0.24929728835978837" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -711,7 +725,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Logout &amp; Erase All Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QsN-P9-3T5">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="54.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                                     <color key="textColor" red="1" green="0.25882352939999997" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -732,8 +746,8 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Terms of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qY5-De-IRw">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="54.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
+                                                    <color key="textColor" red="0.24806314336790822" green="0.24682899837602809" blue="0.24929728835978837" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -749,8 +763,8 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Swa-Ce-vvD">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="54.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
+                                                    <color key="textColor" red="0.24806314336790822" green="0.24682899837602809" blue="0.24929728835978837" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -929,21 +943,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLm-uw-6rK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHH-jv-trE">
-                                <rect key="frame" x="0.0" y="473" width="320" height="95"/>
+                                <rect key="frame" x="0.0" y="451" width="320" height="117"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKq-qL-R17">
-                                        <rect key="frame" x="50" y="25" width="220" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="220" id="hyG-54-XaI"/>
-                                            <constraint firstAttribute="height" constant="45" id="q4u-eY-BLT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <state key="normal" title="Get Started"/>
-                                        <connections>
-                                            <action selector="tapped:" destination="ZEx-ae-ONc" eventType="touchUpInside" id="cfO-aR-d6i"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-td-pHO">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                                         <color key="backgroundColor" red="0.80365410052910047" green="0.80365410052910047" blue="0.80365410052910047" alpha="1" colorSpace="calibratedRGB"/>
@@ -951,20 +956,34 @@
                                             <constraint firstAttribute="height" constant="1" id="3Wk-cm-2eU"/>
                                         </constraints>
                                     </view>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="TTM-g5-lba">
+                                        <rect key="frame" x="50" y="5" width="220" height="37"/>
+                                    </pageControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKq-qL-R17">
+                                        <rect key="frame" x="50" y="47" width="220" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="220" id="hyG-54-XaI"/>
+                                            <constraint firstAttribute="height" constant="45" id="q4u-eY-BLT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
+                                        <state key="normal" title="Get Started"/>
+                                        <connections>
+                                            <action selector="tapped:" destination="ZEx-ae-ONc" eventType="touchUpInside" id="cfO-aR-d6i"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="xKq-qL-R17" firstAttribute="top" secondItem="TTM-g5-lba" secondAttribute="bottom" constant="5" id="5lY-5z-elR"/>
                                     <constraint firstItem="YdV-td-pHO" firstAttribute="leading" secondItem="GHH-jv-trE" secondAttribute="leading" id="6vZ-dd-1gv"/>
                                     <constraint firstItem="xKq-qL-R17" firstAttribute="centerX" secondItem="GHH-jv-trE" secondAttribute="centerX" id="Mzg-vB-IQn"/>
                                     <constraint firstAttribute="trailing" secondItem="YdV-td-pHO" secondAttribute="trailing" id="NAB-GB-tP8"/>
+                                    <constraint firstItem="TTM-g5-lba" firstAttribute="top" secondItem="GHH-jv-trE" secondAttribute="top" constant="5" id="O5m-CU-jV5"/>
                                     <constraint firstAttribute="bottom" secondItem="xKq-qL-R17" secondAttribute="bottom" constant="25" id="X34-1G-1pY"/>
                                     <constraint firstItem="YdV-td-pHO" firstAttribute="top" secondItem="GHH-jv-trE" secondAttribute="top" id="XRG-Zh-hkd"/>
-                                    <constraint firstItem="xKq-qL-R17" firstAttribute="top" secondItem="GHH-jv-trE" secondAttribute="top" constant="25" id="bRz-br-3dG"/>
+                                    <constraint firstAttribute="trailing" secondItem="TTM-g5-lba" secondAttribute="trailing" constant="50" id="Yit-9f-mav"/>
+                                    <constraint firstItem="TTM-g5-lba" firstAttribute="leading" secondItem="GHH-jv-trE" secondAttribute="leading" constant="50" id="Zj2-oE-I8g"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLm-uw-6rK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -972,7 +991,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="HLm-uw-6rK" secondAttribute="trailing" constant="-16" id="11I-ZY-cyY"/>
                             <constraint firstItem="GHH-jv-trE" firstAttribute="leading" secondItem="uoA-FM-6ZR" secondAttribute="leadingMargin" constant="-16" id="1ev-3I-pp1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GHH-jv-trE" secondAttribute="trailing" constant="-16" id="6hY-x0-4SM"/>
-                            <constraint firstItem="GHH-jv-trE" firstAttribute="top" secondItem="HLm-uw-6rK" secondAttribute="bottom" constant="3" id="GF8-58-yS8"/>
+                            <constraint firstItem="GHH-jv-trE" firstAttribute="top" secondItem="HLm-uw-6rK" secondAttribute="bottom" id="GF8-58-yS8"/>
                             <constraint firstItem="GHH-jv-trE" firstAttribute="bottom" secondItem="uoA-FM-6ZR" secondAttribute="bottomMargin" id="cfp-GL-txv"/>
                             <constraint firstItem="HLm-uw-6rK" firstAttribute="top" secondItem="uoA-FM-6ZR" secondAttribute="topMargin" id="jV1-hg-grq"/>
                             <constraint firstItem="HLm-uw-6rK" firstAttribute="leading" secondItem="uoA-FM-6ZR" secondAttribute="leadingMargin" constant="-16" id="oAX-o2-YFz"/>
@@ -981,6 +1000,7 @@
                     <connections>
                         <outlet property="button" destination="xKq-qL-R17" id="GaG-n8-sgd"/>
                         <outlet property="pageContainer" destination="HLm-uw-6rK" id="Ada-x4-8la"/>
+                        <outlet property="pageControl" destination="TTM-g5-lba" id="QSh-it-bf7"/>
                         <outlet property="separator" destination="YdV-td-pHO" id="ph6-Ma-29E"/>
                     </connections>
                 </viewController>
@@ -1007,26 +1027,9 @@
             </objects>
             <point key="canvasLocation" x="-1976" y="384"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Agi-xU-XxC">
-            <objects>
-                <viewController id="UTm-iz-7g1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e3h-Kq-hcE"/>
-                        <viewControllerLayoutGuide type="bottom" id="eRL-nU-wE0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sTR-iJ-oDy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CSB-Xf-17g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
-        <image name="Face-Left" width="65" height="65"/>
+        <image name="Face-Left" width="614" height="617"/>
         <image name="Info" width="100" height="100"/>
     </resources>
 </document>

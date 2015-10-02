@@ -58,6 +58,7 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         if self.user != nil && self.user.gender != nil && self.user.interested != nil {
             self.user.aliasMixpanel()
             self.performSegueWithIdentifier("finishedSegue", sender: self)
+        
         } else {
             User.register({ (user) -> Void in
                 self.user = user

@@ -11,10 +11,12 @@ import UIKit
 class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     private var pageController: UIPageViewController!
-    private var pages = 3
+    private var pages = 2
+    private var nextPage = 0
     
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageContainer: UIView!
     
     override func viewDidLoad() {
@@ -28,6 +30,10 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
         for controller in self.pageController.view.subviews {
             if let scrollView = controller as? UIScrollView {
                 scrollView.scrollEnabled = true
+            }
+            
+            if let pageControl = controller as? UIPageControl {
+                pageControl.hidden = true
             }
         }
         
@@ -44,10 +50,11 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
         self.button.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.button.layer.masksToBounds = true
         
-        let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = Colors.lightGray
-        pageControl.currentPageIndicatorTintColor = Colors.red
-        pageControl.backgroundColor = UIColor.clearColor()
+        self.pageControl.numberOfPages = self.pages
+        self.pageControl.currentPage = 0
+        self.pageControl.pageIndicatorTintColor = Colors.lightGray
+        self.pageControl.currentPageIndicatorTintColor = Colors.red
+        self.pageControl.backgroundColor = UIColor.clearColor()
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,13 +76,12 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
     
     func createPage(index: Int) -> OnboardImageController {
         let page = OnboardImageController()
-        let padding: CGFloat = 20
         
         page.pageIndex = index
         page.view.frame = self.pageContainer.frame
-        page.imageView.image = UIImage(named: "Sticker")//"Onboarding-\(index)")
-        page.imageView.frame = CGRectMake(padding, padding,
-            self.pageContainer.frame.width - padding * 2, self.pageContainer.frame.height - padding * 2)
+        page.imageView.image = UIImage(named: "Onboard-\(index)")
+        page.imageView.frame = CGRectMake(0, 0,
+            self.pageContainer.frame.width, self.pageContainer.frame.height)
         
         return page
     }
@@ -89,24 +95,25 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
     
     
     // MARK: Page View Controller Data Source
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.pages
-    }
-    
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 0
-    }
-    
     func viewControllerAtIndex(index: Int) -> OnboardImageController! {
         if self.pages == 0 || index >= self.pages {
             return nil
         }
         
-        // Create PageViewController
         return self.createPage(index)
     }
     
     // MARK: Page View Controller Data Source
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        self.nextPage = (pendingViewControllers.first as! OnboardImageController).pageIndex
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if finished && completed {
+            self.pageControl.currentPage = self.nextPage
+        }
+    }
+    
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let index = (viewController as! OnboardImageController).pageIndex
         

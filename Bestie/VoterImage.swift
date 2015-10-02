@@ -92,7 +92,11 @@ class VoterImage: UIImageView {
         self.voterImage.getImage { (image) -> Void in
             self.image = image
             self.loaded = true
-            self.backgroundColor = Colors.voterImageBackground
+            
+            if !self.transparent {
+                self.backgroundColor = Colors.voterImageBackground
+            }
+            
             self.delegate.imageDownloaded(self)
         }
     }

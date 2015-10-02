@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "face-right.gray.png",
+      "filename" : "Duck Head bw right.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "face-right.gray-1.png",
+      "filename" : "Duck Head bw right-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "face-right.gray-2.png",
+      "filename" : "Duck Head bw right-2.png",
       "scale" : "3x"
     }
   ],

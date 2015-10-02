@@ -62,16 +62,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.spinner.layer.addAnimation(animation, forKey: "rotation")
     }
     
-    func sizeTextLabel(big: Bool) {
-        if big == self.textLabelBig {
-            return
-        }
-        
-        self.textLabelBig = big
-        self.textLabel.frame.size.width = big ? Globals.voterTextLabelBig : Globals.voterTextLabel
-        self.textLabel.center.x = self.view.frame.width/2
-    }
-    
     func createVoterSet(set: VoterSet, first: Bool) {
         let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
             self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
@@ -128,7 +118,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.textLabel = UILabel()
         self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
         self.textLabel.text = "OR"
-        self.textLabel.font = UIFont.boldSystemFontOfSize(20)
+        self.textLabel.font = UIFont(name: "Bariol-Bold", size: 18)
         self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
         self.textLabel.layer.masksToBounds = true
         self.textLabel.clipsToBounds = true
