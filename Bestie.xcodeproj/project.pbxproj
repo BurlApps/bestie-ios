@@ -318,10 +318,10 @@
 		D347340F1BB60316009C19DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */,
 				D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */,
 				D34734101BB6033A009C19DE /* PlusCollectionCell.swift */,
 				D34734121BB6034B009C19DE /* ImageCollectionCell.swift */,
-				D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

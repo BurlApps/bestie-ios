@@ -38,6 +38,9 @@ class Colors {
     static let voterImageBorder = borderColor
     static let voterImageBackground = imageBackground
 
+    static let batchPlaceholder = UIColor(red:0.97, green:0.98, blue:0.98, alpha:1)
+    static let batchPlaceholderIcon = UIColor(white: 0, alpha: 0.25)
+    
     static let batchImageCellBackground = imageBackground
     static let batchImageCellBorder = borderColor
     static let batchImageCellRemove = white

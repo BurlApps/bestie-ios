@@ -55,6 +55,8 @@ class Batch {
                 ErrorHandler.handleParseError(error!)
             }
         }
+        
+        user.mixpanel.people.increment("Batches", by: 1)
     }
     
     func userVoted() {

@@ -78,10 +78,6 @@ class BridgeController: UIViewController {
         } else if self.user.batch.active == true {
             state = 1
             self.progressController.updateBatch(self.user.batch)
-            
-            if self.lastState != state {
-                self.progressController.startTimer()
-            }
         } else {
             state = 2
             

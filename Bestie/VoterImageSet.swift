@@ -49,8 +49,8 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func imageSelected(image: VoterImage) {
-        let first = self.voterImages.first?.hidden == false
-        let second = self.voterImages.last?.hidden == false
+        let first = self.voterImages.first?.loaded == true
+        let second = self.voterImages.last?.loaded == true
         
         if first && second {
             if self.flyOff {
@@ -79,9 +79,9 @@ class VoterImageSet: UIView, VoterImageDelegate {
     func imageFlagged(image: VoterImage) {
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = -1 * self.frame.height
-            }) { (finished: Bool) -> Void in
-                self.hidden = true
-                self.frame.origin.y = self.frame.height
+        }) { (finished: Bool) -> Void in
+            self.hidden = true
+            self.frame.origin.y = self.frame.height
         }
         
         self.delegate.setFinished(self, image: image.voterImage)

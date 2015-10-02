@@ -74,9 +74,14 @@ class User {
     }
     
     class func logout() {
+        let mixpanel = Mixpanel.sharedInstance()
+        
         currentBatch = nil
         currentUser = nil
-        Mixpanel.sharedInstance().track("Mobile.User.Logout")
+        
+        mixpanel.track("Mobile.User.Logout")
+        mixpanel.reset()
+        
         PFUser.logOut()
     }
     
@@ -86,6 +91,7 @@ class User {
     }
     
     func aliasMixpanel() {
+        self.mixpanel.people.set("ID", to: self.parse.objectId)
         self.mixpanel.createAlias(self.parse.objectId, forDistinctID: self.mixpanel.distinctId)
     }
     
@@ -134,12 +140,21 @@ class User {
         self.gender = gender
         self.parse["gender"] = gender
         self.parse.saveInBackground()
+        
+        self.mixpanel.people.set([
+            "Gender": gender
+        ])
     }
     
     func changeInterest(gender: String) {
         self.interested = gender
         self.parse["interested"] = gender
         self.parse.saveInBackground()
+        
+        self.mixpanel.people.set([
+            "Interested": gender
+        ])
+        self.mixpanel.track("Mobile.User.Interest.Changed")
     }
     
     func fetch(callback: (() -> Void)!) {

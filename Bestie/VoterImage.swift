@@ -19,6 +19,7 @@ class VoterImage: UIImageView {
     var voterImage: Image!
     var delegate: VoterImageDelegate!
     var transparent: Bool = false
+    var loaded: Bool = false
     
     init(frame: CGRect, voterImage: Image, transparent: Bool) {
         super.init(frame: frame)
@@ -27,7 +28,9 @@ class VoterImage: UIImageView {
         self.transparent = transparent
         
         if !self.transparent {
-            self.backgroundColor = Colors.voterImageBackground
+            self.image = UIImage(named: "Placeholder")
+            self.tintColor = Colors.batchPlaceholderIcon
+            self.backgroundColor = Colors.batchPlaceholder
             self.layer.cornerRadius = Globals.voterImageRadius
             self.layer.borderWidth = Globals.voterImageBorder
             self.layer.borderColor = Colors.voterImageBorder.CGColor
@@ -38,7 +41,6 @@ class VoterImage: UIImageView {
 
         self.layer.shadowRadius = 5
         self.clipsToBounds = true
-        self.hidden = true
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = false
         self.contentMode = .ScaleAspectFill
@@ -89,7 +91,8 @@ class VoterImage: UIImageView {
     func downloadImage() {
         self.voterImage.getImage { (image) -> Void in
             self.image = image
-            self.hidden = false
+            self.loaded = true
+            self.backgroundColor = Colors.voterImageBackground
             self.delegate.imageDownloaded(self)
         }
     }

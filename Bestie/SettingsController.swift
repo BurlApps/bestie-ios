@@ -73,6 +73,14 @@ class SettingsController: UITableViewController {
             
             Globals.pageController.presentViewController(controller, animated: true, completion: nil)
             
+        case "2:0":
+            let url = NSURL(string: self.config.termsURL)
+            UIApplication.sharedApplication().openURL(url!)
+            
+        case "2:1":
+            let url = NSURL(string: self.config.privacyURL)
+            UIApplication.sharedApplication().openURL(url!)
+            
         default: return
         }
     }

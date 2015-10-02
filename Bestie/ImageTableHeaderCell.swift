@@ -41,8 +41,7 @@ class ImageTableHeaderCell: UIViewController {
         self.innerContainer.layer.cornerRadius = Globals.voterImageRadius
         self.innerContainer.layer.borderWidth = Globals.voterImageBorder
         self.innerContainer.layer.borderColor = Colors.voterImageBorder.CGColor
-        
-        self.headerImage.backgroundColor = Colors.batchImageCellBackground
+    
         self.headerImage.contentMode = .ScaleAspectFill
         self.headerImage.clipsToBounds = true
         
@@ -72,6 +71,9 @@ class ImageTableHeaderCell: UIViewController {
     func resetBatch() {
         self.votedLabel.text = "---"
         self.headerImage.image = nil
+        self.headerImage.image = UIImage(named: "Placeholder")
+        self.headerImage.tintColor = Colors.batchPlaceholderIcon
+        self.headerImage.backgroundColor = Colors.batchPlaceholder
     }
     
     func updateBatch(image: Image!) {
@@ -79,6 +81,7 @@ class ImageTableHeaderCell: UIViewController {
         
         image.getImage { (image) -> Void in
             self.headerImage.image = image
+            self.headerImage.backgroundColor = Colors.batchImageCellBackground
         }
     }
 }

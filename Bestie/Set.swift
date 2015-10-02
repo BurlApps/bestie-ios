@@ -20,11 +20,13 @@ class VoterSet {
     }
     
     func voted(winner: Image) {
+        let user = User.current()
+        
         if(fake) {
             return
         }
         
-        if let batch = User.current().batch {
+        if let batch = user.batch {
             batch.userVoted()
         }
         
@@ -38,5 +40,7 @@ class VoterSet {
             "winner": winner.parse.objectId!,
             "loser": looser.parse.objectId!
         ])
+        
+        user.mixpanel.people.increment("Votes", by: 1)
     }
 }

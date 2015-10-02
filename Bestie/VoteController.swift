@@ -56,6 +56,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         animation.duration = 0.8
         animation.cumulative = true
         animation.repeatCount = Float.infinity
+        animation.fillMode = kCAFillModeForwards
+        animation.removedOnCompletion = false
         
         self.spinner.layer.addAnimation(animation, forKey: "rotation")
     }
@@ -175,7 +177,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func showVoteAlert() {
-        let controller = UIAlertController(title: "You Are Awesome!", message: "We are almost done finding your Bestie, we will ping ou", preferredStyle: .Alert)
+        let controller = UIAlertController(title: "You Are Awesome!", message: "You have earned your Bestie! We will send it when it's ready.", preferredStyle: .Alert)
         controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
         Globals.pageController.presentViewController(controller, animated: true, completion: nil)
     }

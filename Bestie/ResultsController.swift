@@ -72,7 +72,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
             self.saveButton.setTitle(text, forState: .Normal)
             self.user.mixpanel.track("Mobile.User.Save")
             
-            let controller = UIAlertController(title: "Bestie Saved!", message: "Your image has been saved and is ready to be uploaded to Instagram.", preferredStyle: .Alert)
+            let controller = UIAlertController(title: "Bestie Saved!", message: "Your image has been saved and is ready for upload to Instagram.", preferredStyle: .Alert)
             controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
             Globals.pageController.presentViewController(controller, animated: true, completion: nil)
         }
@@ -118,6 +118,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         
         if cell == nil {
             cell = ImageTableCell()
+            cell.imageViewer.tag = 10
         }
         
         cell.loadImage(image)
