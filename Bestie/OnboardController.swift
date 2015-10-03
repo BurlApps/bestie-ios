@@ -38,15 +38,10 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         }
         
         self.createPage("WelcomeController")
-        self.createPage("GenderController")
-        self.createPage("InterestController")
+        self.createPage("SelectionController")
         
         Config.sharedInstance { (config) -> Void in
             self.nextPage = config.onboardNext
-            
-            if self.nextPage == -1 {
-                self.createPage("DecisionController")
-            }
         }
     }
     

@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
-class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataSource,
+UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
 
     private var pageController: UIPageViewController!
     private var pages = 2
     private var nextPage = 0
+    private var webUrl: NSURL!
     
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var separator: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageContainer: UIView!
+    @IBOutlet weak var legalLabel: TTTAttributedLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +47,7 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
         self.pageController.didMoveToParentViewController(self)
         self.pageContainer.backgroundColor = UIColor.clearColor()
         
-        self.separator.backgroundColor = Colors.settingsBackground
+        self.separator.backgroundColor = Colors.onboardSeparator
         
         self.button.tintColor = UIColor.whiteColor()
         self.button.backgroundColor = Colors.batchSubmitButton
@@ -55,6 +59,18 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
         self.pageControl.pageIndicatorTintColor = Colors.lightGray
         self.pageControl.currentPageIndicatorTintColor = Colors.red
         self.pageControl.backgroundColor = UIColor.clearColor()
+        
+        Config.sharedInstance { (config) -> Void in
+            let tos = NSURL(string: config.termsURL)
+            let privacy = NSURL(string: config.privacyURL)
+            
+            let tosRange = NSString(string: self.legalLabel.text!).rangeOfString("Terms of Service")
+            let privacyRange = NSString(string: self.legalLabel.text!).rangeOfString("Privacy Policy")
+            
+            self.legalLabel.delegate = self
+            self.legalLabel.addLinkToURL(tos, withRange: tosRange)
+            self.legalLabel.addLinkToURL(privacy, withRange: privacyRange)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,6 +84,12 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
         
         self.pageController.view.frame = self.pageContainer.frame
         self.showController()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "webSegue" {
+            (segue.destinationViewController as! OnboardWebViewController).url = self.webUrl
+        }
     }
     
     @IBAction func tapped(sender: AnyObject) {        
@@ -132,6 +154,11 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
         }
         
         return self.viewControllerAtIndex(index + 1)
+    }
+    
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        self.webUrl = url
+        self.performSegueWithIdentifier("webSegue", sender: self)
     }
     
 }

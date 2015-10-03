@@ -21,6 +21,8 @@ class VoterImage: UIImageView {
     var transparent: Bool = false
     var loaded: Bool = false
     
+    private var percentLabel: UILabel!
+    
     init(frame: CGRect, voterImage: Image, transparent: Bool) {
         super.init(frame: frame)
         
@@ -37,6 +39,33 @@ class VoterImage: UIImageView {
             self.layer.shadowColor = UIColor.blackColor().CGColor
             self.layer.shadowOffset = CGSizeZero
             self.layer.shadowOpacity = 0.5
+            
+            self.percentLabel = UILabel(frame: CGRectMake(0, 0, frame.width, frame.height))
+            self.percentLabel.backgroundColor = UIColor(red:0.07, green:0.58, blue:0.96, alpha:0.5)
+            self.percentLabel.textColor = UIColor.whiteColor()
+            self.percentLabel.textAlignment = .Center
+            self.percentLabel.text = "\(Int(voterImage.percent() * 100))%"
+            self.percentLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
+            self.percentLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
+            self.percentLabel.layer.shadowOpacity = 1
+            self.percentLabel.font = UIFont(name: "Bariol-Bold", size: 36)
+            self.percentLabel.alpha = 0
+            
+            self.addSubview(self.percentLabel)
+            
+            let flag = UIImage(named: "Flag")
+            let flagView = UIImageView(image: flag)
+            let width: CGFloat = 25
+            let height: CGFloat = 25
+            
+            flagView.contentMode = .ScaleAspectFit
+            flagView.tintColor = UIColor(white: 1, alpha: 0.5)
+            flagView.frame = CGRectMake(6, frame.height - width - 10, width, height)
+            flagView.userInteractionEnabled = true
+            self.addSubview(flagView)
+            
+            let flagTapGesture = UITapGestureRecognizer(target: self, action: "flag:")
+            flagView.addGestureRecognizer(flagTapGesture)
         }
 
         self.layer.shadowRadius = 5
@@ -45,20 +74,6 @@ class VoterImage: UIImageView {
         self.multipleTouchEnabled = false
         self.contentMode = .ScaleAspectFill
         
-        let flag = UIImage(named: "Flag")
-        let flagView = UIImageView(image: flag)
-        let width: CGFloat = 25
-        let height: CGFloat = 25
-        
-        flagView.contentMode = .ScaleAspectFit
-        flagView.tintColor = UIColor(white: 1, alpha: 0.5)
-        flagView.frame = CGRectMake(6, frame.height - width - 10, width, height)
-        flagView.userInteractionEnabled = true
-        flagView.hidden = transparent
-        self.addSubview(flagView)
-        
-        let flagTapGesture = UITapGestureRecognizer(target: self, action: "flag:")
-        flagView.addGestureRecognizer(flagTapGesture)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.addGestureRecognizer(tapGesture)
@@ -71,6 +86,12 @@ class VoterImage: UIImageView {
     func tapped(gesture: UIGestureRecognizer) {
         self.scaleUp(false, completion: {
             self.delegate.imageSelected(self)
+        })
+    }
+    
+    func showPercent() {
+        UIView.animateWithDuration(Globals.voterSetInterval, animations: {
+            self.percentLabel?.alpha = 1
         })
     }
     

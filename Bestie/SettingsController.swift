@@ -20,14 +20,25 @@ class SettingsController: UITableViewController {
         self.view.backgroundColor = Colors.settingsBackground
         self.tableView.backgroundColor = Colors.settingsBackground
         
-        switch(self.user.interested) {
+        self.loadInterest(self.user.interested)
+        
+        Config.sharedInstance { (config) -> Void in
+            self.config = config
+        }
+    }
+    
+    func loadInterest(interest: String) {
+        switch(interest) {
             case "male": self.interestedLabel.text = "Men"
             case "female": self.interestedLabel.text = "Women"
             default: self.interestedLabel.text = "Men & Women"
         }
-        
-        Config.sharedInstance { (config) -> Void in
-            self.config = config
+    }
+    
+    func changeInterest(interest: String) {
+        self.user.changeInterest(interest) { () -> Void in
+            self.loadInterest(self.user.interested)
+            Globals.voterController.flushSets()
         }
     }
     
@@ -47,19 +58,13 @@ class SettingsController: UITableViewController {
         case "1:0":
             let controller = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             let male = UIAlertAction(title: "Men", style: .Default, handler: { (action: UIAlertAction) -> Void in
-                self.user.changeInterest("male")
-                self.interestedLabel.text = "Men"
-                Globals.voterController.flushSets()
+                self.changeInterest("male")
             })
             let female = UIAlertAction(title: "Women", style: .Default, handler: { (action: UIAlertAction) -> Void in
-                self.user.changeInterest("female")
-                self.interestedLabel.text = "Women"
-                Globals.voterController.flushSets()
+                self.changeInterest("female")
             })
             let both = UIAlertAction(title: "Men & Women", style: .Default, handler: { (action: UIAlertAction) -> Void in
-                self.user.changeInterest("both")
-                self.interestedLabel.text = "Men & Women"
-                Globals.voterController.flushSets()
+                self.changeInterest("both")
             })
             let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             

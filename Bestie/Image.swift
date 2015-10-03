@@ -16,6 +16,7 @@ class Image {
     // MARK: Instance Variables
     var batch: Batch!
     var score: Int!
+    var votes: Int!
     var maxVotes: Int!
     var wins: Float!
     var losses: Float!
@@ -33,6 +34,7 @@ class Image {
         self.score = object["score"] as? Int
         self.wins = object["wins"] as? Float
         self.losses = object["losses"] as? Float
+        self.votes = object["votes"] as? Int
         self.maxVotes = object["maxVotes"] as? Int
         self.parse = object
         
@@ -75,7 +77,7 @@ class Image {
             if success {
                 voter.active = voterImage["active"] as? Bool
                 voter.score = voterImage["score"] as? Int
-                voter.maxVotes = voterImage["maxVotes"] as? Int
+                voter.votes = voterImage["votes"] as? Int
                 
                 voterImage["image"] = imageFile
                 voterImage.saveInBackground()
@@ -88,7 +90,13 @@ class Image {
     }
     
     func percent() -> Float {
-        return self.wins/Float(self.maxVotes)
+        let percent = self.wins/Float(self.votes)
+        
+        if percent.isFinite {
+            return percent
+        }
+        
+        return 0
     }
     
     func remove() {

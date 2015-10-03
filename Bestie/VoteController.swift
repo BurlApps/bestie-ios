@@ -157,7 +157,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                 percent = 0
             }
         }
-        
+            
         if self.progressBar1 != nil {
             self.progressBar1.progress(percent, animation: true)
             self.progressBar2.progress(percent, animation: true)
@@ -189,7 +189,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if self.user.batch != nil {
             self.user.batch!.userVoted()
-            self.progressBarUpdate()
         }
     }
 }

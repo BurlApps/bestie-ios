@@ -136,6 +136,19 @@ class User {
         }
     }
     
+    func changeGenderInterest(gender: String, interest: String) {
+        self.gender = gender
+        self.interested = interest
+        self.parse["gender"] = gender
+        self.parse["interested"] = interested
+        self.parse.saveInBackground()
+        
+        self.mixpanel.people.set([
+            "Gender": gender,
+            "Interested": interest
+        ])
+    }
+    
     func changeGender(gender: String) {
         self.gender = gender
         self.parse["gender"] = gender
@@ -146,10 +159,16 @@ class User {
         ])
     }
     
-    func changeInterest(gender: String) {
+    func changeInterest(gender: String, callback: (() -> Void)!) {
         self.interested = gender
         self.parse["interested"] = gender
-        self.parse.saveInBackground()
+        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                callback?()
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        }
         
         self.mixpanel.people.set([
             "Interested": gender

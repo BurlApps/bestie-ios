@@ -54,17 +54,30 @@ class VoterImageSet: UIView, VoterImageDelegate {
         
         if first && second {
             if self.flyOff {
-                UIView.animateWithDuration(Globals.voterSetInterval, animations: {
-                    self.frame.origin.y = -1 * self.frame.height
-                })
+                for voterImage in self.voterImages {
+                    voterImage.showPercent()
+                }
+                
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64((Globals.voterSetInterval * 3) * Double(NSEC_PER_SEC)))
+                
+                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                    UIView.animateWithDuration(Globals.voterSetInterval, animations: {
+                        self.frame.origin.y = -1 * self.frame.height
+                    })
+                    
+                    self.delegate.setFinished(self, image: image.voterImage)
+                }
+            } else {
+                self.delegate.setFinished(self, image: image.voterImage)
             }
             
-            self.delegate.setFinished(self, image: image.voterImage)
             self.voterSet.voted(image.voterImage)
         }
     }
     
     func animateInToView() {
+        self.downloadImages()
+        
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
         }, completion: nil)
@@ -90,7 +103,9 @@ class VoterImageSet: UIView, VoterImageDelegate {
     
     func downloadImages() {
         for voterImage in self.voterImages {
-            voterImage.downloadImage()
+            if !voterImage.loaded {
+                voterImage.downloadImage()
+            }
         }
     }
 }

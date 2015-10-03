@@ -26,7 +26,7 @@ class Config {
         self.init()
         
         self.host = object["host"] as? String
-        self.downloadUrl = object["downloadUrl"] as? String
+        self.downloadUrl = object["downloadURL"] as? String
         self.termsURL = object["termsURL"] as? String
         self.privacyURL = object["privacyURL"] as? String
         self.itunesId = object["itunesId"] as? String

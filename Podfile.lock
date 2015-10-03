@@ -8,6 +8,7 @@ PODS:
   - Mixpanel/Mixpanel (2.8.3)
   - Onboard (2.1.7)
   - THTinderNavigationController-ssuchanowski (1.1.1)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - AlamofireImage (= 2.0.0-beta.1)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - Mixpanel (~> 2.8)
   - Onboard (~> 2.1)
   - THTinderNavigationController-ssuchanowski (from `https://github.com/BurlApps/THTinderNavigationController.git`)
+  - TTTAttributedLabel (~> 1.13)
 
 EXTERNAL SOURCES:
   THTinderNavigationController-ssuchanowski:
@@ -32,5 +34,6 @@ SPEC CHECKSUMS:
   Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   Onboard: 87648089e1b76d13b4f5bf8f7a1cdb144092f0af
   THTinderNavigationController-ssuchanowski: d081bb8c8e2145a40bc6817c6b75267849e07ebc
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.38.2
