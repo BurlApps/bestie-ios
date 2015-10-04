@@ -83,14 +83,20 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     
     func flushSets() {
         self.downloading = false
-        self.voterSets.removeAll()
         self.sets.removeAll()
+        
+        for set in self.voterSets {
+            set.removeFromSuperview()
+        }
+        
+        self.voterSets.removeAll()
         self.updateSets()
     }
     
     func updateSets() {
         if !self.downloading {
             self.downloading = true
+            self.spinner.hidden = !self.voterSets.isEmpty
             
             if self.timer != nil {
                 self.timer.invalidate()
@@ -104,19 +110,21 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                     NSTimer.scheduledTimerWithTimeInterval(5, target: self,
                         selector: Selector("updateSets"), userInfo: nil, repeats: false)
                 } else {
-                    self.spinner.hidden = self.voterSets.isEmpty
-                    
+                    self.spinner.hidden = true
                     
                     for set in sets {
                         set.image1.getImage(nil)
                         set.image2.getImage(nil)
+                        
                         self.sets.append(set)
                     }
                     
-                    if self.voterSets.count < 2 {
-                        for index in 0...2-self.voterSets.count {
-                            self.createVoterSet(index == 0)
-                        }
+                    if self.voterSets.count == 0 {
+                       self.createVoterSet(true)
+                    }
+                    
+                    if self.voterSets.count == 1 {
+                        self.createVoterSet(false)
                     }
                 }
             }
@@ -177,33 +185,35 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func setOffScreen(set: VoterImageSet) {
-        if !self.sets.isEmpty {
+        self.voterSets.removeFirst()
+        self.spinner.hidden = !self.voterSets.isEmpty
+        
+        if self.sets.isEmpty {
+            set.removeFromSuperview()
+            set.voterSet = nil
+            set.voterImages.removeAll()
+        
+        } else {
             set.resetPosition()
             set.updateSet(self.sets[0])
             self.sets.removeFirst()
             self.voterSets.append(set)
-        } else {
-            set.removeFromSuperview()
-            set.voterSet = nil
-            set.voterImages.removeAll()
         }
     }
     
     func setFinished(set: VoterImageSet, image: Image) {
-        self.voterSets.removeFirst()
-        self.voterSets.first?.animateInToView()
         self.user.mixpanel.track("Mobile.Set.Voted")
         
         if (arc4random_uniform(10) + 1) <= 3 {
             Globals.switchLogoFace()
         }
         
-        if self.sets.count < 5 {
-            self.updateSets()
+        if self.voterSets.count > 1 {
+            self.voterSets[1].animateInToView()
         }
         
-        if self.sets.isEmpty {
-            self.spinner.hidden = false
+        if self.sets.count < 5 {
+            self.updateSets()
         }
         
         if self.user.batch != nil {
