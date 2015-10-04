@@ -9,9 +9,8 @@
 import UIKit
 
 protocol VoterImageSetDelegate {
-    func setDownloaded(set: VoterImageSet)
+    func setOffScreen(set: VoterImageSet)
     func setFinished(set: VoterImageSet, image: Image)
-    func setFailed(set: VoterImageSet)
 }
 
 class VoterImageSet: UIView, VoterImageDelegate {
@@ -19,28 +18,32 @@ class VoterImageSet: UIView, VoterImageDelegate {
     var delegate: VoterImageSetDelegate!
     var voterImages: [VoterImage] = []
     var voterSet: VoterSet!
-    var next: VoterImageSet!
     var flyOff: Bool = true
 
-    init(frame: CGRect, set: VoterSet) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.voterSet = set
         self.backgroundColor = UIColor.clearColor()
-        self.createVoterImage(true, voterImage: set.image1)
-        self.createVoterImage(false, voterImage: set.image2!)
+        self.createVoterImage(true)
+        self.createVoterImage(false)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func updateSet(voterSet: VoterSet) {
+        self.voterSet = voterSet
+        self.voterImages.first?.updateImage(voterSet.image1)
+        self.voterImages.last?.updateImage(voterSet.image2)
+    }
 
-    func createVoterImage(top: Bool, voterImage: Image) {
+    func createVoterImage(top: Bool) {
         let veritcal = Globals.voterSetVerticalPadding
         let middle = Globals.voterSetMiddlePadding
         let box = self.frame.height/2 - veritcal - middle/2
         let frame = CGRectMake((self.frame.width - box)/2, veritcal, box, box)
-        let card = VoterImage(frame: frame, voterImage: voterImage, transparent: self.voterSet.fake)
+        let card = VoterImage(frame: frame)
         
         card.delegate = self
         card.frame.origin.y = top ? frame.origin.y : frame.height + veritcal + middle
@@ -50,42 +53,36 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func imageSelected(image: VoterImage) {
-        let first: Bool = (self.voterImages.first?.loaded)!
-        let second: Bool = (self.voterImages.last?.loaded)!
-        
-        if first && second {
-            if self.flyOff {
-                for voterImage in self.voterImages {
-                    voterImage.showPercent()
-                }
+        if self.flyOff {
+            self.voterImages.first?.showPercent()
+            self.voterImages.last?.showPercent()
+            
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64((Globals.voterSetInterval * 3) * Double(NSEC_PER_SEC)))
+            
+            dispatch_after(delayTime, dispatch_get_main_queue()) {                
+                UIView.animateWithDuration(Globals.voterSetInterval, animations: { () -> Void in
+                    self.frame.origin.y = -1 * self.frame.height
+                }, completion: { (success: Bool) -> Void in
+                    self.delegate.setOffScreen(self)
+                })
                 
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64((Globals.voterSetInterval * 3) * Double(NSEC_PER_SEC)))
-                
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    UIView.animateWithDuration(Globals.voterSetInterval, animations: {
-                        self.frame.origin.y = -1 * self.frame.height
-                    })
-                    
-                    self.delegate.setFinished(self, image: image.voterImage)
-                }
-            } else {
                 self.delegate.setFinished(self, image: image.voterImage)
             }
-            
-            self.voterSet.voted(image.voterImage)
+        } else {
+            self.delegate.setFinished(self, image: image.voterImage)
         }
+        
+        self.voterSet.voted(image.voterImage)
+    }
+    
+    func resetPosition() {
+        self.frame.origin.y = self.frame.height
     }
     
     func animateInToView() {
-        self.downloadImages()
-        
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
         }, completion: nil)
-    }
-    
-    func imageFailed(image: VoterImage) {
-        self.delegate.setFailed(self)
     }
     
     func imageFlagged(image: VoterImage) {
@@ -95,22 +92,5 @@ class VoterImageSet: UIView, VoterImageDelegate {
         
         self.delegate.setFinished(self, image: image.voterImage)
         image.voterImage.flag()
-    }
-    
-    func imageDownloaded(image: VoterImage) {
-        let first: Bool = (self.voterImages.first?.loaded)!
-        let second: Bool = (self.voterImages.last?.loaded)!
-        
-        if first && second {
-            self.delegate.setDownloaded(self)
-        }
-    }
-    
-    func downloadImages() {
-        for voterImage in self.voterImages {
-            if !voterImage.loaded {
-                voterImage.downloadImage()
-            }
-        }
     }
 }

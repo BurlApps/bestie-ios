@@ -10,64 +10,54 @@ import UIKit
 
 protocol VoterImageDelegate {
     func imageSelected(image: VoterImage)
-    func imageDownloaded(image: VoterImage)
     func imageFlagged(image: VoterImage)
-    func imageFailed(image: VoterImage)
 }
 
 class VoterImage: UIImageView {
     
     var voterImage: Image!
     var delegate: VoterImageDelegate!
-    var transparent: Bool = false
-    var loaded: Bool = false
     
     private var percentLabel: UILabel!
     
-    init(frame: CGRect, voterImage: Image, transparent: Bool) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.voterImage = voterImage
-        self.transparent = transparent
+        self.image = UIImage(named: "Placeholder")
+        self.tintColor = Colors.batchPlaceholderIcon
+        self.backgroundColor = Colors.batchPlaceholder
+        self.layer.cornerRadius = Globals.voterImageRadius
+        self.layer.borderWidth = Globals.voterImageBorder
+        self.layer.borderColor = Colors.voterImageBorder.CGColor
+        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowOffset = CGSizeZero
+        self.layer.shadowOpacity = 0.5
         
-        if !self.transparent {
-            self.image = UIImage(named: "Placeholder")
-            self.tintColor = Colors.batchPlaceholderIcon
-            self.backgroundColor = Colors.batchPlaceholder
-            self.layer.cornerRadius = Globals.voterImageRadius
-            self.layer.borderWidth = Globals.voterImageBorder
-            self.layer.borderColor = Colors.voterImageBorder.CGColor
-            self.layer.shadowColor = UIColor.blackColor().CGColor
-            self.layer.shadowOffset = CGSizeZero
-            self.layer.shadowOpacity = 0.5
-            
-            self.percentLabel = UILabel(frame: CGRectMake(0, 0, frame.width, frame.height))
-            self.percentLabel.backgroundColor = UIColor(red:0.07, green:0.58, blue:0.96, alpha:0.5)
-            self.percentLabel.textColor = UIColor.whiteColor()
-            self.percentLabel.textAlignment = .Center
-            self.percentLabel.text = "\(Int(voterImage.percent() * 100))%"
-            self.percentLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
-            self.percentLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
-            self.percentLabel.layer.shadowOpacity = 1
-            self.percentLabel.font = UIFont(name: "Bariol-Bold", size: 36)
-            self.percentLabel.alpha = 0
-            
-            self.addSubview(self.percentLabel)
-            
-            let flag = UIImage(named: "Flag")
-            let flagView = UIImageView(image: flag)
-            let width: CGFloat = 25
-            let height: CGFloat = 25
-            
-            flagView.contentMode = .ScaleAspectFit
-            flagView.tintColor = UIColor(white: 1, alpha: 0.5)
-            flagView.frame = CGRectMake(6, frame.height - width - 10, width, height)
-            flagView.userInteractionEnabled = true
-            self.addSubview(flagView)
-            
-            let flagTapGesture = UITapGestureRecognizer(target: self, action: "flag:")
-            flagView.addGestureRecognizer(flagTapGesture)
-        }
+        self.percentLabel = UILabel(frame: CGRectMake(0, 0, frame.width, frame.height))
+        self.percentLabel.backgroundColor = UIColor(red:0.07, green:0.58, blue:0.96, alpha:0.5)
+        self.percentLabel.textColor = UIColor.whiteColor()
+        self.percentLabel.textAlignment = .Center
+        self.percentLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
+        self.percentLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.percentLabel.layer.shadowOpacity = 1
+        self.percentLabel.font = UIFont(name: "Bariol-Bold", size: 36)
+        self.percentLabel.alpha = 0
+        
+        self.addSubview(self.percentLabel)
+        
+        let flag = UIImage(named: "Flag")
+        let flagView = UIImageView(image: flag)
+        let width: CGFloat = 25
+        let height: CGFloat = 25
+        
+        flagView.contentMode = .ScaleAspectFit
+        flagView.tintColor = UIColor(white: 1, alpha: 0.5)
+        flagView.frame = CGRectMake(6, frame.height - width - 10, width, height)
+        flagView.userInteractionEnabled = true
+        self.addSubview(flagView)
+        
+        let flagTapGesture = UITapGestureRecognizer(target: self, action: "flag:")
+        flagView.addGestureRecognizer(flagTapGesture)
 
         self.layer.shadowRadius = 5
         self.clipsToBounds = true
@@ -75,13 +65,29 @@ class VoterImage: UIImageView {
         self.multipleTouchEnabled = false
         self.contentMode = .ScaleAspectFill
         
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.addGestureRecognizer(tapGesture)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateImage(voterImage: Image) {
+        self.voterImage = voterImage
+        
+        self.percentLabel.alpha = 0
+        self.percentLabel.text = "\(Int(voterImage.percent() * 100))%"
+        
+        self.image = UIImage(named: "Placeholder")
+        self.backgroundColor = Colors.batchPlaceholder
+        
+        self.voterImage.getImage { (image) -> Void in
+            if image != nil {
+                self.image = image
+                self.backgroundColor = Colors.voterImageBackground
+            }
+        }
     }
     
     func tapped(gesture: UIGestureRecognizer) {
@@ -108,22 +114,6 @@ class VoterImage: UIImageView {
         controller.addAction(cancel)
         controller.addAction(confirm)
         Globals.pageController.presentViewController(controller, animated: true, completion: nil)
-    }
-    
-    func downloadImage() {
-        self.voterImage.getImage { (image) -> Void in
-            self.loaded = true
-            
-            if image != nil {
-                self.image = image
-                
-                if !self.transparent {
-                    self.backgroundColor = Colors.voterImageBackground
-                }
-            }
-            
-            self.delegate.imageDownloaded(self)
-        }
     }
     
     func scaleUp(hold: Bool, completion: (() -> Void)!) {

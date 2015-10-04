@@ -14,7 +14,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     private var textLabelBig = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
-    private var images: [VoterSet] = []
+    private var sets: [VoterSet] = []
     private var voterSets: [VoterImageSet] = []
     private var textLabel: UILabel!
     private var user: User! = User.current()
@@ -63,22 +63,20 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.spinner.layer.addAnimation(animation, forKey: "rotation")
     }
     
-    func createVoterSet(set: VoterSet, first: Bool) {
+    func createVoterSet(first: Bool) {
         let frame = CGRectMake(Globals.progressBarWidth, self.view.frame.height,
             self.view.frame.width - (Globals.progressBarWidth * 2), self.view.frame.height)
         
-        let voterSet = VoterImageSet(frame: frame, set: set)
+        let voterSet = VoterImageSet(frame: frame)
         voterSet.delegate = self
         
-        if self.voterSets.count == 0 {
+        if first {
             voterSet.frame.origin.y = 0
         }
         
-        if first {
-            voterSet.downloadImages()
-        }
+        voterSet.updateSet(self.sets[0])
+        self.sets.removeFirst()
         
-        self.voterSets.last?.next = voterSet
         self.voterSets.append(voterSet)
         self.view.insertSubview(voterSet, belowSubview: self.textLabel)
     }
@@ -86,6 +84,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func flushSets() {
         self.downloading = false
         self.voterSets.removeAll()
+        self.sets.removeAll()
         self.updateSets()
     }
     
@@ -105,10 +104,19 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                     NSTimer.scheduledTimerWithTimeInterval(5, target: self,
                         selector: Selector("updateSets"), userInfo: nil, repeats: false)
                 } else {
-                    self.spinner.hidden = true
+                    self.spinner.hidden = self.voterSets.isEmpty
+                    
                     
                     for set in sets {
-                        self.images.append(set)
+                        set.image1.getImage(nil)
+                        set.image2.getImage(nil)
+                        self.sets.append(set)
+                    }
+                    
+                    if self.voterSets.count < 2 {
+                        for index in 0...2-self.voterSets.count {
+                            self.createVoterSet(index == 0)
+                        }
                     }
                 }
             }
@@ -143,10 +151,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.view.addSubview(self.progressBar2)
     }
     
-    func setDownloaded(set: VoterImageSet) {
-        set.next?.downloadImages()
-    }
-    
+
     func progressBarUpdate() {
         var percent: Float = 0
         
@@ -171,13 +176,17 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         Globals.pageController.presentViewController(controller, animated: true, completion: nil)
     }
     
-    func setFailed(set: VoterImageSet) {
-        print(set)
-        
-        let sets = NSMutableArray(array: self.voterSets)
-        sets.removeObject(set)
-        
-        self.voterSets = sets.objectEnumerator().allObjects as! [VoterImageSet]
+    func setOffScreen(set: VoterImageSet) {
+        if !self.sets.isEmpty {
+            set.resetPosition()
+            set.updateSet(self.sets[0])
+            self.sets.removeFirst()
+            self.voterSets.append(set)
+        } else {
+            set.removeFromSuperview()
+            set.voterSet = nil
+            set.voterImages.removeAll()
+        }
     }
     
     func setFinished(set: VoterImageSet, image: Image) {
@@ -189,11 +198,11 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             Globals.switchLogoFace()
         }
         
-        if self.voterSets.count < 5 {
+        if self.sets.count < 5 {
             self.updateSets()
         }
         
-        if self.voterSets.isEmpty {
+        if self.sets.isEmpty {
             self.spinner.hidden = false
         }
         
