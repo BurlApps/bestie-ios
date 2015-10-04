@@ -80,8 +80,10 @@ class ImageTableHeaderCell: UIViewController {
         self.votedLabel.text = "\(Int(image.percent() * 100))%"
         
         image.getImage { (image) -> Void in
-            self.headerImage.image = image
-            self.headerImage.backgroundColor = Colors.batchImageCellBackground
+            if image != nil {
+                self.headerImage.image = image
+                self.headerImage.backgroundColor = Colors.batchImageCellBackground
+            }
         }
     }
 }

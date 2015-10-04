@@ -39,18 +39,19 @@ class Batch {
         
         batch["active"] = true
         batch["maxVotes"] = maxVotes
+        batch["creator"] = user.parse
         
         batch.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
                 let newBatch = Batch(batch)
                 
-                user.addBatch(newBatch)
-                
                 for image in images {
                     image.activate(newBatch)
                 }
                 
-                callback?(batch: newBatch)
+                user.addBatch(newBatch, callback: { () -> Void in
+                    callback?(batch: newBatch)
+                })
             } else {
                 ErrorHandler.handleParseError(error!)
             }

@@ -14,6 +14,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     private var textLabelBig = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
+    private var images: [VoterSet] = []
     private var voterSets: [VoterImageSet] = []
     private var textLabel: UILabel!
     private var user: User! = User.current()
@@ -106,8 +107,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                 } else {
                     self.spinner.hidden = true
                     
-                    for (i, set) in sets.enumerate() {
-                        self.createVoterSet(set, first: i == 0)
+                    for set in sets {
+                        self.images.append(set)
                     }
                 }
             }
@@ -168,6 +169,15 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         let controller = UIAlertController(title: "You Are Awesome!", message: "You have earned your Bestie! We will send it when it's ready.", preferredStyle: .Alert)
         controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
         Globals.pageController.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func setFailed(set: VoterImageSet) {
+        print(set)
+        
+        let sets = NSMutableArray(array: self.voterSets)
+        sets.removeObject(set)
+        
+        self.voterSets = sets.objectEnumerator().allObjects as! [VoterImageSet]
     }
     
     func setFinished(set: VoterImageSet, image: Image) {

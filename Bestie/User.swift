@@ -95,7 +95,7 @@ class User {
         self.mixpanel.createAlias(self.parse.objectId, forDistinctID: self.mixpanel.distinctId)
     }
     
-    func addBatch(batch: Batch) {
+    func addBatch(batch: Batch, callback: (() -> Void)!) {
         let relation = self.parse.relationForKey("batches")
         
         self.batch = batch
@@ -103,7 +103,13 @@ class User {
         
         relation.addObject(batch.parse)
         
-        self.parse.saveInBackground()
+        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                callback?()
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        }
     }
     
     func resetBatch() {
@@ -133,6 +139,8 @@ class User {
                     ErrorHandler.handleParseError(error!)
                 }
             })
+        } else {
+            callback?()
         }
     }
     
@@ -196,18 +204,20 @@ class User {
     }
     
     func pullSets(callback: (sets: [VoterSet]) -> Void) {
-        PFCloud.callFunctionInBackground("feed", withParameters: nil) { (data: AnyObject?, error: NSError?) -> Void in
-            if let objects: [PFObject] = data as? [PFObject] {
-                var sets: [VoterSet] = []
-                
-                for images in objects.chunk(2) {
-                    sets.append(VoterSet(Image(images[0]), Image(images[1])))
+        autoreleasepool {
+            PFCloud.callFunctionInBackground("feed", withParameters: nil) { (data: AnyObject?, error: NSError?) -> Void in
+                if let objects: [PFObject] = data as? [PFObject] {
+                    var sets: [VoterSet] = []
+                    
+                    for images in objects.chunk(2) {
+                        sets.append(VoterSet(Image(images[0]), Image(images[1])))
+                    }
+                    
+                    callback(sets: sets)
+                } else {
+                    callback(sets: [])
+                    ErrorHandler.handleParseError(error!)
                 }
-                
-                callback(sets: sets)
-            } else {
-                callback(sets: [])
-                ErrorHandler.handleParseError(error!)
             }
         }
     }

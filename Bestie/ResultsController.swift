@@ -83,19 +83,21 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func updateBatch(batch: Batch) {
-        self.images = []
+        self.images.removeAll()
         self.tableView.reloadData()
         self.headerContainer.resetBatch()
         
         self.user.mixpanel.track("Mobile.Batch.Results")
         
-        batch.getImages { (images) -> Void in
-            self.firstImage = images.first
-            self.images = Array(images[1..<images.count])
-            self.tableView.reloadData()
-            
-            if !self.images.isEmpty {
+        batch.getImages { (images) -> Void in            
+            if !images.isEmpty {
+                self.firstImage = images.first
                 self.headerContainer.updateBatch(images.first)
+            }
+            
+            if images.count > 1 {
+                self.images = Array(images[1..<images.count])
+                self.tableView.reloadData()
             }
         }
     }
@@ -118,9 +120,9 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         
         if cell == nil {
             cell = ImageTableCell()
-            cell.imageViewer.tag = 10
         }
         
+        cell.setup()
         cell.loadImage(image)
         
         return cell

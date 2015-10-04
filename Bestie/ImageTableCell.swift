@@ -12,6 +12,7 @@ class ImageTableCell: UITableViewCell {
     
     @IBOutlet weak var imageViewer: UIImageView!
     @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var percentLabel: UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,6 +32,15 @@ class ImageTableCell: UITableViewCell {
     }
     
     func loadImage(voterImage: Image) {
+        self.percentLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        self.percentLabel.textColor = UIColor.whiteColor()
+        self.percentLabel.textAlignment = .Center
+        self.percentLabel.text = "\(Int(voterImage.percent() * 100))%"
+        self.percentLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
+        self.percentLabel.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.percentLabel.layer.shadowOpacity = 1
+        self.percentLabel.font = UIFont(name: "Bariol-Bold", size: 100)
+        
         self.imageViewer.clipsToBounds = true
         self.imageViewer.contentMode = .ScaleAspectFill
         self.imageViewer.image = UIImage(named: "Placeholder")
@@ -40,8 +50,10 @@ class ImageTableCell: UITableViewCell {
         
         
         voterImage.getImage { (image) -> Void in
-            self.imageViewer.image = image
-            self.imageViewer.backgroundColor = Colors.batchImageCellBackground
+            if image != nil {
+                self.imageViewer.image = image
+                self.imageViewer.backgroundColor = Colors.batchImageCellBackground
+            }
         }
     }
 }

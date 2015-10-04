@@ -21,6 +21,7 @@
             <string>Bariol-Bold</string>
             <string>Bariol-Bold</string>
             <string>Bariol-Bold</string>
+            <string>Bariol-Bold</string>
         </mutableArray>
         <mutableArray key="Bariol_Regular.ttf">
             <string>Bariol-Regular</string>
@@ -299,12 +300,22 @@
                                                         <constraint firstAttribute="height" constant="1" id="67a-7L-ciC"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dH5-GA-dRU">
+                                                    <rect key="frame" x="0.0" y="-7" width="320" height="82.5"/>
+                                                    <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="120"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="aYo-d7-n3R" firstAttribute="leading" secondItem="u85-iZ-TuQ" secondAttribute="leadingMargin" constant="-8" id="0lx-BI-INj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="EbA-0c-Dsj" secondAttribute="trailing" constant="-8" id="0sQ-zP-6dF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dH5-GA-dRU" secondAttribute="bottom" constant="-8" id="5OM-gs-CRM"/>
                                                 <constraint firstItem="aYo-d7-n3R" firstAttribute="top" secondItem="u85-iZ-TuQ" secondAttribute="topMargin" constant="-8" id="6YN-j5-MR9"/>
                                                 <constraint firstItem="EbA-0c-Dsj" firstAttribute="top" secondItem="u85-iZ-TuQ" secondAttribute="topMargin" constant="-8" id="Dtn-Ir-CZb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dH5-GA-dRU" secondAttribute="trailing" constant="-8" id="Tnd-mb-TJk"/>
+                                                <constraint firstItem="dH5-GA-dRU" firstAttribute="top" secondItem="aYo-d7-n3R" secondAttribute="bottom" constant="-8" id="UPS-yc-rPz"/>
+                                                <constraint firstItem="dH5-GA-dRU" firstAttribute="leading" secondItem="u85-iZ-TuQ" secondAttribute="leadingMargin" constant="-8" id="afF-71-hOF"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="EbA-0c-Dsj" secondAttribute="bottom" constant="-8" id="afV-xf-rbp"/>
                                                 <constraint firstItem="EbA-0c-Dsj" firstAttribute="leading" secondItem="u85-iZ-TuQ" secondAttribute="leadingMargin" constant="-8" id="fjB-Gw-p29"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="aYo-d7-n3R" secondAttribute="trailing" constant="-8" id="onv-Qc-4Ab"/>
@@ -312,29 +323,30 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imageViewer" destination="EbA-0c-Dsj" id="c8A-6M-Lx8"/>
+                                            <outlet property="percentLabel" destination="dH5-GA-dRU" id="dHx-Y1-vS3"/>
                                             <outlet property="separator" destination="aYo-d7-n3R" id="p6Z-os-nCw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSN-ll-nt1">
-                                <rect key="frame" x="46" y="506" width="109" height="45"/>
+                                <rect key="frame" x="36" y="506" width="114" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Og2-9P-YWe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
-                                <state key="normal" title="Save"/>
+                                <state key="normal" title="Save Bestie"/>
                                 <connections>
                                     <action selector="savePressed:" destination="075-H1-HuS" eventType="touchUpInside" id="uUM-eB-ATg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9r-2u-utV">
-                                <rect key="frame" x="175" y="506" width="109" height="45"/>
+                                <rect key="frame" x="170" y="506" width="114" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="YtB-ov-rdZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="18"/>
-                                <state key="normal" title="Start Over"/>
+                                <state key="normal" title="Find New Bestie"/>
                                 <connections>
                                     <action selector="startOverPressed:" destination="075-H1-HuS" eventType="touchUpInside" id="pnR-Wj-zlx"/>
                                     <action selector="votingButtonTapped:" destination="aky-dz-dFG" eventType="touchUpInside" id="G6N-7s-h8l"/>
@@ -345,7 +357,7 @@
                         <constraints>
                             <constraint firstItem="h9r-2u-utV" firstAttribute="leading" secondItem="eSN-ll-nt1" secondAttribute="trailing" constant="20" id="2s0-c0-90K"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GwI-jO-wXy" secondAttribute="trailing" constant="-16" id="CgX-dC-GFG"/>
-                            <constraint firstItem="eSN-ll-nt1" firstAttribute="leading" secondItem="IcW-yP-hfC" secondAttribute="leadingMargin" constant="30" id="DJa-fo-fE0"/>
+                            <constraint firstItem="eSN-ll-nt1" firstAttribute="leading" secondItem="IcW-yP-hfC" secondAttribute="leadingMargin" constant="20" id="DJa-fo-fE0"/>
                             <constraint firstItem="hAa-UV-mVv" firstAttribute="top" secondItem="GwI-jO-wXy" secondAttribute="bottom" id="aJS-ja-q8C"/>
                             <constraint firstAttribute="trailingMargin" secondItem="h9r-2u-utV" secondAttribute="trailing" constant="20" id="jMW-f1-ATm"/>
                             <constraint firstItem="GwI-jO-wXy" firstAttribute="top" secondItem="IcW-yP-hfC" secondAttribute="topMargin" id="jdJ-sh-LNB"/>

@@ -11,6 +11,7 @@ import UIKit
 protocol VoterImageSetDelegate {
     func setDownloaded(set: VoterImageSet)
     func setFinished(set: VoterImageSet, image: Image)
+    func setFailed(set: VoterImageSet)
 }
 
 class VoterImageSet: UIView, VoterImageDelegate {
@@ -81,6 +82,10 @@ class VoterImageSet: UIView, VoterImageDelegate {
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = 0
         }, completion: nil)
+    }
+    
+    func imageFailed(image: VoterImage) {
+        self.delegate.setFailed(self)
     }
     
     func imageFlagged(image: VoterImage) {

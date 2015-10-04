@@ -13,7 +13,7 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
 UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
 
     private var pageController: UIPageViewController!
-    private var pages = 2
+    private var pages = 3
     private var nextPage = 0
     private var webUrl: NSURL!
     

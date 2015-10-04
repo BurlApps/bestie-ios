@@ -12,6 +12,7 @@ protocol VoterImageDelegate {
     func imageSelected(image: VoterImage)
     func imageDownloaded(image: VoterImage)
     func imageFlagged(image: VoterImage)
+    func imageFailed(image: VoterImage)
 }
 
 class VoterImage: UIImageView {
@@ -111,11 +112,14 @@ class VoterImage: UIImageView {
     
     func downloadImage() {
         self.voterImage.getImage { (image) -> Void in
-            self.image = image
             self.loaded = true
             
-            if !self.transparent {
-                self.backgroundColor = Colors.voterImageBackground
+            if image != nil {
+                self.image = image
+                
+                if !self.transparent {
+                    self.backgroundColor = Colors.voterImageBackground
+                }
             }
             
             self.delegate.imageDownloaded(self)

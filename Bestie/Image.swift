@@ -64,7 +64,7 @@ class Image {
     class func create(image: UIImage, user: User) -> Image {
         let voterImage = PFObject(className: "Image")
         let imageData = UIImageJPEGRepresentation(image, 0.7)
-        let imageFile = PFFile(name: "image.jpeg", data: imageData!)
+        let imageFile = PFFile(name: "image.jpeg", data: imageData!, contentType: "image/jpeg")
         
         voterImage["gender"] = user.gender
         voterImage["creator"] = user.parse
@@ -115,7 +115,7 @@ class Image {
         self.parse.saveInBackground()
     }
     
-    func getImage(callback: (image: UIImage) -> Void) {
+    func getImage(callback: (image: UIImage!) -> Void) {
         if self.image != nil {
             callback(image: self.image)
             return
@@ -130,6 +130,9 @@ class Image {
                 if let image: UIImage = response.result.value {
                     callback(image: image)
                     imageCache.addImage(image, forRequest: request)
+                } else {
+                    callback(image: nil)
+                    print(response)
                 }
             }
         }

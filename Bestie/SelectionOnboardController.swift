@@ -124,6 +124,9 @@ class SelectionOnboardController: OnboardPageController {
     }
     
     func submit() {
+        //self.onboardController.user.gender = self.gender
+        //self.onboardController.user.interested = self.interest
+        
         self.onboardController.user.changeGenderInterest(self.gender, interest: self.interest)
         self.onboardController.nextController()
         

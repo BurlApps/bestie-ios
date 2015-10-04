@@ -50,15 +50,18 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         
         self.user = User.current()
         
-        if self.user != nil && self.user.gender != nil && self.user.interested != nil {
+        if self.user != nil {
             self.user.aliasMixpanel()
-            self.performSegueWithIdentifier("finishedSegue", sender: self)
-        
         } else {
             User.register({ (user) -> Void in
                 self.user = user
             })
-            
+        }
+
+        
+        if self.user != nil && self.user.gender != nil && self.user.interested != nil {
+            self.performSegueWithIdentifier("finishedSegue", sender: self)
+        } else {
             self.showController()
         }
     }
@@ -92,8 +95,8 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
             
             self.user.mixpanel.people.set(properties)
             self.user.mixpanel.track("Mobile.User.Registered", properties: properties)
-            self.user.mixpanel.track("Mobile.Onboard.Next", properties: [
-                "next": self.nextPage == 1 ? "voter" : "upload"
+            self.user.mixpanel.track("Mobile.Onboard.Finished", properties: [
+                "Next": self.nextPage == 1 ? "Vote" : "Upload"
             ])
         } else {
             self.showController()
