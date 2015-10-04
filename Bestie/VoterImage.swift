@@ -18,6 +18,7 @@ class VoterImage: UIImageView {
     var voterImage: Image!
     var delegate: VoterImageDelegate!
     
+    private var tutorialLabel: UILabel!
     private var percentLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -44,6 +45,19 @@ class VoterImage: UIImageView {
         self.percentLabel.alpha = 0
         
         self.addSubview(self.percentLabel)
+        
+        self.tutorialLabel = UILabel(frame: CGRectMake(0, 0, frame.width, frame.height))
+        self.tutorialLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        self.tutorialLabel.textColor = UIColor.whiteColor()
+        self.tutorialLabel.textAlignment = .Center
+        self.tutorialLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
+        self.tutorialLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.tutorialLabel.layer.shadowOpacity = 1
+        self.tutorialLabel.font = UIFont(name: "Bariol-Bold", size: 36)
+        self.tutorialLabel.alpha = 0
+        self.tutorialLabel.text = "Tap Me"
+        
+        self.addSubview(self.tutorialLabel)
         
         let flag = UIImage(named: "Flag")
         let flagView = UIImageView(image: flag)
@@ -98,8 +112,13 @@ class VoterImage: UIImageView {
     
     func showPercent() {
         UIView.animateWithDuration(Globals.voterSetInterval, animations: {
-            self.percentLabel?.alpha = 1
+            self.percentLabel.alpha = 1
+            self.tutorialLabel.alpha = 0
         })
+    }
+    
+    func showTutorial() {
+        self.tutorialLabel.alpha = 1
     }
     
     func flag(gesture: UIGestureRecognizer) {

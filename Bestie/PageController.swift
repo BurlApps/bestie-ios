@@ -10,6 +10,7 @@ import THTinderNavigationController_ssuchanowski
 
 class PageController: UIViewController {
     
+    var newUser = true
     var startingPage: Int = 1
     var pageController: THTinderNavigationController!
     
@@ -17,16 +18,20 @@ class PageController: UIViewController {
         super.viewDidLoad()
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsController = storyBoard.instantiateViewControllerWithIdentifier("SettingsController") as! SettingsController
+        let voterController = storyBoard.instantiateViewControllerWithIdentifier("VoteController") as! VoteController
+        let bridgeController = storyBoard.instantiateViewControllerWithIdentifier("BridgeController") as! BridgeController
+        
+        voterController.tutorialShown = !newUser
         
         self.navigationController?.navigationBarHidden = true
         
         self.pageController = THTinderNavigationController()
         
         self.pageController.paggedViewControllers = [
-            storyBoard.instantiateViewControllerWithIdentifier("SettingsController"),
-            storyBoard.instantiateViewControllerWithIdentifier("VoteController"),
-            storyBoard.instantiateViewControllerWithIdentifier("BridgeController")
+            settingsController, voterController, bridgeController
         ]
+        
         self.pageController.navbarItemViews = [
             NavigationBarItem(namedImage: "Settings", special: false),
             NavigationBarItem(namedImage: "Face-Left", special: true),

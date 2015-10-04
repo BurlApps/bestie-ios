@@ -12,6 +12,7 @@ import UIKit
 class OnboardController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var user: User!
+    var newUser: Bool = true
     var nextPage = 1
     private var currentPage = 0
     private var controllers: [OnboardPageController] = []
@@ -49,6 +50,7 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         super.viewWillAppear(animated)
         
         self.user = User.current()
+        self.newUser = self.user == nil
         
         if self.user != nil {
             self.user.aliasMixpanel()
@@ -58,7 +60,6 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
             })
         }
 
-        
         if self.user != nil && self.user.gender != nil && self.user.interested != nil {
             self.performSegueWithIdentifier("finishedSegue", sender: self)
         } else {
@@ -68,8 +69,10 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        
-        (segue.destinationViewController as! PageController).startingPage = self.nextPage
+        let controller =  segue.destinationViewController as! PageController
+            
+        controller.startingPage = self.nextPage
+        controller.newUser = self.newUser
     }
     
     func createPage(name: String) {

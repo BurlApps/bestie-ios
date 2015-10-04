@@ -10,8 +10,9 @@ import UIKit
 
 class VoteController: UIViewController, VoterImageSetDelegate {
 
+    var tutorialShown = false
+    
     private var downloading = false
-    private var textLabelBig = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
     private var sets: [VoterSet] = []
@@ -72,6 +73,11 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if first {
             voterSet.frame.origin.y = 0
+        }
+        
+        if !self.tutorialShown {
+            self.tutorialShown = true
+            voterSet.showTutorial()
         }
         
         voterSet.updateSet(self.sets[0])

@@ -37,6 +37,11 @@ class VoterImageSet: UIView, VoterImageDelegate {
         self.voterImages.first?.updateImage(voterSet.image1)
         self.voterImages.last?.updateImage(voterSet.image2)
     }
+    
+    func showTutorial() {
+        self.voterImages.first?.showTutorial()
+        self.voterImages.last?.showTutorial()
+    }
 
     func createVoterImage(top: Bool) {
         let veritcal = Globals.voterSetVerticalPadding
