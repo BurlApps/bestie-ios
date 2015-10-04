@@ -115,23 +115,23 @@ class Image {
         self.parse.saveInBackground()
     }
     
-    func getImage(callback: ((image: UIImage!) -> Void)!) {
+    func getImage(callback: (image: UIImage!) -> Void) {
         if self.image != nil {
-            callback?(image: self.image)
+            callback(image: self.image)
             return
         }
         
         let request = NSURLRequest(URL: self.imageURL)
         
         if let image = imageCache.imageForRequest(request) {
-            callback?(image: image)
+            callback(image: image)
         } else {
             downloader.downloadImage(URLRequest: request) { response in                
                 if let image: UIImage = response.result.value {
-                    callback?(image: image)
+                    callback(image: image)
                     imageCache.addImage(image, forRequest: request)
                 } else {
-                    callback?(image: nil)
+                    callback(image: nil)
                     print(response)
                 }
             }
