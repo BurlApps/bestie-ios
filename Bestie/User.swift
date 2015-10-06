@@ -85,7 +85,7 @@ class User {
         PFUser.logOut()
     }
     
-    // MARK: Instance Methods
+    // MARK: Instance Methods    
     func logout() {
         User.logout()
     }
@@ -100,6 +100,8 @@ class User {
         
         self.batch = batch
         self.parse["batch"] = batch.parse
+        
+        currentBatch = batch
         
         relation.addObject(batch.parse)
         

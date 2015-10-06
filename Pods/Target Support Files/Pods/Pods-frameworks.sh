@@ -58,6 +58,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Mixpanel.framework'
   install_framework 'Pods/Onboard.framework'
   install_framework 'Pods/THTinderNavigationController_ssuchanowski.framework'
+  install_framework 'Pods/TOMSMorphingLabel.framework'
   install_framework 'Pods/TTTAttributedLabel.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -67,5 +68,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Mixpanel.framework'
   install_framework 'Pods/Onboard.framework'
   install_framework 'Pods/THTinderNavigationController_ssuchanowski.framework'
+  install_framework 'Pods/TOMSMorphingLabel.framework'
   install_framework 'Pods/TTTAttributedLabel.framework'
 fi

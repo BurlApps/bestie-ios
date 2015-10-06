@@ -27,7 +27,7 @@ class Batch {
         self.parse = object
     }
     
-    class func create(images: [Image], user: User, callback: ((batch: Batch) -> Void)!) {
+    class func create(images: [Image], user: User, callback: ((batch: Batch!) -> Void)!) {
         let batch = PFObject(className: "Batch")
         let relation = batch.relationForKey("images")
         var maxVotes = 0
@@ -53,6 +53,7 @@ class Batch {
                     callback?(batch: newBatch)
                 })
             } else {
+                callback?(batch: nil)
                 ErrorHandler.handleParseError(error!)
             }
         }
@@ -60,25 +61,12 @@ class Batch {
         user.mixpanel.people.increment("Batches", by: 1)
     }
     
-    func userVoted() {
-        let userVotes = self.userVotes + 1
-        
-        if userVotes == self.maxVotes {
-            Globals.showVoterAlert()
-        }
-        
-        if userVotes <= self.maxVotes {
-            self.userVotes = userVotes
-            Globals.batchUpdated()
-        }
-    }
-    
     func userPercent() -> Float {
-        return self.userVotes/self.maxVotes
+        return min(self.userVotes, self.maxVotes)/self.maxVotes
     }
     
     func votesPercent() -> Float {
-        return self.votes/self.maxVotes
+        return min(self.votes, self.maxVotes)/self.maxVotes
     }
     
     func percent() -> Float {

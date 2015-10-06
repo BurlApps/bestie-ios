@@ -26,10 +26,6 @@ class VoterSet {
             return
         }
         
-        if let batch = user.batch {
-            batch.userVoted()
-        }
-        
         var looser = self.image1
         
         if winner.parse.objectId == self.image1.parse.objectId {
@@ -39,7 +35,21 @@ class VoterSet {
         PFCloud.callFunctionInBackground("setVoted", withParameters: [
             "winner": winner.parse.objectId!,
             "loser": looser.parse.objectId!
-        ])
+        ]) { (response: AnyObject?, error: NSError?) -> Void in
+            if response != nil {
+                let data = response as! NSDictionary
+                
+                user.batch?.userVotes = data["userVotes"] as! Float
+                
+                Globals.progressBarsUpdate()
+                
+                if data["finished"] as! Bool {
+                    Globals.showVoterAlert()
+                }
+            } else if error != nil {
+                ErrorHandler.handleParseError(error!)
+            }
+        }
         
         user.mixpanel.people.increment("Votes", by: 1)
     }

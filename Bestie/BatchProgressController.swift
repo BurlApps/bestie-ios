@@ -85,11 +85,9 @@ class BatchProgressController: UIViewController {
     }
     
     func updateUser() {
-        if self.user.batch != nil {
-            self.user.batch.fetch({ () -> Void in
-                Globals.batchUpdated()
-            })
-        }
+        self.user.batch.fetch({ () -> Void in
+            Globals.batchUpdated()
+        })
     }
     
     func updateBatch(batch: Batch) {

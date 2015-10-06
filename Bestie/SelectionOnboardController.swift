@@ -37,7 +37,7 @@ class SelectionOnboardController: OnboardPageController {
         self.initButton(self.uploadButton)
         self.initButton(self.voteButton)
         
-        self.voteButton.backgroundColor = Colors.batchSubmitAlternateButton
+        self.uploadButton.backgroundColor = Colors.batchSubmitAlternateButton
         
         self.initImage(self.genderMale, type: "gender", tag: 0)
         self.initImage(self.genderFemale, type: "gender", tag: 1)
@@ -124,9 +124,6 @@ class SelectionOnboardController: OnboardPageController {
     }
     
     func submit() {
-        //self.onboardController.user.gender = self.gender
-        //self.onboardController.user.interested = self.interest
-        
         self.onboardController.user.changeGenderInterest(self.gender, interest: self.interest)
         self.onboardController.nextController()
         

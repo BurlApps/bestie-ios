@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Initialize Parse
         ParseCrashReporting.enable()
+        PFUser.enableRevocableSessionInBackground()
         Parse.setApplicationId("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", clientKey: "aA6IKoTDyboREj5gNfWQ2PasrmaaRYtMTUlugje0")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         

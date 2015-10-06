@@ -18,6 +18,7 @@ class Globals {
     static let progressBarWidth: CGFloat = 7
     
     static let spinner: CGFloat = 100
+    static let spinnerDuration: Double = 0.6
 
     static let onboardAlpha: CGFloat = 0.05
     
@@ -88,11 +89,14 @@ class Globals {
         }
     }
     
-    class func batchUpdated() {
+    class func progressBarsUpdate() {
         if self.voterController != nil {
             self.voterController.progressBarUpdate()
         }
-        
+    }
+    
+    class func batchUpdated() {
+        self.progressBarsUpdate()
         self.reloadBridgeController()
     }
     

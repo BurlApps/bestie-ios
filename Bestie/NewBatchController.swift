@@ -147,13 +147,9 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         }
         
         Batch.create(images, user: self.user) { (batch) -> Void in
-            print(1)
+            Globals.batchUpdated()
             
-            self.user.fetch({ () -> Void in
-                print(2)
-                
-                self.submitButton.setTitle(text, forState: .Normal)
-            })
+            self.submitButton.setTitle(text, forState: .Normal)
             
             self.user.mixpanel.timeEvent("Mobile.Batch.Results")
             self.user.mixpanel.track("Mobile.Batch.Create", properties: [

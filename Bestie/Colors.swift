@@ -33,7 +33,7 @@ class Colors {
     static let onboardText = red
     static let onboardIndicator = red
     static let onboardIndicatorBackground = lightGray
-    static let onboardSeparator = borderColor
+    static let onboardSeparator = navBar
     
     static let voterTextLabel = blue
     static let voterImageBorder = borderColor

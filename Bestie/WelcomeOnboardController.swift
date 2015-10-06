@@ -99,11 +99,8 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
     func createPage(index: Int) -> OnboardImageController {
         let page = OnboardImageController()
         
+        page.updateFrame(self.pageContainer.frame, index: index)
         page.pageIndex = index
-        page.view.frame = self.pageContainer.frame
-        page.imageView.image = UIImage(named: "Onboard-\(index)")
-        page.imageView.frame = CGRectMake(0, 0,
-            self.pageContainer.frame.width, self.pageContainer.frame.height)
         
         return page
     }

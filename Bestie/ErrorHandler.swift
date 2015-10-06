@@ -23,6 +23,7 @@ class ErrorHandler {
     private class func handleInvalidSessionTokenError() {
         User.logout()
         Globals.showOnboarding()
+        
         print("force logout")
     }
 }

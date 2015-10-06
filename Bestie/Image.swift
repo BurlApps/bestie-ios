@@ -112,7 +112,7 @@ class Image {
     func activate(batch: Batch) {
         self.parse["active"] = true
         self.parse["batch"] = batch.parse
-        self.parse.saveInBackground()
+        self.parse.saveEventually()
     }
     
     func getImage(callback: ((image: UIImage!) -> Void)!) {

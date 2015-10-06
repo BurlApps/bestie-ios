@@ -55,7 +55,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.toValue = NSNumber(double: M_PI)
-        animation.duration = 0.8
+        animation.duration = Globals.spinnerDuration
         animation.cumulative = true
         animation.repeatCount = Float.infinity
         animation.fillMode = kCAFillModeForwards
@@ -169,6 +169,10 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func progressBarUpdate() {
         var percent: Float = 0
         
+        if self.progressBar1 == nil {
+            return
+        }
+        
         if self.user.batch != nil && self.user.batch!.active == true {
             let tmp = self.user.batch!.userPercent()
             percent = tmp
@@ -177,11 +181,9 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                 percent = 0
             }
         }
-            
-        if self.progressBar1 != nil {
-            self.progressBar1.progress(percent, animation: true)
-            self.progressBar2.progress(percent, animation: true)
-        }
+        
+        self.progressBar1.progress(percent, animation: true)
+        self.progressBar2.progress(percent, animation: true)
     }
     
     func showVoteAlert() {
@@ -202,6 +204,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         } else {
             set.resetPosition()
             set.updateSet(self.sets[0])
+            
             self.sets.removeFirst()
             self.voterSets.append(set)
         }
@@ -220,10 +223,6 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         if self.sets.count < 5 {
             self.updateSets()
-        }
-        
-        if self.user.batch != nil {
-            self.user.batch!.userVoted()
         }
     }
 }

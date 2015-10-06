@@ -39,7 +39,7 @@ class ImageTableCell: UITableViewCell {
         self.percentLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
         self.percentLabel.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.percentLabel.layer.shadowOpacity = 1
-        self.percentLabel.font = UIFont(name: "Bariol-Bold", size: 100)
+        self.percentLabel.font = UIFont(name: "Bariol-Bold", size: 60)
         
         self.imageViewer.clipsToBounds = true
         self.imageViewer.contentMode = .ScaleAspectFill
