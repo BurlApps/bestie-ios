@@ -53,6 +53,7 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         self.button.backgroundColor = Colors.batchSubmitButton
         self.button.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.button.layer.masksToBounds = true
+        self.button.setTitle(Strings.onboardWelcomeButton, forState: .Normal)
         
         self.pageControl.numberOfPages = self.pages
         self.pageControl.currentPage = 0

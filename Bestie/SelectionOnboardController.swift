@@ -33,6 +33,11 @@ class SelectionOnboardController: OnboardPageController {
 
         self.interestLabel.textColor = Colors.batchNumbers
         self.genderLabel.textColor = Colors.batchNumbers
+        self.genderLabel.text = Strings.onboardSelectionGender
+        self.interestLabel.text = Strings.onboardSelectionInterest
+        
+        self.uploadButton.setTitle(Strings.onboardSelectionUploadButton, forState: .Normal)
+        self.voteButton.setTitle(Strings.onboardSelectionVotingButton, forState: .Normal)
         
         self.initButton(self.uploadButton)
         self.initButton(self.voteButton)

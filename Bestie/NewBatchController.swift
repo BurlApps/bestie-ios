@@ -140,13 +140,14 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         var images: [Image] = []
         let text = self.submitButton.titleLabel?.text
         
-        self.submitButton.setTitle("saving...", forState: .Normal)
+        self.submitButton.setTitle("creating...", forState: .Normal)
         
         for image in self.uploadedImages {
             images.append(image as! Image)
         }
         
         Batch.create(images, user: self.user) { (batch) -> Void in
+            Globals.slideToVotingScreen()
             Globals.batchUpdated()
             
             self.submitButton.setTitle(text, forState: .Normal)

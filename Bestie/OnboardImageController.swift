@@ -45,20 +45,15 @@ class OnboardImageController: OnboardPageController {
     func updateFrame(frame: CGRect, index: Int) {
         switch(index) {
             case 0:
-                self.strings = [
-                    "Find your best photo\nto post on Instagram",
-                    "Find your best photo\nto post on Tinder",
-                    "Find your best photo\nto post on Facebook",
-                    "Find your best photo\nto post on Twitter"
-                ]
+                self.strings = Strings.onboardPage1
                 self.label.textColor = UIColor(red:0.16, green:0.36, blue:0.51, alpha:1)
             
             case 1:
-                self.strings = ["Give your opinion on\nother people's pics..."]
+                self.strings = Strings.onboardPage2
                 self.label.textColor = UIColor(red:1, green:0.42, blue:0.4, alpha:1)
             
             default:
-                self.strings = ["...and see how they\nmatch with the crowd"]
+                self.strings = Strings.onboardPage3
                 self.label.textColor = UIColor(red:1, green:0.42, blue:0.4, alpha:1)
         }
         
