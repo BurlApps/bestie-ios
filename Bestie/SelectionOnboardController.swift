@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SelectionOnboardController: OnboardPageController {
     
@@ -129,7 +130,14 @@ class SelectionOnboardController: OnboardPageController {
     }
     
     func submit() {
+        SVProgressHUD.setBackgroundColor(UIColor.blackColor())
+        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
+        SVProgressHUD.setDefaultMaskType(.Black)
+        SVProgressHUD.setFont(UIFont(name: "Bariol-Bold", size: 24))
+        SVProgressHUD.showWithStatus("Buckle up...")
+        
         User.register(self.gender, interest: self.interest, callback: { (user) -> Void in
+            SVProgressHUD.dismiss()
             self.onboardController.user = user
             self.onboardController.nextController()
             
