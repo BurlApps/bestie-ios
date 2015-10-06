@@ -135,6 +135,7 @@ class User {
         self.batch = nil
         self.parse.removeObjectForKey("batch")
         self.parse.saveInBackground()
+        
         Globals.batchUpdated()
     }
     

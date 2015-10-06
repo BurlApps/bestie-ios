@@ -10,7 +10,8 @@ import UIKit
 
 class VoteController: UIViewController, VoterImageSetDelegate {
 
-    private var tutorialShown = false
+    private var votingTutorial = false
+    private var barsTutorial = false
     private var downloading = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
@@ -27,15 +28,15 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         
         Globals.voterController = self
         
-        self.tutorialShown = StateTracker.hadVotingTutorial()
+        self.votingTutorial = StateTracker.hadVotingTutorial()
+        self.barsTutorial = StateTracker.hadBarsTutorial()
         
-        self.setupProgressBars()
         self.setUpLabel()
         self.setupSpinner()
+        self.setupProgressBars()
         self.updateSets()
         
         let image = UIImage(named: "HeaderBackground")
-        
         self.backgroundView.backgroundColor = UIColor(patternImage: image!)
         self.backgroundView.alpha = Globals.onboardAlpha
     }
@@ -76,8 +77,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
             voterSet.frame.origin.y = 0
         }
         
-        if !self.tutorialShown {
-            self.tutorialShown = true
+        if !self.votingTutorial {
+            self.votingTutorial = true
             voterSet.showTutorial()
         }
         
@@ -153,6 +154,43 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.view.addSubview(self.textLabel)
     }
     
+    func showBarsTutorial() {
+        if true || !self.barsTutorial {
+            //self.barsTutorial = true
+            //StateTracker.barsTutorial(true)
+            
+            let label = UILabel(frame: Globals.pageController.view.frame)
+            
+            label.textAlignment = .Center
+            label.font = UIFont(name: "Bariol-Bold", size: 32)
+            label.textColor = Colors.red
+            label.backgroundColor = UIColor.whiteColor()
+            label.text = Strings.votingBarTutorial
+            label.numberOfLines = 0
+            
+            self.progressBarUpdate(0.8, override: true)
+            self.progressBar1.locked = true
+            self.progressBar2.locked = true
+            
+            self.view.insertSubview(label, belowSubview: self.progressBar1)
+            
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64((Globals.votingBarTutorial) * Double(NSEC_PER_SEC)))
+            
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                UIView.animateWithDuration(Globals.voterSetInterval, animations: { () -> Void in
+                    label.alpha = 0
+                }, completion: { (success: Bool) -> Void in
+                    label.removeFromSuperview()
+                    
+                    self.progressBar1.locked = false
+                    self.progressBar2.locked = false
+                    
+                    self.progressBarUpdate()
+                })
+            }
+        }
+    }
+    
     func setupProgressBars() {
         let width = Globals.progressBarWidth
         let frame1 = CGRectMake(0, 0, width, self.view.frame.height)
@@ -167,14 +205,12 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
 
-    func progressBarUpdate() {
-        var percent: Float = 0
-        
+    func progressBarUpdate(var percent: Float = 0, override: Bool = false) {        
         if self.progressBar1 == nil {
             return
         }
         
-        if self.user.batch != nil && self.user.batch!.active == true {
+        if !override && self.user.batch != nil && self.user.batch!.active == true {
             let tmp = self.user.batch!.userPercent()
             percent = tmp
             

@@ -16,6 +16,8 @@ class PageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Globals.pageController = self
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let settingsController = storyBoard.instantiateViewControllerWithIdentifier("SettingsController") as! SettingsController
         let voterController = storyBoard.instantiateViewControllerWithIdentifier("VoteController") as! VoteController
@@ -55,7 +57,6 @@ class PageController: UIViewController {
             }
         }
         
-        Globals.pageController = self
         Globals.logoImage = self.pageController.navbarItemViews[1] as! NavigationBarItem
     }
 }

@@ -25,6 +25,7 @@ class Globals {
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150
     static let voterTextLabelInterval: NSTimeInterval = 0.5
+    static let votingBarTutorial: Double = 4
     
     static let voterSetVerticalPadding: CGFloat = 6
     static let voterSetMiddlePadding: CGFloat = 5
@@ -64,6 +65,12 @@ class Globals {
     class func showVoterAlert() {
         if self.voterController != nil {
             self.voterController.showVoteAlert()
+        }
+    }
+    
+    class func showVoterBarsTutorial() {
+        if self.voterController != nil {
+            self.voterController.showBarsTutorial()
         }
     }
     

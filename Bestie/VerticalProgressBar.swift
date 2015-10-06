@@ -13,6 +13,8 @@ class VerticalProgressBar: UIView {
     private var progress: Float = 0
     private var bar: UIView!
     
+    var locked: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -31,22 +33,26 @@ class VerticalProgressBar: UIView {
     }
     
     func increment(increment: Float, animation: Bool) {
-        self.progress += increment
-        self.progress(self.progress, animation: animation)
+        if !self.locked {
+            self.progress += increment
+            self.progress(self.progress, animation: animation)
+        }
     }
     
     func progress(percent: Float, animation: Bool) {
-        self.progress = min(percent, 1)
-        
-        let frame = self.frame
-        let height = frame.height * CGFloat(self.progress)
+        if !self.locked {
+            self.progress = min(percent, 1)
             
-        UIView.animateWithDuration(animation ? 0.2 : 0, animations: {
-            self.bar.frame = CGRectMake(0,  0, frame.width, height)
-        }, completion: { (finished: Bool) -> Void in
-            if finished && percent >= 1 {
-                self.progress(0, animation: true)
-            }
-        })
+            let frame = self.frame
+            let height = frame.height * CGFloat(self.progress)
+                
+            UIView.animateWithDuration(animation ? 0.2 : 0, animations: {
+                self.bar.frame = CGRectMake(0,  0, frame.width, height)
+            }, completion: { (finished: Bool) -> Void in
+                if finished && percent >= 1 {
+                    self.progress(0, animation: true)
+                }
+            })
+        }
     }
 }

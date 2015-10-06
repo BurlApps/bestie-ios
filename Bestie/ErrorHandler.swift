@@ -16,6 +16,9 @@ class ErrorHandler {
             case PFErrorCode.ErrorInvalidSessionToken.rawValue:
                 self.handleInvalidSessionTokenError()
             
+            case PFErrorCode.ErrorUserCannotBeAlteredWithoutSession.rawValue:
+                self.handleInvalidSessionTokenError()
+            
             default: print(error)
         }
     }

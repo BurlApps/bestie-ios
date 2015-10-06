@@ -35,6 +35,7 @@ class Strings {
     static let votingFlagAlertCancel = "Cancel"
     static let votingFlagAlertConfirm = "Confirm"
     static let votingTutorial = "Tap Me"
+    static let votingBarTutorial = "Fill the progess bars\nto find your bestie."
     
     static let newBatchLimitAlertTitle = "Upload Limit Reached"
     static let newbatchLimitAlertMessage = "Dang! You have alot of images."

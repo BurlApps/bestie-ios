@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class NewBatchController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionCellDelegate,
@@ -139,20 +140,23 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     }
     
     @IBAction func submitBatch(sender: AnyObject) {
-        var images: [Image] = []
-        let text = self.submitButton.titleLabel?.text
+        SVProgressHUD.setBackgroundColor(UIColor.blackColor())
+        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
+        SVProgressHUD.setDefaultMaskType(.Black)
+        SVProgressHUD.setFont(UIFont(name: "Bariol-Bold", size: 24))
+        SVProgressHUD.showWithStatus("Uploading...")
         
-        self.submitButton.setTitle("creating...", forState: .Normal)
+        var images: [Image] = []
         
         for image in self.uploadedImages {
             images.append(image as! Image)
         }
         
         Batch.create(images, user: self.user) { (batch) -> Void in
+            SVProgressHUD.dismiss()
+            Globals.showVoterBarsTutorial()
             Globals.slideToVotingScreen()
             Globals.batchUpdated()
-            
-            self.submitButton.setTitle(text, forState: .Normal)
             
             self.user.mixpanel.timeEvent("Mobile.Batch.Results")
             self.user.mixpanel.track("Mobile.Batch.Create", properties: [
