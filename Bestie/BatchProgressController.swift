@@ -30,7 +30,9 @@ class BatchProgressController: UIViewController {
         self.votingButton.backgroundColor = Colors.batchSubmitButton
         self.votingButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.votingButton.layer.masksToBounds = true
+        self.votingButton.setTitle(Strings.batchProgressButton, forState: .Normal)
         
+        self.informationLabel.text = Strings.batchProgressInformation
         self.informationLabel.textColor = Colors.batchInstructions
         self.progressLabel.textColor = Colors.batchProgressBar
         
@@ -98,7 +100,7 @@ class BatchProgressController: UIViewController {
                 self.startBirdTimer()
                 
                 self.circleChart.hidden = true
-                self.progressLabel.text = "We Workin!"
+                self.progressLabel.text = Strings.batchProgressStarted
             } else {
                 self.stopBirdTimer()
                 self.circleChart.hidden = false

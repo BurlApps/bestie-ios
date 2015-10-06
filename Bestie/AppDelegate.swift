@@ -14,17 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
         
         //Initialize Parse
+        let credentials = Globals.parseCredentials()
         ParseCrashReporting.enable()
         PFUser.enableRevocableSessionInBackground()
-        Parse.setApplicationId("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", clientKey: "aA6IKoTDyboREj5gNfWQ2PasrmaaRYtMTUlugje0")
+        Parse.setApplicationId(credentials[0], clientKey: credentials[1])
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        let mixpanel = Mixpanel.sharedInstanceWithToken("ae9f71c91262dc1c018c2b75aa5af8c3")
+        let mixpanel = Mixpanel.sharedInstanceWithToken(Globals.mixpanelToken())
         mixpanel.miniNotificationPresentationTime = 10
         mixpanel.identify(mixpanel.distinctId)
         
@@ -51,8 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Configure Settings Panel
         let versionBuild = Globals.appBuildVersion()
-        userDefaults.setValue(versionBuild, forKey: "VersionNumber")
-        userDefaults.synchronize()
+        StateTracker.setVersion(versionBuild)
     
         return true
     }

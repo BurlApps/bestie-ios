@@ -33,6 +33,7 @@
 		D35BF4E71BB765ED008B2D4D /* ShareGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */; };
 		D35BF4E91BB76DBE008B2D4D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35BF4E81BB76DBE008B2D4D /* Social.framework */; };
 		D37369D91BC37D8600FF086E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37369D81BC37D8600FF086E /* Strings.swift */; };
+		D37369DB1BC44ADA00FF086E /* StateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37369DA1BC44ADA00FF086E /* StateTracker.swift */; };
 		D396FE691BB877E300EA6301 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D396FE661BB877E300EA6301 /* Bolts.framework */; };
 		D396FE6A1BB877E300EA6301 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D396FE671BB877E300EA6301 /* Parse.framework */; };
 		D396FE6B1BB877E300EA6301 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D396FE681BB877E300EA6301 /* ParseCrashReporting.framework */; };
@@ -108,6 +109,9 @@
 		D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareGenerator.swift; sourceTree = "<group>"; };
 		D35BF4E81BB76DBE008B2D4D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D37369D81BC37D8600FF086E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		D37369DA1BC44ADA00FF086E /* StateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateTracker.swift; sourceTree = "<group>"; };
+		D37369DD1BC4536300FF086E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		D37369DE1BC4536A00FF086E /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		D37C42A31BB3981C00CA9364 /* Bestie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bestie-Bridging-Header.h"; sourceTree = "<group>"; };
 		D37C42A71BB3998D00CA9364 /* SLPagingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SLPagingView.framework; path = "Pods/../build/Debug-iphoneos/SLPagingView.framework"; sourceTree = "<group>"; };
 		D396FE661BB877E300EA6301 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				D37369D81BC37D8600FF086E /* Strings.swift */,
 				D32FFCF51BB39CD000E3858F /* Colors.swift */,
 				D32FFD0C1BB4B6BB00E3858F /* Globals.swift */,
+				D37369DA1BC44ADA00FF086E /* StateTracker.swift */,
 				D396FE821BB8798D00EA6301 /* Config.swift */,
 				D396FE801BB8792000EA6301 /* Installation.swift */,
 				D396FE841BB87C9000EA6301 /* User.swift */,
@@ -267,6 +272,7 @@
 		D33693F51BB3779D00F6A801 /* Bestie */ = {
 			isa = PBXGroup;
 			children = (
+				D37369DC1BC4535100FF086E /* Config */,
 				D37C429E1BB386EE00CA9364 /* Core */,
 				D32FFCF41BB39C6600E3858F /* Models */,
 				D37C42A01BB3872000CA9364 /* Controllers */,
@@ -333,6 +339,15 @@
 				D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		D37369DC1BC4535100FF086E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				D37369DE1BC4536A00FF086E /* Debug.xcconfig */,
+				D37369DD1BC4536300FF086E /* Release.xcconfig */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		D37C429E1BB386EE00CA9364 /* Core */ = {
@@ -571,6 +586,7 @@
 				D32FFCF61BB39CD000E3858F /* Colors.swift in Sources */,
 				D396FE921BB8AD3E00EA6301 /* Array.swift in Sources */,
 				D34734131BB6034B009C19DE /* ImageCollectionCell.swift in Sources */,
+				D37369DB1BC44ADA00FF086E /* StateTracker.swift in Sources */,
 				D396FE901BB89CCA00EA6301 /* ErrorHandler.swift in Sources */,
 				D3CABE5B1BBCB199000A6936 /* WelcomeOnboardController.swift in Sources */,
 				D32FFD071BB48DE000E3858F /* VerticalProgressBar.swift in Sources */,
@@ -640,6 +656,7 @@
 /* Begin XCBuildConfiguration section */
 		D336940E1BB3779D00F6A801 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D37369DE1BC4536A00FF086E /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -685,6 +702,7 @@
 		};
 		D336940F1BB3779D00F6A801 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D37369DD1BC4536300FF086E /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

@@ -39,8 +39,10 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         self.submitButton.backgroundColor = Colors.batchSubmitButton
         self.submitButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.submitButton.layer.masksToBounds = true
+        self.submitButton.setTitle(Strings.newBatchButton, forState: .Normal)
         
         self.informationLabel.textColor = Colors.batchInfomation
+        self.informationLabel.text = Strings.newBatchInformation
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -115,9 +117,9 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
             
             Globals.pageController.presentViewController(picker, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Upload Limit Reached",
-                message: "Dang! You have alot of images.", preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: "Okay", style: .Cancel, handler: nil)
+            let alert = UIAlertController(title: Strings.newBatchLimitAlertTitle,
+                message: Strings.newbatchLimitAlertMessage, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Strings.newBatchLimitAlertCancel, style: .Cancel, handler: nil)
             alert.addAction(cancelAction)
             
             Globals.pageController.presentViewController(alert, animated: true, completion: nil)

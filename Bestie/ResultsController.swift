@@ -34,11 +34,13 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         self.saveButton.backgroundColor = Colors.batchSubmitButton
         self.saveButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.saveButton.layer.masksToBounds = true
+        self.saveButton.setTitle(Strings.batchResultsSaveButton, forState: .Normal)
         
         self.startOverButton.tintColor = UIColor.whiteColor()
         self.startOverButton.backgroundColor = Colors.batchSubmitAlternateButton
         self.startOverButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.startOverButton.layer.masksToBounds = true
+        self.startOverButton.setTitle(Strings.batchResultsNewButton, forState: .Normal)
         
         self.view.layer.masksToBounds = true
         
@@ -72,8 +74,9 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
             self.saveButton.setTitle(text, forState: .Normal)
             self.user.mixpanel.track("Mobile.User.Save")
             
-            let controller = UIAlertController(title: "Bestie Saved!", message: "Your image has been saved and is ready for upload to Instagram.", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
+            let controller = UIAlertController(title: Strings.batchResultsAlertTitle,
+                message: Strings.batchResultsAlertMessage, preferredStyle: .Alert)
+            controller.addAction(UIAlertAction(title: Strings.batchResultsAlertCancel, style: .Cancel, handler: nil))
             Globals.pageController.presentViewController(controller, animated: true, completion: nil)
         }
     }

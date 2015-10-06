@@ -55,7 +55,7 @@ class VoterImage: UIImageView {
         self.tutorialLabel.layer.shadowOpacity = 1
         self.tutorialLabel.font = UIFont(name: "Bariol-Bold", size: 36)
         self.tutorialLabel.alpha = 0
-        self.tutorialLabel.text = "Tap Me"
+        self.tutorialLabel.text = Strings.votingTutorial
         
         self.addSubview(self.tutorialLabel)
         
@@ -122,11 +122,11 @@ class VoterImage: UIImageView {
     }
     
     func flag(gesture: UIGestureRecognizer) {
-        let controller = UIAlertController(title: "Flag Photo",
-            message: "Please confirm this photo is spam or inappropriate.", preferredStyle: .Alert)
+        let controller = UIAlertController(title: Strings.votingFlagAlertTitle,
+            message: Strings.votingFlagAlertMessage, preferredStyle: .Alert)
         
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        let confirm = UIAlertAction(title: "Confirm", style: .Destructive) { (action: UIAlertAction) -> Void in
+        let cancel = UIAlertAction(title: Strings.votingFlagAlertCancel, style: .Cancel, handler: nil)
+        let confirm = UIAlertAction(title: Strings.votingFlagAlertConfirm, style: .Destructive) { (action: UIAlertAction) -> Void in
             self.delegate.imageFlagged(self)
         }
         

@@ -12,7 +12,6 @@ import UIKit
 class OnboardController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var user: User!
-    var newUser: Bool = true
     var nextPage = 1
     private var currentPage = 0
     private var controllers: [OnboardPageController] = []
@@ -50,17 +49,10 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         super.viewWillAppear(animated)
         
         self.user = User.current()
-        self.newUser = self.user == nil
         
         if self.user != nil {
             self.user.aliasMixpanel()
-        } else {
-            User.register({ (user) -> Void in
-                self.user = user
-            })
-        }
 
-        if self.user != nil && self.user.gender != nil && self.user.interested != nil {
             self.performSegueWithIdentifier("finishedSegue", sender: self)
         } else {
             self.showController()
@@ -72,7 +64,6 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         let controller =  segue.destinationViewController as! PageController
             
         controller.startingPage = self.nextPage
-        controller.newUser = self.newUser
     }
     
     func createPage(name: String) {
@@ -89,15 +80,9 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         
         if self.currentPage >= self.controllers.count {
             self.currentPage = 0
+            
             self.performSegueWithIdentifier("finishedSegue", sender: self)
             
-            let properties = [
-                "gender": self.user.gender,
-                "interested": self.user.interested
-            ]
-            
-            self.user.mixpanel.people.set(properties)
-            self.user.mixpanel.track("Mobile.User.Registered", properties: properties)
             self.user.mixpanel.track("Mobile.Onboard.Finished", properties: [
                 "Next": self.nextPage == 1 ? "Vote" : "Upload"
             ])

@@ -27,10 +27,13 @@ class ImageTableHeaderCell: UIViewController {
         self.view.backgroundColor = UIColor.clearColor()
         
         self.separator.backgroundColor = Colors.voterImageBorder
-        
         self.votedLabel.textColor = Colors.batchNumbers
+        
         self.bestieLabel.textColor = Colors.batchBestie
+        self.bestieLabel.text = Strings.batchResultsHeader
+        
         self.infoText.textColor = Colors.batchInfomation
+        self.infoText.text = Strings.batchResultSubheader
         
         self.container.clipsToBounds = false
         self.container.layer.masksToBounds = false

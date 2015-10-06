@@ -10,8 +10,7 @@ import UIKit
 
 class VoteController: UIViewController, VoterImageSetDelegate {
 
-    var tutorialShown = false
-    
+    private var tutorialShown = false
     private var downloading = false
     private var progressBar1: VerticalProgressBar!
     private var progressBar2: VerticalProgressBar!
@@ -27,6 +26,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         super.viewDidLoad()
         
         Globals.voterController = self
+        
+        self.tutorialShown = StateTracker.hadVotingTutorial()
         
         self.setupProgressBars()
         self.setUpLabel()
@@ -140,7 +141,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     func setUpLabel() {
         self.textLabel = UILabel()
         self.textLabel.frame = CGRectMake(0, 0, Globals.voterTextLabel, Globals.voterTextLabel)
-        self.textLabel.text = "OR"
+        self.textLabel.text = Strings.votingBubble
         self.textLabel.font = UIFont(name: "Bariol-Bold", size: 18)
         self.textLabel.layer.cornerRadius = Globals.voterTextLabel/2
         self.textLabel.layer.masksToBounds = true
@@ -187,8 +188,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func showVoteAlert() {
-        let controller = UIAlertController(title: "You Are Awesome!", message: "You have earned your Bestie! We will send it when it's ready.", preferredStyle: .Alert)
-        controller.addAction(UIAlertAction(title: "Thanks", style: .Cancel, handler: nil))
+        let controller = UIAlertController(title: Strings.votingAlertTitle, message: Strings.votingAlertMessage, preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: Strings.votingAlertCancel, style: .Cancel, handler: nil))
         Globals.pageController.presentViewController(controller, animated: true, completion: nil)
     }
     

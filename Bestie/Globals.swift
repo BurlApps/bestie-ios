@@ -48,6 +48,8 @@ class Globals {
     static let shareCardBackgroundAlpha: CGFloat = 0.2
     static let bridgeBackgroundAlpha: CGFloat = 0.08
     
+    static let infoDictionary = NSBundle.mainBundle().infoDictionary!
+    
     
     class func switchLogoFace() {
         self.logoImage.switchFace()
@@ -100,18 +102,26 @@ class Globals {
         self.reloadBridgeController()
     }
     
+    class func parseCredentials() -> [String] {
+        let parseApplicationID = self.infoDictionary["ParseApplicationID"] as! String
+        let parseClientKey = self.infoDictionary["ParseClientKey"] as! String
+        
+        return [parseApplicationID, parseClientKey]
+    }
+    
+    class func mixpanelToken() -> String {
+        return self.infoDictionary["MixpanelToken"] as! String
+    }
+    
     class func appBuildVersion() -> String {
-        let infoDictionary = NSBundle.mainBundle().infoDictionary!
-        let version = infoDictionary["CFBundleShortVersionString"] as! NSString
-        let build = infoDictionary[String(kCFBundleVersionKey)] as! NSString
+        let version = self.infoDictionary["CFBundleShortVersionString"] as! NSString
+        let build = self.infoDictionary[String(kCFBundleVersionKey)] as! NSString
         
         return "\(version) - \(build)"
     }
     
     class func appVersion() -> String {
-        let infoDictionary = NSBundle.mainBundle().infoDictionary!
-        
-        return infoDictionary["CFBundleShortVersionString"] as! String
+        return self.infoDictionary["CFBundleShortVersionString"] as! String
     }
     
 }

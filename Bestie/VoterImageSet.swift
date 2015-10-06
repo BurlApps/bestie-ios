@@ -19,6 +19,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
     var voterImages: [VoterImage] = []
     var voterSet: VoterSet!
     var flyOff: Bool = true
+    var tutorial: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +40,7 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func showTutorial() {
+        self.tutorial = true
         self.voterImages.first?.showTutorial()
         self.voterImages.last?.showTutorial()
     }
@@ -75,6 +77,10 @@ class VoterImageSet: UIView, VoterImageDelegate {
             }
         } else {
             self.delegate.setFinished(self, image: image.voterImage)
+        }
+        
+        if self.tutorial {
+            StateTracker.votingTutorial(true)
         }
         
         self.voterSet.voted(image.voterImage)

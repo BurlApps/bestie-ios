@@ -129,19 +129,20 @@ class SelectionOnboardController: OnboardPageController {
     }
     
     func submit() {
-        self.onboardController.user.changeGenderInterest(self.gender, interest: self.interest)
-        self.onboardController.nextController()
-        
-        self.gender = nil
-        self.interest = nil
-        
-        self.checkButton()
-        
-        self.resetImage(self.genderMale)
-        self.resetImage(self.genderFemale)
-        self.resetImage(self.interestMale)
-        self.resetImage(self.interestFemale)
-        self.resetImage(self.interestBoth)
+        User.register(self.gender, interest: self.interest, callback: { (user) -> Void in
+            self.onboardController.user = user
+            self.onboardController.nextController()
+            
+            self.gender = nil
+            self.interest = nil
+            self.checkButton()
+            
+            self.resetImage(self.genderMale)
+            self.resetImage(self.genderFemale)
+            self.resetImage(self.interestMale)
+            self.resetImage(self.interestFemale)
+            self.resetImage(self.interestBoth)
+        })
     }
     
     @IBAction func uploadTapped(sender: AnyObject) {

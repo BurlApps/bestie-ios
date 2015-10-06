@@ -29,23 +29,35 @@ class User {
         self.parse = user
         self.mixpanel = Mixpanel.sharedInstance()
         
+        if self.gender == nil {
+            self.changeGender("female")
+        }
+        
+        if self.interested == nil {
+            self.changeInterest("both", callback: nil)
+        }
+        
         self.loadBatch(nil)
     }
     
     // MARK: Class Methods
-    class func register(callback: ((user: User) -> Void)!) {
+    class func register(gender: String, interest: String, callback: ((user: User) -> Void)!) {
        let mixpanel = Mixpanel.sharedInstance()
         
         PFAnonymousUtils.logInWithBlock { (object: PFUser?, error: NSError?) -> Void in
             if let user: PFUser = object {
-                user.saveInBackground()
-                
                 currentUser = User(user)
                 
                 Installation.current().setUser(currentUser)
                 currentUser.aliasMixpanel()
-                
+                currentUser.changeGenderInterest(gender, interest: interest)
+            
                 callback?(user: currentUser)
+                
+                currentUser.mixpanel.track("Mobile.User.Registered", properties: [
+                    "Gender": gender,
+                    "Interested": interest
+                ])
             } else {
                 ErrorHandler.handleParseError(error!)
                 mixpanel.track("Mobile.User.Failed Authentication")
@@ -81,6 +93,9 @@ class User {
         
         mixpanel.track("Mobile.User.Logout")
         mixpanel.reset()
+        
+        StateTracker.votingTutorial(false)
+        StateTracker.barsTutorial(false)
         
         PFUser.logOut()
     }
@@ -149,6 +164,7 @@ class User {
     func changeGenderInterest(gender: String, interest: String) {
         self.gender = gender
         self.interested = interest
+        
         self.parse["gender"] = gender
         self.parse["interested"] = interested
         self.parse.saveInBackground()

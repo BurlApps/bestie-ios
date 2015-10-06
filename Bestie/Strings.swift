@@ -34,6 +34,7 @@ class Strings {
     static let votingFlagAlertMessage = "Please confirm this photo is spam or inappropriate."
     static let votingFlagAlertCancel = "Cancel"
     static let votingFlagAlertConfirm = "Confirm"
+    static let votingTutorial = "Tap Me"
     
     static let newBatchLimitAlertTitle = "Upload Limit Reached"
     static let newbatchLimitAlertMessage = "Dang! You have alot of images."
@@ -49,4 +50,7 @@ class Strings {
     static let batchResultsNewButton = "Find New Bestie"
     static let batchResultsHeader = "My Bestie"
     static let batchResultSubheader = "Like this photo of you"
+    static let batchResultsAlertTitle = "Bestie Saved!"
+    static let batchResultsAlertMessage = "Your image has been saved and is ready for upload to Instagram."
+    static let batchResultsAlertCancel = "Thanks"
 }
