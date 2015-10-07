@@ -19,13 +19,19 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>10</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MixpanelToken</key>
+	<string>${MIXPANEL_TOKEN}</string>
+	<key>ParseApplicationID</key>
+	<string>${PARSE_APPLICATION_ID}</string>
+	<key>ParseClientKey</key>
+	<string>${PARSE_CLIENT_KEY}</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bariol_Bold.ttf</string>
@@ -55,11 +61,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>ParseApplicationID</key>
-	<string>${PARSE_APPLICATION_ID}</string>
-	<key>ParseClientKey</key>
-	<string>${PARSE_CLIENT_KEY}</string>
-	<key>MixpanelToken</key>
-	<string>${MIXPANEL_TOKEN}</string>
 </dict>
 </plist>

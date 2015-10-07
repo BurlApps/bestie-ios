@@ -100,12 +100,22 @@ class ShareGenerator: NSObject, UIDocumentInteractionControllerDelegate {
             sharingItems.append(image)
         }
         
-        let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: [])
+        
+        activityViewController.excludedActivityTypes = [
+            UIActivityTypeAssignToContact,
+            UIActivityTypePrint,
+            UIActivityTypeAssignToContact,
+            UIActivityTypeAddToReadingList,
+            UIActivityTypePostToVimeo
+        ]
+        
         self.controller.presentViewController(activityViewController, animated: true, completion: nil)
     }
     
     func share(text: String, image: UIImage!) {
         self.shareSheet(text, image: image)
+        
 //        let actions = self.getSharables(image)
 //
 //        if actions.count > 1 {
@@ -113,10 +123,6 @@ class ShareGenerator: NSObject, UIDocumentInteractionControllerDelegate {
 //        } else {
 //            self.shareSheet(image)
 //        }
-    }
-    
-    func documentInteractionControllerDidEndPreview(controller: UIDocumentInteractionController) {
-        self.documentController = nil
     }
 }
 

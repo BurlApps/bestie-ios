@@ -26,6 +26,11 @@ class Strings {
     static let onboardSelectionVotingButton = "Start Voting"
     static let onboardSelectionUploadButton = "Find My Bestie"
     
+    static let logoutAlertTitle = "Logout"
+    static let logoutAlertMessage = "Are you sure you want to logout and erase all your data?"
+    static let logoutAlertCancel = "Nevermind"
+    static let logoutAlertConfirm = "I'm Sure"
+    
     static let votingBubble = "OR"
     static let votingAlertMessage = "Yay! Bestie in progress, we’ll notify you when it’s done!"
     static let votingFlagAlertTitle = "Flag Photo"
@@ -36,10 +41,14 @@ class Strings {
     static let votingBarTutorial = ("To get your bestie,\nhelp others find theirs!\n\n" +
                                     "Tap the better photo\nto fill the progress bar")
     
-    static let newbatchLimitAlertMessage = "Dang! You have alot of images."
+    static let newbatchLimitAlertMessage = "Limit to 10 please 😃"
     static let newBatchInformation = ("Add at least two photos\nof you to find the best one.\n\n" +
                                      "To get your results, help the\ncrowd find their Bestie.")
     static let newBatchButton = "Find My Bestie"
+    static let newBatchShareAlertTitle = "Want More Photos?"
+    static let newBatchShareAlertMessage = "Share Bestie with your friends and get %i photos uploads forever!"
+    static let newBatchShareAlertCancel = "No Thanks"
+    static let newBatchShareAlertConfirm = "Share Bestie"
     
     static let batchProgressInformation = "Check back here for your Bestie\nwhen you’re done voting."
     static let batchProgressStarted = "Collecting results.\nVote to get your Bestie!"

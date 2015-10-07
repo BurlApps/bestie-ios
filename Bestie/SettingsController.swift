@@ -52,8 +52,8 @@ class SettingsController: UITableViewController {
         
         case "0:1":
             let share = ShareGenerator(sender: self.view, controller: Globals.pageController)
-                
-            share.share("Bestie is pretty cool, it finds your best profile pictures for you! \(self.config.downloadUrl)", image: nil)
+            share.share(self.config.shareMessage, image: nil)
+            self.user.changeShared(true)
         
         case "1:0":
             let controller = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -76,9 +76,10 @@ class SettingsController: UITableViewController {
             Globals.pageController.presentViewController(controller, animated: true, completion: nil)
         
         case "1:1":
-            let controller = UIAlertController(title: "Logout", message: "Are you sure you want to logout and erase all your data.", preferredStyle: .Alert)
-            let no = UIAlertAction(title: "No", style: .Cancel, handler: nil)
-            let yes = UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction) -> Void in
+            let controller = UIAlertController(title: Strings.logoutAlertTitle,
+                message: Strings.logoutAlertMessage, preferredStyle: .Alert)
+            let no = UIAlertAction(title: Strings.logoutAlertCancel, style: .Cancel, handler: nil)
+            let yes = UIAlertAction(title: Strings.logoutAlertConfirm, style: .Destructive, handler: { (action: UIAlertAction) -> Void in
                 User.logout()
                 Globals.showOnboarding()
             })

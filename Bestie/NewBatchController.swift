@@ -62,7 +62,9 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let ready = count >= 2
         
         if self.config != nil {
-            self.hitLimit = count >= self.config.uploadLimit
+            let limit = self.user.shared == true ?  self.config.uploadShareLimit :  self.config.uploadLimit
+            
+            self.hitLimit = count >= limit
         }
             
         self.submitButton.hidden = !ready
@@ -118,8 +120,24 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
             picker.allowsEditing = true
             
             Globals.pageController.presentViewController(picker, animated: true, completion: nil)
-        } else {
+        } else if self.user.shared == true {
             NavNotification.show(Strings.newbatchLimitAlertMessage)
+        } else {
+            let alert = UIAlertController(title: Strings.newBatchShareAlertTitle, message: String(format: Strings.newBatchShareAlertMessage, self.config.uploadShareLimit), preferredStyle: .Alert)
+            
+            let shareButton = UIAlertAction(title: Strings.newBatchShareAlertConfirm, style: .Destructive, handler: { (action: UIAlertAction) -> Void in
+                let shareController = ShareGenerator(sender: self.view, controller: Globals.pageController)
+                
+                shareController.share(self.config.shareMessage, image: nil)
+                self.user.changeShared(true)
+            })
+            
+            let cancelButton = UIAlertAction(title: Strings.newBatchShareAlertCancel, style: .Cancel, handler: nil)
+            
+            alert.addAction(shareButton)
+            alert.addAction(cancelButton)
+            
+            Globals.pageController.presentViewController(alert, animated: true, completion: nil)
         }
     }
     

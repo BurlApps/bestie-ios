@@ -14,11 +14,13 @@ class Config {
     var host: String!
     var itunesId: String!
     var uploadLimit: Int!
+    var uploadShareLimit: Int!
     var onboardNext: Int!
     var imageMaxVotes: Int!
     var downloadUrl: String!
     var termsURL: String!
     var privacyURL: String!
+    var shareMessage: String!
     var parse: PFConfig!
     
     // MARK: Convenience Methods
@@ -30,7 +32,9 @@ class Config {
         self.termsURL = object["termsURL"] as? String
         self.privacyURL = object["privacyURL"] as? String
         self.itunesId = object["itunesId"] as? String
+        self.shareMessage = object["shareMessage"] as? String
         self.uploadLimit = object["uploadLimit"] as? Int
+        self.uploadShareLimit = object["uploadShareLimit"] as? Int
         self.onboardNext = object["onboardNext"] as? Int
         self.imageMaxVotes = object["imageMaxVotes"] as? Int
         self.parse = object

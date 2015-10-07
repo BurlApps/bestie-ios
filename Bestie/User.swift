@@ -14,6 +14,7 @@ import Mixpanel
 class User {
     
     // MARK: Instance Variables
+    var shared: Bool!
     var gender: String!
     var interested: String!
     var mixpanel: Mixpanel!
@@ -26,6 +27,7 @@ class User {
         
         self.gender = user["gender"] as? String
         self.interested = user["interested"] as? String
+        self.shared = user["shared"] as? Bool
         self.parse = user
         self.mixpanel = Mixpanel.sharedInstance()
         
@@ -35,6 +37,10 @@ class User {
         
         if self.interested == nil {
             self.changeInterest("both", callback: nil)
+        }
+        
+        if self.shared == nil {
+            self.changeShared(false)
         }
         
         self.loadBatch(nil)
@@ -51,6 +57,7 @@ class User {
                 Installation.current().setUser(currentUser)
                 currentUser.aliasMixpanel()
                 currentUser.changeGenderInterest(gender, interest: interest)
+                currentUser.changeShared(false)
             
                 callback?(user: currentUser)
                 
@@ -155,6 +162,17 @@ class User {
         } else {
             callback?()
         }
+    }
+    
+    func changeShared(shared: Bool) {
+        self.shared = shared
+        
+        self.parse["shared"] = shared
+        self.parse.saveInBackground()
+        
+        self.mixpanel.people.set([
+            "Shared": shared
+        ])
     }
     
     func changeGenderInterest(gender: String, interest: String) {
