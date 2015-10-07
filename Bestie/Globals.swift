@@ -25,7 +25,7 @@ class Globals {
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150
     static let voterTextLabelInterval: NSTimeInterval = 0.5
-    static let votingBarTutorial: Double = 6
+    static let votingBarTutorial: Double = 5
     
     static let voterSetVerticalPadding: CGFloat = 6
     static let voterSetMiddlePadding: CGFloat = 5
@@ -40,8 +40,6 @@ class Globals {
     static let batchPlusCellBorder: CGFloat = 2
     static let batchImageCellBorder: CGFloat = 1
     
-    static let batchSubmitButtonRadius: CGFloat = 23
-    
     static let resultsFirstPhotoPercentHeight: CGFloat = 0.85
     
     static let shareCardSize: CGFloat = 600
@@ -51,6 +49,9 @@ class Globals {
     
     static let infoDictionary = NSBundle.mainBundle().infoDictionary!
     
+    class func batchSubmitButtonRadius(width: CGFloat) -> CGFloat {        
+        return 23 - ((220 - width)/60)
+    }
     
     class func switchLogoFace() {
         self.logoImage.switchFace()

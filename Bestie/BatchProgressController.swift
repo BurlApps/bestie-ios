@@ -28,15 +28,14 @@ class BatchProgressController: UIViewController {
         
         self.votingButton.tintColor = UIColor.whiteColor()
         self.votingButton.backgroundColor = Colors.batchSubmitButton
-        self.votingButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.votingButton.layer.masksToBounds = true
         self.votingButton.setTitle(Strings.batchProgressButton, forState: .Normal)
         
-        self.informationLabel.numberOfLines = 0
+        self.informationLabel.numberOfLines = 2
         self.informationLabel.text = Strings.batchProgressInformation
         self.informationLabel.textColor = Colors.batchInstructions
         self.progressLabel.textColor = Colors.batchProgressBar
-        self.progressLabel.numberOfLines = 0
+        self.progressLabel.numberOfLines = 2
         
         self.circleChart.startAngle = -90
         self.circleChart.glowMode = .NoGlow
@@ -45,6 +44,12 @@ class BatchProgressController: UIViewController {
         self.circleChart.hidden = true
         
         self.view.addSubview(self.circleChart)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.votingButton.layer.cornerRadius = Globals.batchSubmitButtonRadius(self.votingButton.frame.width)
     }
     
     @IBAction func votingButtonTapped(sender: AnyObject) {

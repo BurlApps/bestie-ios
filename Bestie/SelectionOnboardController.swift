@@ -40,11 +40,6 @@ class SelectionOnboardController: OnboardPageController {
         self.uploadButton.setTitle(Strings.onboardSelectionUploadButton, forState: .Normal)
         self.voteButton.setTitle(Strings.onboardSelectionVotingButton, forState: .Normal)
         
-        self.initButton(self.uploadButton)
-        self.initButton(self.voteButton)
-        
-        self.uploadButton.backgroundColor = Colors.batchSubmitAlternateButton
-        
         self.initImage(self.genderMale, type: "gender", tag: 0)
         self.initImage(self.genderFemale, type: "gender", tag: 1)
         self.initImage(self.interestMale, type: "interest", tag: 0)
@@ -52,10 +47,19 @@ class SelectionOnboardController: OnboardPageController {
         self.initImage(self.interestBoth, type: "interest", tag: 2)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.initButton(self.uploadButton)
+        self.initButton(self.voteButton)
+        
+        self.uploadButton.backgroundColor = Colors.batchSubmitAlternateButton
+    }
+    
     func initButton(button: UIButton) {
         button.tintColor = UIColor.whiteColor()
         button.backgroundColor = Colors.batchSubmitButton
-        button.layer.cornerRadius = Globals.batchSubmitButtonRadius
+        button.layer.cornerRadius = Globals.batchSubmitButtonRadius(button.frame.width)
         button.layer.masksToBounds = true
         button.hidden = true
     }

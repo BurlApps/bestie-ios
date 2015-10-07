@@ -18,7 +18,7 @@ class ImageCollectionCell: UICollectionViewCell {
     var voterImage: Image!
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var removeIcon: UILabel!
+    @IBOutlet weak var removeIcon: UIButton!
     
     func setup(voterImage: Image) {
         self.voterImage = voterImage
@@ -39,15 +39,11 @@ class ImageCollectionCell: UICollectionViewCell {
         self.removeIcon.layer.borderWidth = 3
         self.removeIcon.layer.borderColor = Colors.batchImageCellRemoveBorder.CGColor
         self.removeIcon.layer.masksToBounds = true
-        self.removeIcon.textColor = Colors.red
-        self.removeIcon.font = UIFont.boldSystemFontOfSize(16)
-        self.removeIcon.userInteractionEnabled = true
-        
-        let gesture = UITapGestureRecognizer(target: self, action: "tapped:")
-        self.removeIcon.addGestureRecognizer(gesture)
+        self.removeIcon.tintColor = Colors.red
+        self.removeIcon.titleLabel?.font = UIFont.boldSystemFontOfSize(16)
     }
     
-    func tapped(gesture: UIGestureRecognizer) {
+    @IBAction func tapped(sender: UIButton) {
         self.delegate.removeTapped(self)
     }
 

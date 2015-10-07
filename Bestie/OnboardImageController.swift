@@ -26,8 +26,9 @@ class OnboardImageController: OnboardPageController {
         super.viewDidLoad()
         
         self.label.font = UIFont(name: "Bariol-Bold", size: 34)
+        self.label.adjustsFontSizeToFitWidth = true
         self.label.minimumScaleFactor = 0.5
-        self.label.numberOfLines = 0
+        self.label.numberOfLines = 2
         self.label.textAlignment = .Center
         self.label.morphingEnabled = false
         
@@ -58,8 +59,8 @@ class OnboardImageController: OnboardPageController {
         }
         
         self.view.frame = frame
-        self.label.frame = CGRectMake(10, 40, frame.width-20, 70)
-        self.imageView.frame = CGRectMake(0, 120, frame.width, frame.height - 120)
+        self.label.frame = CGRectMake(10, 30, frame.width-20, 70)
+        self.imageView.frame = CGRectMake(0, 110, frame.width, frame.height - 120)
         self.imageView.image = UIImage(named: "Onboard-\(index)")
         self.cycleText()
         

@@ -51,7 +51,6 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         
         self.button.tintColor = UIColor.whiteColor()
         self.button.backgroundColor = Colors.batchSubmitButton
-        self.button.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.button.layer.masksToBounds = true
         self.button.setTitle(Strings.onboardWelcomeButton, forState: .Normal)
         
@@ -75,8 +74,8 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
         self.showController()
     }
@@ -85,6 +84,7 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         super.viewWillAppear(animated)
         
         self.pageController.view.frame = self.pageContainer.frame
+        self.button.layer.cornerRadius = Globals.batchSubmitButtonRadius(self.button.frame.width)
         self.showController()
     }
     

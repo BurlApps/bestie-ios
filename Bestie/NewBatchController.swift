@@ -38,13 +38,18 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
         self.submitButton.tintColor = UIColor.whiteColor()
         self.submitButton.backgroundColor = Colors.batchSubmitButton
-        self.submitButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.submitButton.layer.masksToBounds = true
         self.submitButton.setTitle(Strings.newBatchButton, forState: .Normal)
         
         self.informationLabel.textColor = Colors.batchInfomation
         self.informationLabel.text = Strings.newBatchInformation
-        self.informationLabel.numberOfLines = 0
+        self.informationLabel.numberOfLines = 5
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.submitButton.layer.cornerRadius = Globals.batchSubmitButtonRadius(self.submitButton.frame.width)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -141,10 +146,10 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         }
     }
     
-    func removeTapped(cell: ImageCollectionCell) {
-        cell.voterImage.remove()
+    func removeTapped(cell: ImageCollectionCell) {        
         self.uploadedImages.removeObject(cell.voterImage)
         self.collectionView.reloadData()
+        cell.voterImage.remove()
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {

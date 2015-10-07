@@ -58,5 +58,5 @@ class Strings {
     static let batchResultsNewButton = "Start Over"
     static let batchResultsHeader = "My Bestie"
     static let batchResultSubheader = "Like this photo of you"
-    static let batchResultsAlertMessage = "Bestie has been saved!"
+    static let batchResultsAlertMessage = "Saved your Bestie!"
 }

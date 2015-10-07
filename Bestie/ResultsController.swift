@@ -32,13 +32,11 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         
         self.saveButton.tintColor = UIColor.whiteColor()
         self.saveButton.backgroundColor = Colors.batchSubmitButton
-        self.saveButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.saveButton.layer.masksToBounds = true
         self.saveButton.setTitle(Strings.batchResultsSaveButton, forState: .Normal)
         
         self.startOverButton.tintColor = UIColor.whiteColor()
         self.startOverButton.backgroundColor = Colors.batchSubmitAlternateButton
-        self.startOverButton.layer.cornerRadius = Globals.batchSubmitButtonRadius
         self.startOverButton.layer.masksToBounds = true
         self.startOverButton.setTitle(Strings.batchResultsNewButton, forState: .Normal)
         
@@ -55,6 +53,9 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
         let percent = Globals.resultsFirstPhotoPercentHeight
         self.tableView.tableHeaderView!.frame.size.height = self.view.frame.height * percent
         self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        
+        self.saveButton.layer.cornerRadius = Globals.batchSubmitButtonRadius(self.saveButton.frame.width)
+        self.startOverButton.layer.cornerRadius = Globals.batchSubmitButtonRadius(self.startOverButton.frame.width)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
