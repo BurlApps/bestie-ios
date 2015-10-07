@@ -74,10 +74,7 @@ class ResultsController: UIViewController, UITableViewDataSource, UITableViewDel
             self.saveButton.setTitle(text, forState: .Normal)
             self.user.mixpanel.track("Mobile.User.Save")
             
-            let controller = UIAlertController(title: Strings.batchResultsAlertTitle,
-                message: Strings.batchResultsAlertMessage, preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: Strings.batchResultsAlertCancel, style: .Cancel, handler: nil))
-            Globals.pageController.presentViewController(controller, animated: true, completion: nil)
+            NavNotification.show(Strings.batchResultsAlertMessage)
         }
     }
     

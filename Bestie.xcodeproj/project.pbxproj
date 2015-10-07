@@ -58,6 +58,7 @@
 		D3BC59121BB39E28006CF8DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BC59111BB39E28006CF8DF /* UIKit.framework */; };
 		D3C670A81BB62ABF0024D204 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */; };
 		D3C670AA1BB631FE0024D204 /* ImageTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */; };
+		D3C8F49B1BC4B12C00478626 /* NavNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8F49A1BC4B12C00478626 /* NavNotification.swift */; };
 		D3CABE591BBCAC9B000A6936 /* OnboardPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE581BBCAC9B000A6936 /* OnboardPageController.swift */; };
 		D3CABE5B1BBCB199000A6936 /* WelcomeOnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE5A1BBCB199000A6936 /* WelcomeOnboardController.swift */; };
 		D3CABE5D1BBCB1F1000A6936 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CABE5C1BBCB1F1000A6936 /* OnboardController.swift */; };
@@ -139,6 +140,7 @@
 		D3BC59111BB39E28006CF8DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D3C670A71BB62ABF0024D204 /* ImageTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
 		D3C670A91BB631FE0024D204 /* ImageTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableHeaderCell.swift; sourceTree = "<group>"; };
+		D3C8F49A1BC4B12C00478626 /* NavNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavNotification.swift; sourceTree = "<group>"; };
 		D3CABE581BBCAC9B000A6936 /* OnboardPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardPageController.swift; sourceTree = "<group>"; };
 		D3CABE5A1BBCB199000A6936 /* WelcomeOnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardController.swift; sourceTree = "<group>"; };
 		D3CABE5C1BBCB1F1000A6936 /* OnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				D37C429E1BB386EE00CA9364 /* Core */,
 				D32FFCF41BB39C6600E3858F /* Models */,
 				D37C42A01BB3872000CA9364 /* Controllers */,
+				D35BF4E51BB765CC008B2D4D /* Utility */,
 				D396FE941BB8B62600EA6301 /* Extensions */,
 				D37C429F1BB3870800CA9364 /* Support Files */,
 			);
@@ -317,7 +320,6 @@
 				D347340B1BB5C3D5009C19DE /* BatchProgressController.swift */,
 				D347340D1BB5C3E7009C19DE /* ResultsController.swift */,
 				D347340F1BB60316009C19DE /* Views */,
-				D35BF4E51BB765CC008B2D4D /* Utility */,
 			);
 			name = "Bridge Controller";
 			sourceTree = "<group>";
@@ -336,6 +338,7 @@
 		D35BF4E51BB765CC008B2D4D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D3C8F49A1BC4B12C00478626 /* NavNotification.swift */,
 				D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */,
 			);
 			name = Utility;
@@ -590,6 +593,7 @@
 				D396FE901BB89CCA00EA6301 /* ErrorHandler.swift in Sources */,
 				D3CABE5B1BBCB199000A6936 /* WelcomeOnboardController.swift in Sources */,
 				D32FFD071BB48DE000E3858F /* VerticalProgressBar.swift in Sources */,
+				D3C8F49B1BC4B12C00478626 /* NavNotification.swift in Sources */,
 				D3A941DB1BBB39210003119A /* Set.swift in Sources */,
 				D37369D91BC37D8600FF086E /* Strings.swift in Sources */,
 				D396FE811BB8792000EA6301 /* Installation.swift in Sources */,

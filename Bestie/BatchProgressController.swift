@@ -32,9 +32,11 @@ class BatchProgressController: UIViewController {
         self.votingButton.layer.masksToBounds = true
         self.votingButton.setTitle(Strings.batchProgressButton, forState: .Normal)
         
+        self.informationLabel.numberOfLines = 0
         self.informationLabel.text = Strings.batchProgressInformation
         self.informationLabel.textColor = Colors.batchInstructions
         self.progressLabel.textColor = Colors.batchProgressBar
+        self.progressLabel.numberOfLines = 0
         
         self.circleChart.startAngle = -90
         self.circleChart.glowMode = .NoGlow

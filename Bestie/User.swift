@@ -120,13 +120,8 @@ class User {
         
         relation.addObject(batch.parse)
         
-        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                callback?()
-            } else {
-                ErrorHandler.handleParseError(error!)
-            }
-        }
+        callback?()
+        self.parse.saveInBackground()
     }
     
     func resetBatch() {

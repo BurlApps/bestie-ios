@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import CWStatusBarNotification
-import AudioToolbox
 
 class VoteController: UIViewController, VoterImageSetDelegate {
 
@@ -226,22 +224,9 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func showVoteAlert() {
-        let notification = CWStatusBarNotification()
-        
-        notification.notificationAnimationInStyle = .Top
-        notification.notificationAnimationOutStyle = .Top
-        notification.notificationAnimationType = .Overlay
-        notification.notificationStyle = .NavigationBarNotification
-        notification.notificationLabelBackgroundColor = Colors.blue
-        notification.notificationLabelTextColor = UIColor.whiteColor()
-        notification.notificationLabelFont = UIFont(name: "Bariol-Bold", size: 22)
-        notification.notificationTappedBlock = {
-            notification.dismissNotification()
+        NavNotification.show(Strings.votingAlertMessage, duration: 8) { () -> Void in
             Globals.slideToBatchScreen()
         }
-        
-        AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
-        notification.displayNotificationWithMessage(Strings.votingAlertMessage, forDuration: 5)
     }
     
     func setOffScreen(set: VoterImageSet) {

@@ -60,6 +60,7 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         self.pageControl.pageIndicatorTintColor = Colors.lightGray
         self.pageControl.currentPageIndicatorTintColor = Colors.red
         self.pageControl.backgroundColor = UIColor.clearColor()
+        self.pageControl.transform = CGAffineTransformMakeScale(1.4, 1.4)
         
         Config.sharedInstance { (config) -> Void in
             let tos = NSURL(string: config.termsURL)

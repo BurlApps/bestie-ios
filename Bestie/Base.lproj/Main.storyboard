@@ -227,9 +227,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add at least 2 photos to get started" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="my8-NT-SMi">
-                                <rect key="frame" x="0.0" y="238" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="113" width="320" height="350"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="PhE-Zu-CWs"/>
+                                    <constraint firstAttribute="height" constant="350" id="PhE-Zu-CWs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="27"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -436,16 +436,16 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq1-Kg-rxa">
-                                <rect key="frame" x="16" y="263" width="288" height="50"/>
+                                <rect key="frame" x="16" y="248" width="288" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="yqe-cY-Icq"/>
+                                    <constraint firstAttribute="height" constant="80" id="yqe-cY-Icq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="31"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Face-Left" translatesAutoresizingMaskIntoConstraints="NO" id="VWl-aY-fn3">
-                                <rect key="frame" x="135" y="203" width="50" height="50"/>
+                                <rect key="frame" x="135" y="188" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="yGx-4S-GpO"/>
                                     <constraint firstAttribute="height" constant="50" id="yZi-SO-yGC"/>

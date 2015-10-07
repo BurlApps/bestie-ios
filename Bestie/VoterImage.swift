@@ -55,6 +55,7 @@ class VoterImage: UIImageView {
         self.tutorialLabel.layer.shadowOpacity = 1
         self.tutorialLabel.font = UIFont(name: "Bariol-Bold", size: 36)
         self.tutorialLabel.alpha = 0
+        self.tutorialLabel.numberOfLines = 0
         self.tutorialLabel.text = Strings.votingTutorial
         
         self.addSubview(self.tutorialLabel)

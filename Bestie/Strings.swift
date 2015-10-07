@@ -15,43 +15,39 @@ class Strings {
         "Find your best photo\nto post on Twitter"
     ]
     static let onboardPage2 = [
-        "Give your opinion on\nother people's pics..."
+        "Give your opinion on\nother people's photos..."
     ]
     static let onboardPage3 = [
-        "...and see how they\nmatch with the crowd"
+        "...and see if it\nmatches the crowd's!"
     ]
     static let onboardWelcomeButton = "Get Started"
-    static let onboardSelectionGender = "Tap who you are"
-    static let onboardSelectionInterest = "Tap who you want to see"
+    static let onboardSelectionGender = "I am"
+    static let onboardSelectionInterest = "I want to see"
     static let onboardSelectionVotingButton = "Start Voting"
     static let onboardSelectionUploadButton = "Find My Bestie"
     
     static let votingBubble = "OR"
-    static let votingAlertTitle = "You Are Awesome!"
-    static let votingAlertMessage = "You have earned your Bestie!"
-    static let votingAlertCancel = "Thanks"
+    static let votingAlertMessage = "Yay! Bestie in progress, we’ll notify you when it’s done!"
     static let votingFlagAlertTitle = "Flag Photo"
     static let votingFlagAlertMessage = "Please confirm this photo is spam or inappropriate."
     static let votingFlagAlertCancel = "Cancel"
     static let votingFlagAlertConfirm = "Confirm"
-    static let votingTutorial = "Tap Me"
-    static let votingBarTutorial = "Fill the progess bars\nto find your bestie."
+    static let votingTutorial = "Tap the better\nphoto"
+    static let votingBarTutorial = ("To get your bestie,\nhelp others find theirs!\n\n" +
+                                    "Tap the better photo\nto fill the progress bar")
     
-    static let newBatchLimitAlertTitle = "Upload Limit Reached"
     static let newbatchLimitAlertMessage = "Dang! You have alot of images."
-    static let newBatchLimitAlertCancel = "Okay"
-    static let newBatchInformation = "Add at least 2 photos\nto get started"
+    static let newBatchInformation = ("Add at least two photos\nof you to find the best one.\n\n" +
+                                     "To get your results, help the\ncrowd find their Bestie.")
     static let newBatchButton = "Find My Bestie"
     
-    static let batchProgressInformation = "Vote to get your results 😀\nGive a vote to get a vote"
-    static let batchProgressStarted = "We Workin"
+    static let batchProgressInformation = "Check back here for your Bestie\nwhen you’re done voting."
+    static let batchProgressStarted = "Collecting results.\nVote to get your Bestie!"
     static let batchProgressButton = "Back To Voting"
     
-    static let batchResultsSaveButton = "Save Photo"
-    static let batchResultsNewButton = "Find New Bestie"
+    static let batchResultsSaveButton = "Save Bestie"
+    static let batchResultsNewButton = "Start Over"
     static let batchResultsHeader = "My Bestie"
     static let batchResultSubheader = "Like this photo of you"
-    static let batchResultsAlertTitle = "Bestie Saved!"
-    static let batchResultsAlertMessage = "Your image has been saved and is ready for upload to Instagram."
-    static let batchResultsAlertCancel = "Thanks"
+    static let batchResultsAlertMessage = "Bestie has been saved!"
 }
