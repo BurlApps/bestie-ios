@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CWStatusBarNotification
+import AudioToolbox
 
 class VoteController: UIViewController, VoterImageSetDelegate {
 
@@ -155,9 +157,9 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func showBarsTutorial() {
-        if true || !self.barsTutorial {
-            //self.barsTutorial = true
-            //StateTracker.barsTutorial(true)
+        if !self.barsTutorial {
+            self.barsTutorial = true
+            StateTracker.barsTutorial(true)
             
             let label = UILabel(frame: Globals.pageController.view.frame)
             
@@ -224,9 +226,22 @@ class VoteController: UIViewController, VoterImageSetDelegate {
     }
     
     func showVoteAlert() {
-        let controller = UIAlertController(title: Strings.votingAlertTitle, message: Strings.votingAlertMessage, preferredStyle: .Alert)
-        controller.addAction(UIAlertAction(title: Strings.votingAlertCancel, style: .Cancel, handler: nil))
-        Globals.pageController.presentViewController(controller, animated: true, completion: nil)
+        let notification = CWStatusBarNotification()
+        
+        notification.notificationAnimationInStyle = .Top
+        notification.notificationAnimationOutStyle = .Top
+        notification.notificationAnimationType = .Overlay
+        notification.notificationStyle = .NavigationBarNotification
+        notification.notificationLabelBackgroundColor = Colors.blue
+        notification.notificationLabelTextColor = UIColor.whiteColor()
+        notification.notificationLabelFont = UIFont(name: "Bariol-Bold", size: 22)
+        notification.notificationTappedBlock = {
+            notification.dismissNotification()
+            Globals.slideToBatchScreen()
+        }
+        
+        AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
+        notification.displayNotificationWithMessage(Strings.votingAlertMessage, forDuration: 5)
     }
     
     func setOffScreen(set: VoterImageSet) {

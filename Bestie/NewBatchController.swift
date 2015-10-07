@@ -8,6 +8,8 @@
 
 import UIKit
 import SVProgressHUD
+import CWStatusBarNotification
+import AudioToolbox
 
 class NewBatchController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionCellDelegate,
@@ -118,12 +120,21 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
             
             Globals.pageController.presentViewController(picker, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: Strings.newBatchLimitAlertTitle,
-                message: Strings.newbatchLimitAlertMessage, preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: Strings.newBatchLimitAlertCancel, style: .Cancel, handler: nil)
-            alert.addAction(cancelAction)
+            let notification = CWStatusBarNotification()
             
-            Globals.pageController.presentViewController(alert, animated: true, completion: nil)
+            notification.notificationAnimationInStyle = .Top
+            notification.notificationAnimationOutStyle = .Top
+            notification.notificationAnimationType = .Overlay
+            notification.notificationStyle = .NavigationBarNotification
+            notification.notificationLabelBackgroundColor = Colors.red
+            notification.notificationLabelTextColor = UIColor.whiteColor()
+            notification.notificationLabelFont = UIFont(name: "Bariol-Bold", size: 22)
+            notification.notificationTappedBlock = {
+                notification.dismissNotification()
+            }
+            
+            AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
+            notification.displayNotificationWithMessage(Strings.newbatchLimitAlertMessage, forDuration: 3)
         }
     }
     

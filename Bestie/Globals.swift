@@ -80,6 +80,12 @@ class Globals {
         }
     }
     
+    class func slideToBatchScreen() {
+        if self.pageController != nil {
+            self.pageController.pageController.setCurrentPage(2, animated: true)
+        }
+    }
+    
     class func showOnboarding() {
         if self.pageController != nil {
             self.pageController.navigationController?.popToRootViewControllerAnimated(false)

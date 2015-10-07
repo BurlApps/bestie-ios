@@ -28,7 +28,7 @@ class Strings {
     
     static let votingBubble = "OR"
     static let votingAlertTitle = "You Are Awesome!"
-    static let votingAlertMessage = "You have earned your Bestie! We will send it when it's ready."
+    static let votingAlertMessage = "You have earned your Bestie!"
     static let votingAlertCancel = "Thanks"
     static let votingFlagAlertTitle = "Flag Photo"
     static let votingFlagAlertMessage = "Please confirm this photo is spam or inappropriate."
