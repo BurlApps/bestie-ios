@@ -18,7 +18,7 @@ class Strings {
         "Give your opinion on\nother people's photos..."
     ]
     static let onboardPage3 = [
-        "...and see if it\nmatches the crowd's!"
+        "...and see if it\nmatches the crowd's"
     ]
     static let onboardWelcomeButton = "Get Started"
     static let onboardSelectionGender = "I am"

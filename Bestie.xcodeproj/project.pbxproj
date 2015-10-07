@@ -431,6 +431,7 @@
 				D33693F11BB3779D00F6A801 /* Resources */,
 				620E02E3F11502B92DACF1DD /* Embed Pods Frameworks */,
 				E30ED8059271C4DF1AC767CB /* Copy Pods Resources */,
+				D366F2C81BC5A447006ADE39 /* Parse Symbols */,
 			);
 			buildRules = (
 			);
@@ -557,6 +558,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D366F2C81BC5A447006ADE39 /* Parse Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Parse Symbols";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd ../Parse\n\n#parse symbols ${PARSE_PROJECT} --path=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
 		E30ED8059271C4DF1AC767CB /* Copy Pods Resources */ = {

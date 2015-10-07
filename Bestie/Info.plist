@@ -32,6 +32,8 @@
 	<string>${PARSE_APPLICATION_ID}</string>
 	<key>ParseClientKey</key>
 	<string>${PARSE_CLIENT_KEY}</string>
+	<key>ParseProject</key>
+	<string>${PARSE_PROJECT}</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bariol_Bold.ttf</string>

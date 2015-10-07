@@ -127,11 +127,14 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                         self.sets.append(set)
                     }
                     
-                    if self.voterSets.count == 0 {
+                    let voterSetCount = self.voterSets.count
+                    let setsCount = sets.count
+                    
+                    if voterSetCount == 0 {
                        self.createVoterSet(true)
                     }
                     
-                    if self.voterSets.count == 1 {
+                    if voterSetCount <= 1 && setsCount >= 2 {
                         self.createVoterSet(false)
                     }
                 }

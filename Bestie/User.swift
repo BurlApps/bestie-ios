@@ -236,20 +236,18 @@ class User {
     }
     
     func pullSets(callback: (sets: [VoterSet]) -> Void) {
-        autoreleasepool {
-            PFCloud.callFunctionInBackground("feed", withParameters: nil) { (data: AnyObject?, error: NSError?) -> Void in
-                if let objects: [PFObject] = data as? [PFObject] {
-                    var sets: [VoterSet] = []
-                    
-                    for images in objects.chunk(2) {
-                        sets.append(VoterSet(Image(images[0]), Image(images[1])))
-                    }
-                    
-                    callback(sets: sets)
-                } else {
-                    callback(sets: [])
-                    ErrorHandler.handleParseError(error!)
+        PFCloud.callFunctionInBackground("feed", withParameters: nil) { (data: AnyObject?, error: NSError?) -> Void in
+            if let objects: [PFObject] = data as? [PFObject] {
+                var sets: [VoterSet] = []
+                
+                for images in objects.chunk(2) {
+                    sets.append(VoterSet(Image(images[0]), Image(images[1])))
                 }
+                
+                callback(sets: sets)
+            } else {
+                callback(sets: [])
+                ErrorHandler.handleParseError(error!)
             }
         }
     }
