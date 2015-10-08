@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsController: UITableViewController {
+class SettingsController: UITableViewController, ShareGeneratorDelegate {
     
     private var user = User.current()
     private var config: Config!
@@ -52,8 +52,8 @@ class SettingsController: UITableViewController {
         
         case "0:1":
             let share = ShareGenerator(sender: self.view, controller: Globals.pageController)
+            share.delegate = self
             share.share(self.config.shareMessage, image: nil)
-            self.user.changeShared(true)
         
         case "1:0":
             let controller = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -99,6 +99,10 @@ class SettingsController: UITableViewController {
             
         default: return
         }
+    }
+    
+    func generatorShared() {
+        self.user.changeShared(true)
     }
 
 }

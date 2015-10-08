@@ -28,7 +28,7 @@ class PageController: UIViewController {
         self.pageController = THTinderNavigationController()
         
         self.pageController.paggedViewControllers = [
-            settingsController, voterController, bridgeController
+            settingsController, bridgeController, voterController
         ]
         
         self.pageController.navbarItemViews = [

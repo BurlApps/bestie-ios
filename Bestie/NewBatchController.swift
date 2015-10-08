@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class NewBatchController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout, PlusCollectionCellDelegate, ImageCollectionCellDelegate,
-UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, ShareGeneratorDelegate {
     
     private let reuseIdentifier = "cell"
     private let firstReuseIdentifier = "firstCell"
@@ -126,15 +126,18 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
             
             Globals.pageController.presentViewController(picker, animated: true, completion: nil)
         } else if self.user.shared == true {
-            NavNotification.show(Strings.newbatchLimitAlertMessage)
+            NavNotification.show(
+                String(format: Strings.newbatchLimitAlertMessage, self.config.uploadShareLimit)
+            )
         } else {
             let alert = UIAlertController(title: Strings.newBatchShareAlertTitle, message: String(format: Strings.newBatchShareAlertMessage, self.config.uploadShareLimit), preferredStyle: .Alert)
             
             let shareButton = UIAlertAction(title: Strings.newBatchShareAlertConfirm, style: .Destructive, handler: { (action: UIAlertAction) -> Void in
                 let shareController = ShareGenerator(sender: self.view, controller: Globals.pageController)
                 
+                shareController.delegate = self
+                
                 shareController.share(self.config.shareMessage, image: nil)
-                self.user.changeShared(true)
             })
             
             let cancelButton = UIAlertAction(title: Strings.newBatchShareAlertCancel, style: .Cancel, handler: nil)
@@ -146,7 +149,16 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         }
     }
     
-    func removeTapped(cell: ImageCollectionCell) {        
+    func generatorShared() {
+        NavNotification.show(
+            String(format: Strings.newBatchShareConfirmed, self.config.uploadShareLimit)
+        )
+        
+        self.user.changeShared(true)
+        self.hitLimit = false
+    }
+    
+    func removeTapped(cell: ImageCollectionCell) {
         self.uploadedImages.removeObject(cell.voterImage)
         self.collectionView.reloadData()
         cell.voterImage.remove()

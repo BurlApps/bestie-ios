@@ -21,6 +21,7 @@ class Globals {
     static let spinnerDuration: Double = 0.6
 
     static let onboardAlpha: CGFloat = 0.05
+    static let onboardChange: NSTimeInterval = 3
     
     static let voterTextLabel: CGFloat = 50
     static let voterTextLabelBig: CGFloat = 150
@@ -64,8 +65,14 @@ class Globals {
     }
     
     class func showVoterAlert() {
-        if self.voterController != nil {
-            self.voterController.showVoteAlert()
+        NavNotification.show(Strings.votingAlertMessage, duration: 8) { () -> Void in
+            Globals.slideToBatchScreen()
+        }
+    }
+    
+    class func showBatchAlert() {
+        NavNotification.show(Strings.batchResultsReady, duration: 3) { () -> Void in
+            Globals.slideToBatchScreen()
         }
     }
     
@@ -77,13 +84,13 @@ class Globals {
     
     class func slideToVotingScreen() {
         if self.pageController != nil {
-            self.pageController.pageController.setCurrentPage(1, animated: true)
+            self.pageController.pageController.setCurrentPage(2, animated: true)
         }
     }
     
     class func slideToBatchScreen() {
         if self.pageController != nil {
-            self.pageController.pageController.setCurrentPage(2, animated: true)
+            self.pageController.pageController.setCurrentPage(1, animated: true)
         }
     }
     
@@ -93,7 +100,7 @@ class Globals {
         }
     }
     
-    class func reloadUser() {        
+    class func reloadUser() {
         if let user = User.current() {
             user.fetch({ () -> Void in
                 if user.batch != nil {
@@ -102,6 +109,16 @@ class Globals {
                     })
                 }
             })
+        }
+    }
+    
+    class func reloadBatch() {
+        if let user = User.current() {
+            if user.batch != nil {
+                user.batch.fetch({ () -> Void in
+                    self.reloadBridgeController()
+                })
+            }
         }
     }
     

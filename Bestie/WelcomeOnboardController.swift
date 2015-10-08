@@ -94,8 +94,9 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         }
     }
     
-    @IBAction func tapped(sender: AnyObject) {        
+    @IBAction func tapped(sender: AnyObject) {
         self.onboardController.nextController()
+        Notifications().register()
     }
     
     func createPage(index: Int) -> OnboardImageController {

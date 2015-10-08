@@ -93,7 +93,7 @@ class BatchProgressController: UIViewController {
         self.birdImage.image = UIImage(named: "Face-\(direction)")
     }
     
-    func updateUser() {
+    func updateUser() {        
         self.user.batch.fetch({ () -> Void in
             Globals.batchUpdated()
         })

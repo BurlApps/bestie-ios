@@ -82,9 +82,9 @@ class BridgeController: UIViewController {
         } else {
             state = 2
             
-            self.resultsController.updateBatch(self.user.batch)
             self.progressController.stopTimer()
             self.progressController.stopBirdTimer()
+            self.resultsController.updateBatch(self.user.batch)
         }
         
         if self.lastState == nil || self.lastState != state {            

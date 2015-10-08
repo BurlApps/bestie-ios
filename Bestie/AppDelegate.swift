@@ -82,7 +82,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 action = action.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                 
                 switch(action) {
-                    case "user.reload": Globals.reloadUser()
+                    case "batch.reload":
+                        Installation.current().decrementBadge()
+                        
+                        if wasActive {
+                            Globals.reloadBatch()
+                            Globals.showBatchAlert()
+                        } else {
+                            Globals.slideToBatchScreen()
+                        }
+                    
                     default: print(action)
                 }
             }
@@ -111,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        Globals.reloadUser()
+        Globals.reloadBatch()
         Config.update(nil)
     }
     

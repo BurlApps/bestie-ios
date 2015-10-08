@@ -7,7 +7,7 @@
 //
 
 class Strings {
-    
+        
     static let onboardPage1 = [
         "Find your best photo\nto post on Instagram",
         "Find your best photo\nto post on Tinder",
@@ -41,7 +41,7 @@ class Strings {
     static let votingBarTutorial = ("To get your bestie,\nhelp others find theirs!\n\n" +
                                     "Tap the better photo\nto fill the progress bar")
     
-    static let newbatchLimitAlertMessage = "Limit to 10 please 😃"
+    static let newbatchLimitAlertMessage = "Limit to %i please 😉"
     static let newBatchInformation = ("Add at least two photos\nof you to find the best one.\n\n" +
                                      "To get your results, help the\ncrowd find their Bestie.")
     static let newBatchButton = "Find My Bestie"
@@ -49,11 +49,13 @@ class Strings {
     static let newBatchShareAlertMessage = "Share Bestie with your friends and get %i photos uploads forever!"
     static let newBatchShareAlertCancel = "No Thanks"
     static let newBatchShareAlertConfirm = "Share Bestie"
+    static let newBatchShareConfirmed = "Thanks! %i uploads unlocked 😃"
     
     static let batchProgressInformation = "Check back here for your Bestie\nwhen you’re done voting."
     static let batchProgressStarted = "Collecting results.\nVote to get your Bestie!"
     static let batchProgressButton = "Back To Voting"
     
+    static let batchResultsReady = "Your Bestie is Ready!"
     static let batchResultsSaveButton = "Save Bestie"
     static let batchResultsNewButton = "Start Over"
     static let batchResultsHeader = "My Bestie"

@@ -56,10 +56,9 @@ class User {
                 
                 Installation.current().setUser(currentUser)
                 currentUser.aliasMixpanel()
-                currentUser.changeGenderInterest(gender, interest: interest)
-                currentUser.changeShared(false)
-            
-                callback?(user: currentUser)
+                currentUser.changeGenderInterest(gender, interest: interest, callback: { () -> Void in
+                    callback?(user: currentUser)
+                })
                 
                 currentUser.mixpanel.track("Mobile.User.Registered", properties: [
                     "Gender": gender,
@@ -175,13 +174,19 @@ class User {
         ])
     }
     
-    func changeGenderInterest(gender: String, interest: String) {
+    func changeGenderInterest(gender: String, interest: String, callback: (() -> Void)!) {
         self.gender = gender
         self.interested = interest
         
         self.parse["gender"] = gender
         self.parse["interested"] = interested
-        self.parse.saveInBackground()
+        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                callback?()
+            } else {
+                ErrorHandler.handleParseError(error!)
+            }
+        }
         
         self.mixpanel.people.set([
             "Gender": gender,

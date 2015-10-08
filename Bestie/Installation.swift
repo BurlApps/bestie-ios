@@ -46,13 +46,20 @@ class Installation {
     
     func setBadge(badge: Int) {
         self.parse.badge = badge
-        self.parse.saveInBackground()
+        self.parse.saveEventually()
+    }
+    
+    func decrementBadge() {
+        if self.parse.badge != 0 {
+            self.parse.badge--
+            self.parse.saveEventually()
+        }
     }
     
     func clearBadge() {
         if self.parse.badge != 0 {
             self.parse.badge = 0
-            self.parse.saveInBackground()
+            self.parse.saveEventually()
         }
     }
 }

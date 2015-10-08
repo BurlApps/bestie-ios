@@ -254,7 +254,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.user.mixpanel.track("Mobile.Set.Voted")
         
         if (arc4random_uniform(10) + 1) <= 3 {
-            Globals.switchLogoFace()
+            //Globals.switchLogoFace()
         }
         
         if self.voterSets.count > 1 {
