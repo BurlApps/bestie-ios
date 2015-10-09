@@ -15,12 +15,15 @@ class Strings {
         "Find your best photo\nto post on Twitter"
     ]
     static let onboardPage2 = [
-        "Give your opinion on\nother people's photos..."
+        "What's your bestie?\nUpload and find out!"
     ]
     static let onboardPage3 = [
+        "Give your opinion on\nother people's photos..."
+    ]
+    static let onboardPage4 = [
         "...and see if it\nmatches the crowd's"
     ]
-    static let onboardWelcomeButton = "Get Started"
+    static let onboardWelcomeButton = "Next"
     static let onboardSelectionGender = "I am"
     static let onboardSelectionInterest = "I want to see"
     static let onboardSelectionVotingButton = "Start Voting"
@@ -32,7 +35,7 @@ class Strings {
     static let logoutAlertConfirm = "I'm Sure"
     
     static let votingBubble = "OR"
-    static let votingAlertMessage = "Yay! Bestie in progress, we’ll notify you when it’s done!"
+    static let votingAlertMessage = "Nice voting! Your Bestie's almost ready!"
     static let votingFlagAlertTitle = "Flag Photo"
     static let votingFlagAlertMessage = "Please confirm this photo is spam or inappropriate."
     static let votingFlagAlertCancel = "Cancel"

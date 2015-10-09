@@ -48,6 +48,13 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.spinner.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
     }
     
+    deinit {
+        if self.timer != nil {
+            self.timer.invalidate()
+            self.timer = nil
+        }
+    }
+    
     func setupSpinner() {
         self.spinner = UIImageView(image: UIImage(named: "Sticker"))
         self.spinner.frame = CGRectMake(0, 0, Globals.spinner, Globals.spinner)
@@ -80,6 +87,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         if !self.votingTutorial {
             self.votingTutorial = true
             voterSet.showTutorial()
+            self.user.mixpanel.track("Mobile.Voting Tutorial.Completed")
         }
         
         voterSet.updateSet(self.sets[0])
@@ -189,6 +197,8 @@ class VoteController: UIViewController, VoterImageSetDelegate {
                     self.progressBar2.locked = false
                     
                     self.progressBarUpdate()
+                    
+                    self.user.mixpanel.track("Mobile.Bars Tutorial.Completed")
                 })
             }
         }

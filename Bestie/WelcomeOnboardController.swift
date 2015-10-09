@@ -13,7 +13,7 @@ class WelcomeOnboardController: OnboardPageController, UIPageViewControllerDataS
 UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
 
     private var pageController: UIPageViewController!
-    private var pages = 3
+    private var pages = 4
     private var nextPage = 0
     private var webUrl: NSURL!
     
@@ -41,9 +41,9 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
             }
         }
         
+        self.pageController.willMoveToParentViewController(self)
         self.addChildViewController(self.pageController)
         self.pageContainer.addSubview(self.pageController.view)
-        
         self.pageController.didMoveToParentViewController(self)
         self.pageContainer.backgroundColor = UIColor.clearColor()
         
@@ -95,8 +95,22 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
     }
     
     @IBAction func tapped(sender: AnyObject) {
-        self.onboardController.nextController()
-        Notifications().register()
+        if let controller = self.viewControllerAtIndex(++self.nextPage) {
+            self.pageController.setViewControllers([controller], direction: .Forward, animated: true, completion: { (success: Bool) -> Void in
+                self.pageViewController(self.pageController, didFinishAnimating: success, previousViewControllers: [controller], transitionCompleted: true)
+            })
+        } else {
+            self.onboardController.nextController()
+            Notifications().register()
+        }
+    }
+    
+    func showController() {
+        if let controller = self.viewControllerAtIndex(0) {
+            self.pageController.setViewControllers([controller], direction: .Forward, animated: false, completion: { (success: Bool) -> Void in
+                self.pageViewController(self.pageController, didFinishAnimating: success, previousViewControllers: [controller], transitionCompleted: true)
+            })
+        }
     }
     
     func createPage(index: Int) -> OnboardImageController {
@@ -108,19 +122,14 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
         return page
     }
     
-    func showController() {
-        if let controller = self.viewControllerAtIndex(0) {
-            self.pageController.setViewControllers([controller], direction:
-                .Forward, animated: false, completion: nil)
-        }
-    }
-    
     
     // MARK: Page View Controller Data Source
     func viewControllerAtIndex(index: Int) -> OnboardImageController! {
         if self.pages == 0 || index >= self.pages {
             return nil
         }
+        
+        self.onboardController.mixpanel.track("Mobile.Onboard.Welcome.\(index)")
         
         return self.createPage(index)
     }

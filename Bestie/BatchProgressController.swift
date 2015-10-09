@@ -52,11 +52,18 @@ class BatchProgressController: UIViewController {
         self.votingButton.layer.cornerRadius = Globals.batchSubmitButtonRadius(self.votingButton.frame.width)
     }
     
+    deinit {
+        self.stopTimer()
+        self.stopBirdTimer()
+    }
+    
     @IBAction func votingButtonTapped(sender: AnyObject) {
         Globals.slideToVotingScreen()
     }
     
-    func startTimer() {        
+    func startTimer() {
+        self.stopTimer()
+        
         self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self,
             selector: Selector("updateUser"), userInfo: nil, repeats: true)
     }
@@ -69,12 +76,11 @@ class BatchProgressController: UIViewController {
     }
     
     func startBirdTimer() {
+        self.stopBirdTimer()
         self.birdImage.hidden = false
         
-        if self.birderTimer == nil {
-            self.birderTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
+        self.birderTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
             selector: Selector("flipBird"), userInfo: nil, repeats: true)
-        }
     }
     
     func stopBirdTimer() {

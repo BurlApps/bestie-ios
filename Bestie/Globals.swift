@@ -84,13 +84,13 @@ class Globals {
     
     class func slideToVotingScreen() {
         if self.pageController != nil {
-            self.pageController.pageController.setCurrentPage(2, animated: true)
+            self.pageController.pageController.setCurrentPage(1, animated: true)
         }
     }
     
     class func slideToBatchScreen() {
         if self.pageController != nil {
-            self.pageController.pageController.setCurrentPage(1, animated: true)
+            self.pageController.pageController.setCurrentPage(2, animated: true)
         }
     }
     

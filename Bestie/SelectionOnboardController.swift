@@ -158,12 +158,12 @@ class SelectionOnboardController: OnboardPageController {
     }
     
     @IBAction func uploadTapped(sender: AnyObject) {
-        self.onboardController.nextPage = 1
+        self.onboardController.nextPage = 2
         self.submit()
     }
     
     @IBAction func voteTapped(sender: AnyObject) {
-        self.onboardController.nextPage = 2
+        self.onboardController.nextPage = 1
         self.submit()
     }
 }

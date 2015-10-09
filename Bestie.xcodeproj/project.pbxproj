@@ -111,6 +111,7 @@
 		D35BF4E61BB765ED008B2D4D /* ShareGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareGenerator.swift; sourceTree = "<group>"; };
 		D35BF4E81BB76DBE008B2D4D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D366F2C91BC60923006ADE39 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		D366F2CB1BC75322006ADE39 /* Bestie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Bestie.entitlements; sourceTree = "<group>"; };
 		D37369D81BC37D8600FF086E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		D37369DA1BC44ADA00FF086E /* StateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateTracker.swift; sourceTree = "<group>"; };
 		D37369DD1BC4536300FF086E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -350,6 +351,7 @@
 		D37369DC1BC4535100FF086E /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				D366F2CB1BC75322006ADE39 /* Bestie.entitlements */,
 				D37369DE1BC4536A00FF086E /* Debug.xcconfig */,
 				D37369DD1BC4536300FF086E /* Release.xcconfig */,
 			);
@@ -482,6 +484,9 @@
 							};
 							com.apple.Push = {
 								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
 							};
 						};
 					};

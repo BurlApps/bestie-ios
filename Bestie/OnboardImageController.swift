@@ -11,10 +11,11 @@ import TOMSMorphingLabel
 
 class OnboardImageController: OnboardPageController {
 
-    var imageView = UIImageView()
-    var label = TOMSMorphingLabel()
-    var i: Int = 0
-    var strings: [String] = []
+    private var imageView = UIImageView()
+    private var label = TOMSMorphingLabel()
+    private var i: Int = 0
+    private var strings: [String] = []
+    private var timer: NSTimer!
     private var text: String {
         if i >= strings.count {
             i = 0
@@ -38,11 +39,20 @@ class OnboardImageController: OnboardPageController {
         self.view.addSubview(self.imageView)
     }
     
+    deinit {
+        if self.timer != nil {
+            self.timer.invalidate()
+            self.timer = nil
+        }
+    }
+    
     func cycleText() {
         self.label.text = self.text
     }
     
     func updateFrame(frame: CGRect, index: Int) {
+        self.label.textColor = UIColor(red:1, green:0.42, blue:0.4, alpha:1)
+        
         switch(index) {
             case 0:
                 self.strings = Strings.onboardPage1
@@ -50,11 +60,13 @@ class OnboardImageController: OnboardPageController {
             
             case 1:
                 self.strings = Strings.onboardPage2
-                self.label.textColor = UIColor(red:1, green:0.42, blue:0.4, alpha:1)
+                self.label.textColor = UIColor(red:0.16, green:0.36, blue:0.51, alpha:1)
+            
+            case 2:
+                self.strings = Strings.onboardPage3
             
             default:
-                self.strings = Strings.onboardPage3
-                self.label.textColor = UIColor(red:1, green:0.42, blue:0.4, alpha:1)
+                self.strings = Strings.onboardPage4
         }
         
         self.view.frame = frame
@@ -65,7 +77,7 @@ class OnboardImageController: OnboardPageController {
         
         if self.strings.count > 1 {
             self.label.morphingEnabled = true
-            NSTimer.scheduledTimerWithTimeInterval(Globals.onboardChange, target: self,
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(Globals.onboardChange, target: self,
                 selector: Selector("cycleText"), userInfo: nil, repeats: true)
         }
     }

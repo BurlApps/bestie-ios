@@ -28,13 +28,13 @@ class PageController: UIViewController {
         self.pageController = THTinderNavigationController()
         
         self.pageController.paggedViewControllers = [
-            settingsController, bridgeController, voterController
+            settingsController, voterController, bridgeController
         ]
         
         self.pageController.navbarItemViews = [
             NavigationBarItem(namedImage: "Settings", special: false),
             NavigationBarItem(namedImage: "Face-Left", special: true),
-            NavigationBarItem(namedImage: "Trophy", special: false),
+            NavigationBarItem(namedImage: "Camera", special: false),
         ]
         
         self.pageController.view.backgroundColor = UIColor.clearColor()

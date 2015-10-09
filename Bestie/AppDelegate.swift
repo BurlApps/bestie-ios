@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mixpanel = Mixpanel.sharedInstanceWithToken(Globals.mixpanelToken())
         mixpanel.miniNotificationPresentationTime = 10
+        mixpanel.checkForNotificationsOnActive = true
+        mixpanel.checkForSurveysOnActive = true
+        mixpanel.checkForVariantsOnActive = true
+        mixpanel.showNotificationOnActive = true
         mixpanel.identify(mixpanel.distinctId)
         
         // Track an app open here if we launch with a push, unless
@@ -102,6 +106,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
         NSURLCache.sharedURLCache().removeAllCachedResponses()
+    }
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        if url.host == "upload" {
+            Globals.slideToBatchScreen()
+            
+            return true
+        } else if url.host == "vote" {
+            Globals.slideToVotingScreen()
+            
+            return true
+        }
+        
+        return false
     }
     
     func applicationWillResignActive(application: UIApplication) {

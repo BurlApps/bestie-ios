@@ -8,11 +8,14 @@
 //
 
 import UIKit
+import Mixpanel
 
 class OnboardController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var user: User!
     var nextPage = 1
+    var mixpanel: Mixpanel!
+    
     private var currentPage = 0
     private var controllers: [OnboardPageController] = []
     private var storyBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -20,6 +23,8 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.mixpanel = Mixpanel.sharedInstance()
+        
         let backgroundView = UIView(frame: self.view.frame)
         let image = UIImage(named: "HeaderBackground")
         
@@ -52,7 +57,6 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         
         if self.user != nil {
             self.user.aliasMixpanel()
-
             self.performSegueWithIdentifier("finishedSegue", sender: self)
         } else {
             self.showController()
@@ -80,6 +84,12 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         
         if self.currentPage >= self.controllers.count {
             self.currentPage = 0
+            
+            if self.currentPage == 1 {
+                self.mixpanel.track("Mobile.Onboard.Welcome")
+            } else {
+                self.mixpanel.track("Mobile.Onboard.Selection")
+            }
             
             self.performSegueWithIdentifier("finishedSegue", sender: self)
             
