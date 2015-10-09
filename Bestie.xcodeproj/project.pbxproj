@@ -580,7 +580,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=/usr/local/bin:$PATH\ncd ../Parse\n\n#parse symbols ${PARSE_PROJECT} --path=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd ../Parse\n\nparse symbols ${PARSE_PROJECT} --path=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\" || true";
 			showEnvVarsInLog = 0;
 		};
 		E30ED8059271C4DF1AC767CB /* Copy Pods Resources */ = {
