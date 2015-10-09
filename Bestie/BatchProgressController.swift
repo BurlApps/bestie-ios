@@ -26,6 +26,8 @@ class BatchProgressController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Globals.progressController = self
+        
         self.votingButton.tintColor = UIColor.whiteColor()
         self.votingButton.backgroundColor = Colors.batchSubmitButton
         self.votingButton.layer.masksToBounds = true

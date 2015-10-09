@@ -12,6 +12,7 @@ class Globals {
     
     static var pageController: PageController!
     static var bridgeController: BridgeController!
+    static var progressController: BatchProgressController!
     static var voterController: VoteController!
     static var logoImage: NavigationBarItem!
     
@@ -95,6 +96,15 @@ class Globals {
     }
     
     class func showOnboarding() {
+        if self.voterController != nil {
+            self.voterController.stopTimer()
+        }
+        
+        if self.progressController != nil {
+            self.progressController.stopTimer()
+            self.progressController.stopBirdTimer()
+        }
+    
         if self.pageController != nil {
             self.pageController.navigationController?.popToRootViewControllerAnimated(false)
         }

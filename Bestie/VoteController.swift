@@ -48,7 +48,7 @@ class VoteController: UIViewController, VoterImageSetDelegate {
         self.spinner.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
     }
     
-    deinit {
+    func stopTimer() {
         if self.timer != nil {
             self.timer.invalidate()
             self.timer = nil

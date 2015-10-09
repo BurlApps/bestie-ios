@@ -20,6 +20,7 @@ class Image {
     var maxVotes: Int!
     var wins: Float!
     var losses: Float!
+    var percent: Float!
     var active: Bool!
     var gender: String!
     var imageURL: NSURL!
@@ -35,6 +36,7 @@ class Image {
         self.wins = object["wins"] as? Float
         self.losses = object["losses"] as? Float
         self.votes = object["votes"] as? Int
+        self.percent = object["percent"] as? Float
         self.maxVotes = object["maxVotes"] as? Int
         self.parse = object
         
@@ -87,16 +89,6 @@ class Image {
         }
         
         return voter
-    }
-    
-    func percent() -> Float {
-        let percent = self.wins/Float(self.votes)
-        
-        if percent.isFinite {
-            return percent
-        }
-        
-        return 0
     }
     
     func remove() {

@@ -80,7 +80,7 @@ class ImageTableHeaderCell: UIViewController {
     }
     
     func updateBatch(image: Image!) {
-        self.votedLabel.text = "\(Int(image.percent() * 100))%"
+        self.votedLabel.text = "\(Int(image.percent * 100))%"
         
         image.getImage { (image) -> Void in
             if image != nil {

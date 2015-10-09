@@ -107,9 +107,9 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
     
     func showController() {
         if let controller = self.viewControllerAtIndex(0) {
-            self.pageController.setViewControllers([controller], direction: .Forward, animated: false, completion: { (success: Bool) -> Void in
-                self.pageViewController(self.pageController, didFinishAnimating: success, previousViewControllers: [controller], transitionCompleted: true)
-            })
+            self.pageController.setViewControllers([controller], direction: .Forward, animated: false, completion: nil)
+            self.nextPage = 0
+            self.pageControl.currentPage = 0
         }
     }
     

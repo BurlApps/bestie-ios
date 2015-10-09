@@ -92,7 +92,7 @@ class VoterImage: UIImageView {
         self.voterImage = voterImage
         
         self.percentLabel.alpha = 0
-        self.percentLabel.text = "\(Int(voterImage.percent() * 100))%"
+        self.percentLabel.text = "\(Int(voterImage.percent * 100))%"
         
         self.image = UIImage(named: "Placeholder")
         self.backgroundColor = Colors.batchPlaceholder

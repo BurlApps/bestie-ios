@@ -35,7 +35,7 @@ class ImageTableCell: UITableViewCell {
         self.percentLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
         self.percentLabel.textColor = UIColor.whiteColor()
         self.percentLabel.textAlignment = .Center
-        self.percentLabel.text = "\(Int(voterImage.percent() * 100))%"
+        self.percentLabel.text = "\(Int(voterImage.percent * 100))%"
         self.percentLabel.layer.shadowColor = UIColor(white: 0, alpha: 0.7).CGColor
         self.percentLabel.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.percentLabel.layer.shadowOpacity = 1
