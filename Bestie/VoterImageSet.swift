@@ -97,10 +97,8 @@ class VoterImageSet: UIView, VoterImageDelegate {
     }
     
     func imageFlagged(image: VoterImage) {
-        UIView.animateWithDuration(Globals.voterSetInterval, animations: { () -> Void in
+        UIView.animateWithDuration(Globals.voterSetInterval, animations: {
             self.frame.origin.y = -1 * self.frame.height
-        }, completion: { (success: Bool) -> Void in
-            self.delegate.setOffScreen(self)
         })
         
         self.delegate.setFinished(self, image: image.voterImage)
