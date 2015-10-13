@@ -188,6 +188,11 @@ class User {
             }
         }
         
+        self.mixpanel.registerSuperProperties([
+            "Gender": gender,
+            "Interested": gender
+        ])
+        
         self.mixpanel.people.set([
             "Gender": gender,
             "Interested": interest
@@ -200,6 +205,10 @@ class User {
         self.parse.saveInBackground()
         
         self.mixpanel.people.set([
+            "Gender": gender
+        ])
+        
+        self.mixpanel.registerSuperProperties([
             "Gender": gender
         ])
     }
@@ -215,10 +224,17 @@ class User {
             }
         }
         
+        self.mixpanel.registerSuperProperties([
+            "Interested": gender
+        ])
+        
         self.mixpanel.people.set([
             "Interested": gender
         ])
-        self.mixpanel.track("Mobile.User.Interest.Changed")
+        
+        self.mixpanel.track("Mobile.User.Interest.Changed", properties: [
+            "Interested": gender
+        ])
     }
     
     func fetch(callback: (() -> Void)!) {
