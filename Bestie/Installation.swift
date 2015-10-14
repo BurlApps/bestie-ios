@@ -6,6 +6,8 @@
 //  Copyright © 2015 Brian Vallelunga. All rights reserved.
 //
 
+import Mixpanel
+
 class Installation {
     
     // MARK: Instance Variables
@@ -37,6 +39,8 @@ class Installation {
     func setDeviceToken(token: NSData) {
         self.parse.setDeviceTokenFromData(token)
         self.parse.saveInBackground()
+        
+        Mixpanel.sharedInstance().people.addPushDeviceToken(token)
     }
     
     func setUser(user: User) {
