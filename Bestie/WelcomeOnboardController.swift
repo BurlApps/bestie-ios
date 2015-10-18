@@ -72,6 +72,8 @@ UIPageViewControllerDelegate, TTTAttributedLabelDelegate {
             self.legalLabel.addLinkToURL(tos, withRange: tosRange)
             self.legalLabel.addLinkToURL(privacy, withRange: privacyRange)
         }
+        
+        self.onboardController.mixpanel.track("Mobile.Onboard.Welcome")
     }
     
     override func viewWillLayoutSubviews() {

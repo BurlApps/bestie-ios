@@ -45,6 +45,8 @@ class SelectionOnboardController: OnboardPageController {
         self.initImage(self.interestMale, type: "interest", tag: 0)
         self.initImage(self.interestFemale, type: "interest", tag: 1)
         self.initImage(self.interestBoth, type: "interest", tag: 2)
+        
+        self.onboardController.mixpanel.track("Mobile.Onboard.Selection")
     }
     
     override func viewWillAppear(animated: Bool) {

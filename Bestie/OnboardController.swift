@@ -85,12 +85,6 @@ class OnboardController: UIPageViewController, UIPageViewControllerDataSource, U
         if self.currentPage >= self.controllers.count {
             self.currentPage = 0
             
-            if self.currentPage == 1 {
-                self.mixpanel.track("Mobile.Onboard.Welcome")
-            } else {
-                self.mixpanel.track("Mobile.Onboard.Selection")
-            }
-            
             self.performSegueWithIdentifier("finishedSegue", sender: self)
             
             self.user.mixpanel.track("Mobile.Onboard.Finished", properties: [
