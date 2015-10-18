@@ -10,7 +10,6 @@ class VoterSet {
     
     var image1: Image!
     var image2: Image!
-    var fake = false
     
     convenience init(_ image1: Image, _ image2: Image) {
         self.init()
@@ -21,15 +20,13 @@ class VoterSet {
     
     func voted(winner: Image) {
         let user = User.current()
-        
-        if(fake) {
-            return
-        }
+        var position = "bottom"
         
         var looser = self.image1
         
         if winner.parse.objectId == self.image1.parse.objectId {
             looser = self.image2
+            position = "top"
         }
         
         PFCloud.callFunctionInBackground("setVoted", withParameters: [
@@ -52,5 +49,8 @@ class VoterSet {
         }
         
         user.mixpanel.people.increment("Votes", by: 1)
+        user.mixpanel.track("Mobile.Set.Voted", properties: [
+            "Position": position
+        ])
     }
 }
